@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		900F2F8D235F7F020043BB86 /* manifest.m in Sources */ = {isa = PBXBuildFile; fileRef = 900F2F8C235F7F020043BB86 /* manifest.m */; };
 		900F2F8E235F7F020043BB86 /* manifest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 900F2F8B235F7F020043BB86 /* manifest.h */; };
+		909D219F2361019800CEFF04 /* UIColor+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 909D219E2361019800CEFF04 /* UIColor+String.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		900F2F88235F7F020043BB86 /* libmanifest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmanifest.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		900F2F8B235F7F020043BB86 /* manifest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = manifest.h; path = manifest/manifest.h; sourceTree = "<group>"; };
 		900F2F8C235F7F020043BB86 /* manifest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = manifest.m; path = manifest/manifest.m; sourceTree = "<group>"; };
+		909D219D2361019800CEFF04 /* UIColor+String.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+String.h"; sourceTree = "<group>"; };
+		909D219E2361019800CEFF04 /* UIColor+String.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+String.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 			children = (
 				900F2F8B235F7F020043BB86 /* manifest.h */,
 				900F2F8C235F7F020043BB86 /* manifest.m */,
+				909D219D2361019800CEFF04 /* UIColor+String.h */,
+				909D219E2361019800CEFF04 /* UIColor+String.m */,
 			);
 			name = manifest;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				900F2F8D235F7F020043BB86 /* manifest.m in Sources */,
+				909D219F2361019800CEFF04 /* UIColor+String.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

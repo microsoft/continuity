@@ -19,19 +19,15 @@
 {
   NSBundle *bundle = [NSBundle mainBundle];
   NSString *appManifestPath = [bundle pathForResource:@"app" ofType:@"json"];
-  NSLog(@"appManifestPath=%@", appManifestPath);
 
   manifest* m = [[manifest alloc] initWithManifestPath:appManifestPath];
-  
-  NSLog(@"manifest: name=%@", m.name);
-  NSLog(@"manifest: initialProperties=%@", m.initialProperties);
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:m.name
                                             initialProperties:m.initialProperties];
 
-  rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
+  rootView.backgroundColor = m.backgroundColor;
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];

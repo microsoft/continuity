@@ -1,12 +1,5 @@
-//
-//  manifest.m
-//  manifest
-//
-//  Created by afoxman on 10/22/19.
-//  Copyright © 2019 Microsoft. All rights reserved.
-//
-
 #import "manifest.h"
+#import "UIColor+String.h"
 
 @implementation manifest
 
@@ -21,17 +14,9 @@
         _name = _data[@"name"];
         _displayName = _data[@"displayName"];
         _initialProperties = _data[@"initialProperties"];
-        
-        NSString *backgroundColor = _data[@"backgroundColor"];
-        if (backgroundColor && backgroundColor.length > 0)
-        {
-            // TODO: LEFT OFF HERE: use react-native libraries to parse the color string to a UIColor object
+        _backgroundColor = [UIColor colorFromString:_data[@"backgroundColor"]];
+        if (!_backgroundColor)
             _backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1];
-        }
-        else
-        {
-            _backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1];
-        }
     }
     return self;
 }

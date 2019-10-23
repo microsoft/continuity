@@ -1,4 +1,13 @@
 {
   "name": "manifesttest",
-  "displayName": "manifesttest"
+  "displayName": "manifesttest",
+  "initialProperties": {
+    "a": "string prop",
+    "b": true,
+    "c": 3.1415925,
+    "d": {
+      "nested": 88
+    }
+  },
+  "backgroundColor": "#1E90FF"
 }
