@@ -17,10 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  NSBundle *bundle = [NSBundle mainBundle];
-  NSString *appManifestPath = [bundle pathForResource:@"app" ofType:@"json"];
-
-  manifest* m = [[manifest alloc] initWithManifestPath:appManifestPath];
+  manifest* m = [[manifest alloc] init];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge

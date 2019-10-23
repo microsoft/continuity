@@ -3,7 +3,14 @@
 
 @implementation manifest
 
-- (manifest* _Nullable)initWithManifestPath:(NSString* _Nonnull)manifestPath
+- (manifest *_Nullable)init
+{
+    NSString *manifestPath = [[NSBundle mainBundle] pathForResource:@"app" ofType:@"json"];
+    self = [self initWithManifestPath:manifestPath];
+    return self;
+}
+
+- (manifest *_Nullable)initWithManifestPath:(NSString* _Nonnull)manifestPath
 {
     self = [super init];
     if (self)

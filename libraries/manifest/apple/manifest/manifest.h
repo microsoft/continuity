@@ -10,6 +10,7 @@
 @property (readonly, nullable) NSDictionary *initialProperties;
 @property (readonly, nullable) UIColor *backgroundColor;
 
-- (manifest* _Nullable)initWithManifestPath:(NSString* _Nonnull)manifestPath;
+- (manifest *_Nullable)init;
+- (manifest *_Nullable)initWithManifestPath:(NSString* _Nonnull)manifestPath;
 
 @end
