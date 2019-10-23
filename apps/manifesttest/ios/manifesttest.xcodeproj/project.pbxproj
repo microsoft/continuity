@@ -12,6 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		90CE12ED235FAD54002FD17F /* libmanifest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CE12E6235FA878002FD17F /* libmanifest.a */; };
+		90CE12F1235FB92C002FD17F /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = 90CE12F0235FB92C002FD17F /* app.json */; };
 		ED39C9D51A1B8AD93E5A1E0B /* libPods-manifesttest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 330DB1B8353EDBBB7E2043BA /* libPods-manifesttest.a */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		45650467125AC26CE8A1CE7E /* libPods-manifesttest-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manifesttest-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62273E5AFD1A456FB0BB3679 /* libPods-manifesttestTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manifesttestTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90CE12E1235FA878002FD17F /* manifest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = manifest.xcodeproj; path = ../../../libraries/manifest/apple/manifest.xcodeproj; sourceTree = "<group>"; };
+		90CE12F0235FB92C002FD17F /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = app.json; path = ../app.json; sourceTree = "<group>"; };
 		B42AE3882A3A7FE88F0727A1 /* Pods-manifesttestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttestTests.release.xcconfig"; path = "Target Support Files/Pods-manifesttestTests/Pods-manifesttestTests.release.xcconfig"; sourceTree = "<group>"; };
 		B599BD8151F2F78957F4F9B4 /* Pods-manifesttest-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-manifesttest-tvOSTests/Pods-manifesttest-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		B6EADDD8B87673B7FDEBBB00 /* Pods-manifesttestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttestTests.debug.xcconfig"; path = "Target Support Files/Pods-manifesttestTests/Pods-manifesttestTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 		13B07FAE1A68108700A75B9A /* manifesttest */ = {
 			isa = PBXGroup;
 			children = (
+				90CE12F0235FB92C002FD17F /* app.json */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -246,6 +249,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				90CE12F1235FB92C002FD17F /* app.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
