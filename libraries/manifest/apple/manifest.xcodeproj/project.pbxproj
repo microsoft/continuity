@@ -29,8 +29,8 @@
 		900F2F88235F7F020043BB86 /* libmanifest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmanifest.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		900F2F8B235F7F020043BB86 /* manifest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = manifest.h; path = manifest/manifest.h; sourceTree = "<group>"; };
 		900F2F8C235F7F020043BB86 /* manifest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = manifest.m; path = manifest/manifest.m; sourceTree = "<group>"; };
-		909D219D2361019800CEFF04 /* UIColor+String.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+String.h"; sourceTree = "<group>"; };
-		909D219E2361019800CEFF04 /* UIColor+String.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+String.m"; sourceTree = "<group>"; };
+		909D219D2361019800CEFF04 /* UIColor+String.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+String.h"; path = "manifest/UIColor+String.h"; sourceTree = "<group>"; };
+		909D219E2361019800CEFF04 /* UIColor+String.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIColor+String.m"; path = "manifest/UIColor+String.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
