@@ -1,16 +1,16 @@
-#import "manifest.h"
+#import "RNXManifest.h"
 #import "UIColor+String.h"
 
-@implementation manifest
+@implementation RNXManifest
 
-- (manifest *_Nullable)init
+- (RNXManifest *_Nullable)init
 {
     NSString *manifestPath = [[NSBundle mainBundle] pathForResource:@"app" ofType:@"json"];
     self = [self initWithManifestPath:manifestPath];
     return self;
 }
 
-- (manifest *_Nullable)initWithManifestPath:(NSString* _Nonnull)manifestPath
+- (RNXManifest *_Nullable)initWithManifestPath:(NSString* _Nonnull)manifestPath
 {
     self = [super init];
     if (self)

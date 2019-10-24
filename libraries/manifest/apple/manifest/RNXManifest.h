@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface manifest : NSObject
+@interface RNXManifest : NSObject
 
 @property (readonly, nullable) NSDictionary *data;
 
@@ -10,7 +10,7 @@
 @property (readonly, nullable) NSDictionary *initialProperties;
 @property (readonly, nullable) UIColor *backgroundColor;
 
-- (manifest *_Nullable)init;
-- (manifest *_Nullable)initWithManifestPath:(NSString* _Nonnull)manifestPath;
+- (RNXManifest *_Nullable)init;
+- (RNXManifest *_Nullable)initWithManifestPath:(NSString* _Nonnull)manifestPath;
 
 @end

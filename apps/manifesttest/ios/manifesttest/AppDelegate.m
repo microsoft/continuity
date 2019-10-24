@@ -11,13 +11,13 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
-#import <manifest/manifest.h>
+#import <manifest/RNXManifest.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  manifest* m = [[manifest alloc] init];
+  RNXManifest* m = [[RNXManifest alloc] init];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
