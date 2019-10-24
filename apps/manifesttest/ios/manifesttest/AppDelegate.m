@@ -11,7 +11,7 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
-#import <manifest/RNXManifest.h>
+#import <RNXManifest/RNXManifest.h>
 
 @implementation AppDelegate
 

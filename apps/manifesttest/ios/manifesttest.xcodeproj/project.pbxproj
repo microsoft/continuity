@@ -11,25 +11,18 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		90CE12ED235FAD54002FD17F /* libmanifest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CE12E6235FA878002FD17F /* libmanifest.a */; };
+		90BBFEB0236226100003024D /* libRNXManifest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90BBFEAF236226100003024D /* libRNXManifest.a */; };
 		90CE12F1235FB92C002FD17F /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = 90CE12F0235FB92C002FD17F /* app.json */; };
 		ED39C9D51A1B8AD93E5A1E0B /* libPods-manifesttest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 330DB1B8353EDBBB7E2043BA /* libPods-manifesttest.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		90CE12E5235FA878002FD17F /* PBXContainerItemProxy */ = {
+		90BBFEB4236226E90003024D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 90CE12E1235FA878002FD17F /* manifest.xcodeproj */;
+			containerPortal = 90CE12E1235FA878002FD17F /* RNXManifest.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 900F2F88235F7F020043BB86;
-			remoteInfo = manifest;
-		};
-		90CE12E9235FAA8E002FD17F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 90CE12E1235FA878002FD17F /* manifest.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 900F2F87235F7F020043BB86;
-			remoteInfo = manifest;
+			remoteInfo = RNXManifest;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -44,7 +37,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = manifesttest/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = manifesttest/main.m; sourceTree = "<group>"; };
 		330DB1B8353EDBBB7E2043BA /* libPods-manifesttest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manifesttest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		90CE12E1235FA878002FD17F /* manifest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = manifest.xcodeproj; path = ../../../libraries/manifest/apple/manifest.xcodeproj; sourceTree = "<group>"; };
+		90BBFEAF236226100003024D /* libRNXManifest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNXManifest.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		90CE12E1235FA878002FD17F /* RNXManifest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNXManifest.xcodeproj; path = ../../../libraries/manifest/apple/RNXManifest.xcodeproj; sourceTree = "<group>"; };
 		90CE12F0235FB92C002FD17F /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = app.json; path = ../app.json; sourceTree = "<group>"; };
 		DCBD538F0761248143D6324B /* Pods-manifesttest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest.debug.xcconfig"; path = "Target Support Files/Pods-manifesttest/Pods-manifesttest.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -56,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90CE12ED235FAD54002FD17F /* libmanifest.a in Frameworks */,
+				90BBFEB0236226100003024D /* libRNXManifest.a in Frameworks */,
 				ED39C9D51A1B8AD93E5A1E0B /* libPods-manifesttest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +79,7 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				330DB1B8353EDBBB7E2043BA /* libPods-manifesttest.a */,
+				90BBFEAF236226100003024D /* libRNXManifest.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -101,7 +96,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				90CE12E1235FA878002FD17F /* manifest.xcodeproj */,
+				90CE12E1235FA878002FD17F /* RNXManifest.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -128,10 +123,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		90CE12E2235FA878002FD17F /* Products */ = {
+		90BBFEB1236226E90003024D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				90CE12E6235FA878002FD17F /* libmanifest.a */,
+				90BBFEB5236226E90003024D /* libRNXManifest.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,7 +148,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				90CE12EA235FAA8E002FD17F /* PBXTargetDependency */,
 			);
 			name = manifesttest;
 			productName = manifesttest;
@@ -183,8 +177,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 90CE12E2235FA878002FD17F /* Products */;
-					ProjectRef = 90CE12E1235FA878002FD17F /* manifest.xcodeproj */;
+					ProductGroup = 90BBFEB1236226E90003024D /* Products */;
+					ProjectRef = 90CE12E1235FA878002FD17F /* RNXManifest.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -195,11 +189,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		90CE12E6235FA878002FD17F /* libmanifest.a */ = {
+		90BBFEB5236226E90003024D /* libRNXManifest.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libmanifest.a;
-			remoteRef = 90CE12E5235FA878002FD17F /* PBXContainerItemProxy */;
+			path = libRNXManifest.a;
+			remoteRef = 90BBFEB4236226E90003024D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -286,14 +280,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		90CE12EA235FAA8E002FD17F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = manifest;
-			targetProxy = 90CE12E9235FAA8E002FD17F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {

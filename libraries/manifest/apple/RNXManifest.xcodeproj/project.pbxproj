@@ -26,7 +26,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		900F2F88235F7F020043BB86 /* libmanifest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmanifest.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		900F2F88235F7F020043BB86 /* libRNXManifest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNXManifest.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		900F2F8B235F7F020043BB86 /* RNXManifest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RNXManifest.h; path = manifest/RNXManifest.h; sourceTree = "<group>"; };
 		900F2F8C235F7F020043BB86 /* RNXManifest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RNXManifest.m; path = manifest/RNXManifest.m; sourceTree = "<group>"; };
 		909D219D2361019800CEFF04 /* UIColor+String.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+String.h"; path = "manifest/UIColor+String.h"; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 		900F2F7F235F7F020043BB86 = {
 			isa = PBXGroup;
 			children = (
-				900F2F8A235F7F020043BB86 /* manifest */,
+				900F2F8A235F7F020043BB86 /* RNXManifest */,
 				900F2F89235F7F020043BB86 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,12 +55,12 @@
 		900F2F89235F7F020043BB86 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				900F2F88235F7F020043BB86 /* libmanifest.a */,
+				900F2F88235F7F020043BB86 /* libRNXManifest.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		900F2F8A235F7F020043BB86 /* manifest */ = {
+		900F2F8A235F7F020043BB86 /* RNXManifest */ = {
 			isa = PBXGroup;
 			children = (
 				900F2F8B235F7F020043BB86 /* RNXManifest.h */,
@@ -68,15 +68,15 @@
 				909D219D2361019800CEFF04 /* UIColor+String.h */,
 				909D219E2361019800CEFF04 /* UIColor+String.m */,
 			);
-			name = manifest;
+			name = RNXManifest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		900F2F87235F7F020043BB86 /* manifest */ = {
+		900F2F87235F7F020043BB86 /* RNXManifest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 900F2F91235F7F020043BB86 /* Build configuration list for PBXNativeTarget "manifest" */;
+			buildConfigurationList = 900F2F91235F7F020043BB86 /* Build configuration list for PBXNativeTarget "RNXManifest" */;
 			buildPhases = (
 				900F2F84235F7F020043BB86 /* Sources */,
 				900F2F85235F7F020043BB86 /* Frameworks */,
@@ -86,9 +86,9 @@
 			);
 			dependencies = (
 			);
-			name = manifest;
+			name = RNXManifest;
 			productName = manifest;
-			productReference = 900F2F88235F7F020043BB86 /* libmanifest.a */;
+			productReference = 900F2F88235F7F020043BB86 /* libRNXManifest.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -105,7 +105,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 900F2F83235F7F020043BB86 /* Build configuration list for PBXProject "manifest" */;
+			buildConfigurationList = 900F2F83235F7F020043BB86 /* Build configuration list for PBXProject "RNXManifest" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -118,7 +118,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				900F2F87235F7F020043BB86 /* manifest */,
+				900F2F87235F7F020043BB86 /* RNXManifest */,
 			);
 		};
 /* End PBXProject section */
@@ -271,7 +271,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		900F2F83235F7F020043BB86 /* Build configuration list for PBXProject "manifest" */ = {
+		900F2F83235F7F020043BB86 /* Build configuration list for PBXProject "RNXManifest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				900F2F8F235F7F020043BB86 /* Debug */,
@@ -280,7 +280,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		900F2F91235F7F020043BB86 /* Build configuration list for PBXNativeTarget "manifest" */ = {
+		900F2F91235F7F020043BB86 /* Build configuration list for PBXNativeTarget "RNXManifest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				900F2F92235F7F020043BB86 /* Debug */,
