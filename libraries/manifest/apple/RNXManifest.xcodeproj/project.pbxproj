@@ -27,10 +27,10 @@
 
 /* Begin PBXFileReference section */
 		900F2F88235F7F020043BB86 /* libRNXManifest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNXManifest.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		900F2F8B235F7F020043BB86 /* RNXManifest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RNXManifest.h; path = manifest/RNXManifest.h; sourceTree = "<group>"; };
-		900F2F8C235F7F020043BB86 /* RNXManifest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RNXManifest.m; path = manifest/RNXManifest.m; sourceTree = "<group>"; };
-		909D219D2361019800CEFF04 /* UIColor+String.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+String.h"; path = "manifest/UIColor+String.h"; sourceTree = "<group>"; };
-		909D219E2361019800CEFF04 /* UIColor+String.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIColor+String.m"; path = "manifest/UIColor+String.m"; sourceTree = "<group>"; };
+		900F2F8B235F7F020043BB86 /* RNXManifest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RNXManifest.h; path = RNXManifest/RNXManifest.h; sourceTree = "<group>"; };
+		900F2F8C235F7F020043BB86 /* RNXManifest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RNXManifest.m; path = RNXManifest/RNXManifest.m; sourceTree = "<group>"; };
+		909D219D2361019800CEFF04 /* UIColor+String.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+String.h"; path = "RNXManifest/UIColor+String.h"; sourceTree = "<group>"; };
+		909D219E2361019800CEFF04 /* UIColor+String.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIColor+String.m"; path = "RNXManifest/UIColor+String.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
