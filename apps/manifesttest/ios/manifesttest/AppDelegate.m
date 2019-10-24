@@ -17,14 +17,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  RNXManifest* m = [[RNXManifest alloc] init];
+  RNXManifest* manifest = [[RNXManifest alloc] init];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                   moduleName:m.name
-                                            initialProperties:m.initialProperties];
+                                                   moduleName:manifest.name
+                                            initialProperties:manifest.initialProperties];
 
-  rootView.backgroundColor = m.backgroundColor;
+  rootView.backgroundColor = manifest.backgroundColor;
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
