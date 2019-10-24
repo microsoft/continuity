@@ -35,9 +35,6 @@
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* manifesttestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = manifesttestTests.m; sourceTree = "<group>"; };
-		024117CD1CEBA97F59B8FB15 /* libPods-manifesttest-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manifesttest-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07C3393C45D03FB9895C59DF /* Pods-manifesttest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest.release.xcconfig"; path = "Target Support Files/Pods-manifesttest/Pods-manifesttest.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* manifesttest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = manifesttest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = manifesttest/AppDelegate.h; sourceTree = "<group>"; };
@@ -46,17 +43,9 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = manifesttest/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = manifesttest/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = manifesttest/main.m; sourceTree = "<group>"; };
-		1F5A9FD8032E7B7FF9173862 /* Pods-manifesttest-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest-tvOS.release.xcconfig"; path = "Target Support Files/Pods-manifesttest-tvOS/Pods-manifesttest-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		32773EC85B31AEAFA853BE2C /* Pods-manifesttest-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-manifesttest-tvOSTests/Pods-manifesttest-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		330DB1B8353EDBBB7E2043BA /* libPods-manifesttest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manifesttest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3604E4C637DAEC27ED4A26ED /* Pods-manifesttest-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-manifesttest-tvOS/Pods-manifesttest-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		45650467125AC26CE8A1CE7E /* libPods-manifesttest-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manifesttest-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		62273E5AFD1A456FB0BB3679 /* libPods-manifesttestTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manifesttestTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90CE12E1235FA878002FD17F /* manifest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = manifest.xcodeproj; path = ../../../libraries/manifest/apple/manifest.xcodeproj; sourceTree = "<group>"; };
 		90CE12F0235FB92C002FD17F /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = app.json; path = ../app.json; sourceTree = "<group>"; };
-		B42AE3882A3A7FE88F0727A1 /* Pods-manifesttestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttestTests.release.xcconfig"; path = "Target Support Files/Pods-manifesttestTests/Pods-manifesttestTests.release.xcconfig"; sourceTree = "<group>"; };
-		B599BD8151F2F78957F4F9B4 /* Pods-manifesttest-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-manifesttest-tvOSTests/Pods-manifesttest-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		B6EADDD8B87673B7FDEBBB00 /* Pods-manifesttestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttestTests.debug.xcconfig"; path = "Target Support Files/Pods-manifesttestTests/Pods-manifesttestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DCBD538F0761248143D6324B /* Pods-manifesttest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest.debug.xcconfig"; path = "Target Support Files/Pods-manifesttest/Pods-manifesttest.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -75,23 +64,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* manifesttestTests */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F21AD99517003FC87E /* manifesttestTests.m */,
-				00E356F01AD99517003FC87E /* Supporting Files */,
-			);
-			path = manifesttestTests;
-			sourceTree = "<group>";
-		};
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* manifesttest */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,9 +85,6 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				330DB1B8353EDBBB7E2043BA /* libPods-manifesttest.a */,
-				024117CD1CEBA97F59B8FB15 /* libPods-manifesttest-tvOS.a */,
-				45650467125AC26CE8A1CE7E /* libPods-manifesttest-tvOSTests.a */,
-				62273E5AFD1A456FB0BB3679 /* libPods-manifesttestTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -125,12 +94,6 @@
 			children = (
 				DCBD538F0761248143D6324B /* Pods-manifesttest.debug.xcconfig */,
 				07C3393C45D03FB9895C59DF /* Pods-manifesttest.release.xcconfig */,
-				3604E4C637DAEC27ED4A26ED /* Pods-manifesttest-tvOS.debug.xcconfig */,
-				1F5A9FD8032E7B7FF9173862 /* Pods-manifesttest-tvOS.release.xcconfig */,
-				32773EC85B31AEAFA853BE2C /* Pods-manifesttest-tvOSTests.debug.xcconfig */,
-				B599BD8151F2F78957F4F9B4 /* Pods-manifesttest-tvOSTests.release.xcconfig */,
-				B6EADDD8B87673B7FDEBBB00 /* Pods-manifesttestTests.debug.xcconfig */,
-				B42AE3882A3A7FE88F0727A1 /* Pods-manifesttestTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -148,7 +111,6 @@
 			children = (
 				13B07FAE1A68108700A75B9A /* manifesttest */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* manifesttestTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				32D7BF486C305E9818AFC600 /* Pods */,
