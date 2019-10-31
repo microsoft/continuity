@@ -24,6 +24,13 @@
 			remoteGlobalIDString = 900F2F88235F7F020043BB86;
 			remoteInfo = RNXManifest;
 		};
+		90BBFEBF236766670003024D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90CE12E1235FA878002FD17F /* RNXManifest.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 900F2F87235F7F020043BB86;
+			remoteInfo = RNXManifest;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +155,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				90BBFEC0236766670003024D /* PBXTargetDependency */,
 			);
 			name = manifesttest;
 			productName = manifesttest;
@@ -224,7 +232,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		711C2E97E8709894FB87416D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -281,6 +289,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		90BBFEC0236766670003024D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RNXManifest;
+			targetProxy = 90BBFEBF236766670003024D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
@@ -302,6 +318,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				INFOPLIST_FILE = manifesttest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -321,6 +338,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = manifesttest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

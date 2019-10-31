@@ -1,31 +1,63 @@
+#import "Constants.h"
+#import "DictionaryReader.h"
 #import "RNXManifest.h"
-#import "UIColor+String.h"
 
 @implementation RNXManifest
 
-- (RNXManifest *_Nullable)init
-{
-    NSString *manifestPath = [[NSBundle mainBundle] pathForResource:@"app" ofType:@"json"];
-    self = [self initWithManifestPath:manifestPath];
-    return self;
-}
-
-- (RNXManifest *_Nullable)initWithManifestPath:(NSString* _Nonnull)manifestPath
+- (RNXManifest *_Nullable)initWithManifestData:(NSDictionary *)data
+                                         error:(NSError **)error
 {
     self = [super init];
     if (self)
     {
-        NSData *manifestData = [NSData dataWithContentsOfFile:manifestPath];
-        _data = [NSJSONSerialization JSONObjectWithData:manifestData options:kNilOptions error:nil];
-        
-        _name = _data[@"name"];
-        _displayName = _data[@"displayName"];
-        _initialProperties = _data[@"initialProperties"];
-        _backgroundColor = [UIColor colorFromString:_data[@"backgroundColor"]];
-        if (!_backgroundColor)
-            _backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1];
+        DictionaryReader *reader = [[DictionaryReader alloc] initWithDictionary:data];
+
+        NSDictionary *entriesData = [reader readKey:@"entry" asType:[NSDictionary class] error:error];
+        if (!entriesData)
+        {
+            return nil;
+        }
+        DictionaryReader *entriesReader = [[DictionaryReader alloc] initWithDictionary:entriesData];
+
+        NSMutableDictionary<NSString *, RNXManifestEntry *> *entries = [[NSMutableDictionary alloc] init];
+        for (NSString *entryName in entriesData)
+        {
+            NSDictionary *entryData = [entriesReader readKey:entryName asType:[NSDictionary class] error:error];
+            if (!entryData)
+            {
+                return nil;
+            }
+
+            if (!(entries[entryName] = [[RNXManifestEntry alloc] initWithName:entryName data:entryData error:error]))
+            {
+                return nil;
+            }
+        }
+        _entries = entries;
+
+        NSDictionary *devData = [reader readKey:@"dev" asType:[NSDictionary class]];
+        _dev = devData ? [[RNXManifestDev alloc] initWithData:devData] : [[RNXManifestDev alloc] init];
     }
+
     return self;
+}
+
+- (RNXManifest *)initWithContentsOfFile:(NSString *)manifestPath
+                                  error:(NSError **)error
+{
+    NSData *manifestFileContents = [NSData dataWithContentsOfFile:manifestPath options:0 error:error];
+    if (!manifestFileContents)
+    {
+        return nil;
+    }
+    
+    NSDictionary *manifestData = [NSJSONSerialization JSONObjectWithData:manifestFileContents options:kNilOptions error:error];
+    if (!manifestData)
+    {
+        return nil;
+    }
+
+    return [self initWithManifestData:manifestData error:error];
 }
 
 @end

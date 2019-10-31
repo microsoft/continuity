@@ -1,16 +1,22 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "RNXManifestDev.h"
+#import "RNXManifestEntry.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface RNXManifest : NSObject
 
-@property (readonly, nullable) NSDictionary *data;
+@property (readonly) NSDictionary<NSString *, RNXManifestEntry *> *entries;
+@property (readonly) RNXManifestDev *dev;
 
-@property (readonly, nullable) NSString *name;
-@property (readonly, nullable) NSString *displayName;
-@property (readonly, nullable) NSDictionary *initialProperties;
-@property (readonly, nullable) UIColor *backgroundColor;
+- (RNXManifest *_Nullable)initWithManifestData:(NSDictionary *)data
+                                         error:(NSError *_Nullable *)error;
 
-- (RNXManifest *_Nullable)init;
-- (RNXManifest *_Nullable)initWithManifestPath:(NSString* _Nonnull)manifestPath;
+- (RNXManifest *_Nullable)initWithContentsOfFile:(NSString *)manifestPath
+                                           error:(NSError *_Nullable *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END
