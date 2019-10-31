@@ -7,8 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		900F2F8D235F7F020043BB86 /* manifest.m in Sources */ = {isa = PBXBuildFile; fileRef = 900F2F8C235F7F020043BB86 /* manifest.m */; };
-		900F2F8E235F7F020043BB86 /* manifest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 900F2F8B235F7F020043BB86 /* manifest.h */; };
+		900F2F8D235F7F020043BB86 /* RNXManifest.m in Sources */ = {isa = PBXBuildFile; fileRef = 900F2F8C235F7F020043BB86 /* RNXManifest.m */; };
+		900F2F8E235F7F020043BB86 /* RNXManifest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 900F2F8B235F7F020043BB86 /* RNXManifest.h */; };
+		909D219F2361019800CEFF04 /* UIColor+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 909D219E2361019800CEFF04 /* UIColor+String.m */; };
+		90BBFEC423676C650003024D /* RNXManifestDev.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BBFEC323676C650003024D /* RNXManifestDev.m */; };
+		90BBFEC623676DE20003024D /* RNXManifestDev.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 90BBFEC523676C7F0003024D /* RNXManifestDev.h */; };
+		90BBFEC92368D9D80003024D /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BBFEC82368D9D80003024D /* Constants.m */; };
+		90BBFECB236A43270003024D /* Constants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 90BBFECA2368D9F70003024D /* Constants.h */; };
+		90BBFED4236B4D7D0003024D /* RNXManifestEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BBFED3236B4D7D0003024D /* RNXManifestEntry.m */; };
+		90BBFED6236B4E240003024D /* DictionaryReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BBFED5236B4E240003024D /* DictionaryReader.m */; };
+		90BBFED8236B4EE90003024D /* RNXManifestEntry.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 90BBFED2236B4CBF0003024D /* RNXManifestEntry.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -18,16 +26,29 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				900F2F8E235F7F020043BB86 /* manifest.h in CopyFiles */,
+				90BBFECB236A43270003024D /* Constants.h in CopyFiles */,
+				900F2F8E235F7F020043BB86 /* RNXManifest.h in CopyFiles */,
+				90BBFEC623676DE20003024D /* RNXManifestDev.h in CopyFiles */,
+				90BBFED8236B4EE90003024D /* RNXManifestEntry.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		900F2F88235F7F020043BB86 /* libmanifest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmanifest.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		900F2F8B235F7F020043BB86 /* manifest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = manifest.h; path = manifest/manifest.h; sourceTree = "<group>"; };
-		900F2F8C235F7F020043BB86 /* manifest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = manifest.m; path = manifest/manifest.m; sourceTree = "<group>"; };
+		900F2F88235F7F020043BB86 /* libRNXManifest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNXManifest.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		900F2F8B235F7F020043BB86 /* RNXManifest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RNXManifest.h; path = RNXManifest/RNXManifest.h; sourceTree = "<group>"; };
+		900F2F8C235F7F020043BB86 /* RNXManifest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RNXManifest.m; path = RNXManifest/RNXManifest.m; sourceTree = "<group>"; };
+		909D219D2361019800CEFF04 /* UIColor+String.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+String.h"; path = "RNXManifest/UIColor+String.h"; sourceTree = "<group>"; };
+		909D219E2361019800CEFF04 /* UIColor+String.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIColor+String.m"; path = "RNXManifest/UIColor+String.m"; sourceTree = "<group>"; };
+		90BBFEC323676C650003024D /* RNXManifestDev.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RNXManifestDev.m; path = RNXManifest/RNXManifestDev.m; sourceTree = "<group>"; };
+		90BBFEC523676C7F0003024D /* RNXManifestDev.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RNXManifestDev.h; path = RNXManifest/RNXManifestDev.h; sourceTree = "<group>"; };
+		90BBFEC82368D9D80003024D /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = RNXManifest/Constants.m; sourceTree = "<group>"; };
+		90BBFECA2368D9F70003024D /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = RNXManifest/Constants.h; sourceTree = "<group>"; };
+		90BBFED2236B4CBF0003024D /* RNXManifestEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RNXManifestEntry.h; path = RNXManifest/RNXManifestEntry.h; sourceTree = "<group>"; };
+		90BBFED3236B4D7D0003024D /* RNXManifestEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RNXManifestEntry.m; path = RNXManifest/RNXManifestEntry.m; sourceTree = "<group>"; };
+		90BBFED5236B4E240003024D /* DictionaryReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DictionaryReader.m; path = RNXManifest/DictionaryReader.m; sourceTree = "<group>"; };
+		90BBFED7236B4E5B0003024D /* DictionaryReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DictionaryReader.h; path = RNXManifest/DictionaryReader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +65,7 @@
 		900F2F7F235F7F020043BB86 = {
 			isa = PBXGroup;
 			children = (
-				900F2F8A235F7F020043BB86 /* manifest */,
+				900F2F8A235F7F020043BB86 /* RNXManifest */,
 				900F2F89235F7F020043BB86 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,26 +73,36 @@
 		900F2F89235F7F020043BB86 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				900F2F88235F7F020043BB86 /* libmanifest.a */,
+				900F2F88235F7F020043BB86 /* libRNXManifest.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		900F2F8A235F7F020043BB86 /* manifest */ = {
+		900F2F8A235F7F020043BB86 /* RNXManifest */ = {
 			isa = PBXGroup;
 			children = (
-				900F2F8B235F7F020043BB86 /* manifest.h */,
-				900F2F8C235F7F020043BB86 /* manifest.m */,
+				90BBFECA2368D9F70003024D /* Constants.h */,
+				90BBFEC82368D9D80003024D /* Constants.m */,
+				90BBFED7236B4E5B0003024D /* DictionaryReader.h */,
+				90BBFED5236B4E240003024D /* DictionaryReader.m */,
+				900F2F8B235F7F020043BB86 /* RNXManifest.h */,
+				900F2F8C235F7F020043BB86 /* RNXManifest.m */,
+				90BBFEC523676C7F0003024D /* RNXManifestDev.h */,
+				90BBFEC323676C650003024D /* RNXManifestDev.m */,
+				90BBFED2236B4CBF0003024D /* RNXManifestEntry.h */,
+				90BBFED3236B4D7D0003024D /* RNXManifestEntry.m */,
+				909D219D2361019800CEFF04 /* UIColor+String.h */,
+				909D219E2361019800CEFF04 /* UIColor+String.m */,
 			);
-			name = manifest;
+			name = RNXManifest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		900F2F87235F7F020043BB86 /* manifest */ = {
+		900F2F87235F7F020043BB86 /* RNXManifest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 900F2F91235F7F020043BB86 /* Build configuration list for PBXNativeTarget "manifest" */;
+			buildConfigurationList = 900F2F91235F7F020043BB86 /* Build configuration list for PBXNativeTarget "RNXManifest" */;
 			buildPhases = (
 				900F2F84235F7F020043BB86 /* Sources */,
 				900F2F85235F7F020043BB86 /* Frameworks */,
@@ -81,9 +112,9 @@
 			);
 			dependencies = (
 			);
-			name = manifest;
+			name = RNXManifest;
 			productName = manifest;
-			productReference = 900F2F88235F7F020043BB86 /* libmanifest.a */;
+			productReference = 900F2F88235F7F020043BB86 /* libRNXManifest.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -100,7 +131,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 900F2F83235F7F020043BB86 /* Build configuration list for PBXProject "manifest" */;
+			buildConfigurationList = 900F2F83235F7F020043BB86 /* Build configuration list for PBXProject "RNXManifest" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -113,7 +144,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				900F2F87235F7F020043BB86 /* manifest */,
+				900F2F87235F7F020043BB86 /* RNXManifest */,
 			);
 		};
 /* End PBXProject section */
@@ -123,7 +154,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				900F2F8D235F7F020043BB86 /* manifest.m in Sources */,
+				900F2F8D235F7F020043BB86 /* RNXManifest.m in Sources */,
+				90BBFEC423676C650003024D /* RNXManifestDev.m in Sources */,
+				90BBFED6236B4E240003024D /* DictionaryReader.m in Sources */,
+				909D219F2361019800CEFF04 /* UIColor+String.m in Sources */,
+				90BBFED4236B4D7D0003024D /* RNXManifestEntry.m in Sources */,
+				90BBFEC92368D9D80003024D /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,7 +216,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -232,7 +268,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -265,7 +301,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		900F2F83235F7F020043BB86 /* Build configuration list for PBXProject "manifest" */ = {
+		900F2F83235F7F020043BB86 /* Build configuration list for PBXProject "RNXManifest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				900F2F8F235F7F020043BB86 /* Debug */,
@@ -274,7 +310,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		900F2F91235F7F020043BB86 /* Build configuration list for PBXNativeTarget "manifest" */ = {
+		900F2F91235F7F020043BB86 /* Build configuration list for PBXNativeTarget "RNXManifest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				900F2F92235F7F020043BB86 /* Debug */,

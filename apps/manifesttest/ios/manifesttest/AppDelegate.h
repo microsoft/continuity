@@ -8,7 +8,12 @@
 #import <React/RCTBridgeDelegate.h>
 #import <UIKit/UIKit.h>
 
+#import <RNXManifest/RNXManifest.h>
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate>
+{
+  RNXManifest *_manifest;
+}
 
 @property (nonatomic, strong) UIWindow *window;
 

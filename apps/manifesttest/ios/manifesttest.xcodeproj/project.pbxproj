@@ -11,32 +11,30 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		90CE12ED235FAD54002FD17F /* libmanifest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CE12E6235FA878002FD17F /* libmanifest.a */; };
+		90BBFEB0236226100003024D /* libRNXManifest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90BBFEAF236226100003024D /* libRNXManifest.a */; };
+		90CE12F1235FB92C002FD17F /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = 90CE12F0235FB92C002FD17F /* app.json */; };
 		ED39C9D51A1B8AD93E5A1E0B /* libPods-manifesttest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 330DB1B8353EDBBB7E2043BA /* libPods-manifesttest.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		90CE12E5235FA878002FD17F /* PBXContainerItemProxy */ = {
+		90BBFEB4236226E90003024D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 90CE12E1235FA878002FD17F /* manifest.xcodeproj */;
+			containerPortal = 90CE12E1235FA878002FD17F /* RNXManifest.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 900F2F88235F7F020043BB86;
-			remoteInfo = manifest;
+			remoteInfo = RNXManifest;
 		};
-		90CE12E9235FAA8E002FD17F /* PBXContainerItemProxy */ = {
+		90BBFEBF236766670003024D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 90CE12E1235FA878002FD17F /* manifest.xcodeproj */;
+			containerPortal = 90CE12E1235FA878002FD17F /* RNXManifest.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 900F2F87235F7F020043BB86;
-			remoteInfo = manifest;
+			remoteInfo = RNXManifest;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* manifesttestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = manifesttestTests.m; sourceTree = "<group>"; };
-		024117CD1CEBA97F59B8FB15 /* libPods-manifesttest-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manifesttest-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07C3393C45D03FB9895C59DF /* Pods-manifesttest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest.release.xcconfig"; path = "Target Support Files/Pods-manifesttest/Pods-manifesttest.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* manifesttest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = manifesttest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = manifesttest/AppDelegate.h; sourceTree = "<group>"; };
@@ -45,16 +43,10 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = manifesttest/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = manifesttest/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = manifesttest/main.m; sourceTree = "<group>"; };
-		1F5A9FD8032E7B7FF9173862 /* Pods-manifesttest-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest-tvOS.release.xcconfig"; path = "Target Support Files/Pods-manifesttest-tvOS/Pods-manifesttest-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		32773EC85B31AEAFA853BE2C /* Pods-manifesttest-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-manifesttest-tvOSTests/Pods-manifesttest-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		330DB1B8353EDBBB7E2043BA /* libPods-manifesttest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manifesttest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3604E4C637DAEC27ED4A26ED /* Pods-manifesttest-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-manifesttest-tvOS/Pods-manifesttest-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		45650467125AC26CE8A1CE7E /* libPods-manifesttest-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manifesttest-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		62273E5AFD1A456FB0BB3679 /* libPods-manifesttestTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manifesttestTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		90CE12E1235FA878002FD17F /* manifest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = manifest.xcodeproj; path = ../../../libraries/manifest/apple/manifest.xcodeproj; sourceTree = "<group>"; };
-		B42AE3882A3A7FE88F0727A1 /* Pods-manifesttestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttestTests.release.xcconfig"; path = "Target Support Files/Pods-manifesttestTests/Pods-manifesttestTests.release.xcconfig"; sourceTree = "<group>"; };
-		B599BD8151F2F78957F4F9B4 /* Pods-manifesttest-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-manifesttest-tvOSTests/Pods-manifesttest-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		B6EADDD8B87673B7FDEBBB00 /* Pods-manifesttestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttestTests.debug.xcconfig"; path = "Target Support Files/Pods-manifesttestTests/Pods-manifesttestTests.debug.xcconfig"; sourceTree = "<group>"; };
+		90BBFEAF236226100003024D /* libRNXManifest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNXManifest.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		90CE12E1235FA878002FD17F /* RNXManifest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNXManifest.xcodeproj; path = ../../../libraries/manifest/apple/RNXManifest.xcodeproj; sourceTree = "<group>"; };
+		90CE12F0235FB92C002FD17F /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = app.json; path = ../app.json; sourceTree = "<group>"; };
 		DCBD538F0761248143D6324B /* Pods-manifesttest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manifesttest.debug.xcconfig"; path = "Target Support Files/Pods-manifesttest/Pods-manifesttest.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -65,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90CE12ED235FAD54002FD17F /* libmanifest.a in Frameworks */,
+				90BBFEB0236226100003024D /* libRNXManifest.a in Frameworks */,
 				ED39C9D51A1B8AD93E5A1E0B /* libPods-manifesttest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,26 +65,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* manifesttestTests */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F21AD99517003FC87E /* manifesttestTests.m */,
-				00E356F01AD99517003FC87E /* Supporting Files */,
-			);
-			path = manifesttestTests;
-			sourceTree = "<group>";
-		};
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* manifesttest */ = {
 			isa = PBXGroup;
 			children = (
+				90CE12F0235FB92C002FD17F /* app.json */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -110,9 +86,7 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				330DB1B8353EDBBB7E2043BA /* libPods-manifesttest.a */,
-				024117CD1CEBA97F59B8FB15 /* libPods-manifesttest-tvOS.a */,
-				45650467125AC26CE8A1CE7E /* libPods-manifesttest-tvOSTests.a */,
-				62273E5AFD1A456FB0BB3679 /* libPods-manifesttestTests.a */,
+				90BBFEAF236226100003024D /* libRNXManifest.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -122,12 +96,6 @@
 			children = (
 				DCBD538F0761248143D6324B /* Pods-manifesttest.debug.xcconfig */,
 				07C3393C45D03FB9895C59DF /* Pods-manifesttest.release.xcconfig */,
-				3604E4C637DAEC27ED4A26ED /* Pods-manifesttest-tvOS.debug.xcconfig */,
-				1F5A9FD8032E7B7FF9173862 /* Pods-manifesttest-tvOS.release.xcconfig */,
-				32773EC85B31AEAFA853BE2C /* Pods-manifesttest-tvOSTests.debug.xcconfig */,
-				B599BD8151F2F78957F4F9B4 /* Pods-manifesttest-tvOSTests.release.xcconfig */,
-				B6EADDD8B87673B7FDEBBB00 /* Pods-manifesttestTests.debug.xcconfig */,
-				B42AE3882A3A7FE88F0727A1 /* Pods-manifesttestTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -135,7 +103,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				90CE12E1235FA878002FD17F /* manifest.xcodeproj */,
+				90CE12E1235FA878002FD17F /* RNXManifest.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -145,7 +113,6 @@
 			children = (
 				13B07FAE1A68108700A75B9A /* manifesttest */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* manifesttestTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				32D7BF486C305E9818AFC600 /* Pods */,
@@ -163,10 +130,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		90CE12E2235FA878002FD17F /* Products */ = {
+		90BBFEB1236226E90003024D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				90CE12E6235FA878002FD17F /* libmanifest.a */,
+				90BBFEB5236226E90003024D /* libRNXManifest.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,7 +155,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				90CE12EA235FAA8E002FD17F /* PBXTargetDependency */,
+				90BBFEC0236766670003024D /* PBXTargetDependency */,
 			);
 			name = manifesttest;
 			productName = manifesttest;
@@ -218,8 +185,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 90CE12E2235FA878002FD17F /* Products */;
-					ProjectRef = 90CE12E1235FA878002FD17F /* manifest.xcodeproj */;
+					ProductGroup = 90BBFEB1236226E90003024D /* Products */;
+					ProjectRef = 90CE12E1235FA878002FD17F /* RNXManifest.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -230,11 +197,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		90CE12E6235FA878002FD17F /* libmanifest.a */ = {
+		90BBFEB5236226E90003024D /* libRNXManifest.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libmanifest.a;
-			remoteRef = 90CE12E5235FA878002FD17F /* PBXContainerItemProxy */;
+			path = libRNXManifest.a;
+			remoteRef = 90BBFEB4236226E90003024D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -246,6 +213,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				90CE12F1235FB92C002FD17F /* app.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +232,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		711C2E97E8709894FB87416D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -322,10 +290,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		90CE12EA235FAA8E002FD17F /* PBXTargetDependency */ = {
+		90BBFEC0236766670003024D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = manifest;
-			targetProxy = 90CE12E9235FAA8E002FD17F /* PBXContainerItemProxy */;
+			name = RNXManifest;
+			targetProxy = 90BBFEBF236766670003024D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -350,6 +318,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				INFOPLIST_FILE = manifesttest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -369,6 +338,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = manifesttest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
