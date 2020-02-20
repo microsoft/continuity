@@ -95,19 +95,23 @@ std::optional<ManifestRuntimeWin32Container> ManifestRuntimeWin32Container::Crea
     return std::nullopt;
 }
 
-ManifestRuntimeWin32Container::ManifestRuntimeWin32Container(
-    std::variant<ManifestWin32Dialog, ManifestWin32TaskPane>&& data) noexcept
-    : _data{std::move(data)}
+ManifestRuntimeWin32Container::ManifestRuntimeWin32Container(ManifestWin32Dialog&& dialog) noexcept
+    : _dialog{std::move(dialog)}
+{
+}
+
+ManifestRuntimeWin32Container::ManifestRuntimeWin32Container(ManifestWin32TaskPane&& taskpane) noexcept
+    : _taskpane{std::move(taskpane)}
 {
 }
 
 ManifestWin32ContainerType ManifestRuntimeWin32Container::GetType() const noexcept
 {
-    if (std::get_if<ManifestWin32Dialog>(&_data))
+    if (_dialog)
     {
         return ManifestWin32ContainerType::Dialog;
     }
-    if (std::get_if<ManifestWin32TaskPane>(&_data))
+    else if (_taskpane)
     {
         return ManifestWin32ContainerType::TaskPane;
     }
@@ -115,14 +119,13 @@ ManifestWin32ContainerType ManifestRuntimeWin32Container::GetType() const noexce
     std::terminate();
 }
 
-const ManifestWin32Dialog& ManifestRuntimeWin32Container::GetDialog() const noexcept
+const std::optional<ManifestWin32Dialog>& ManifestRuntimeWin32Container::GetDialog() const noexcept
 {
-    return std::get<ManifestWin32Dialog>(_data);
+    return _dialog;
 }
 
-const ManifestWin32TaskPane& ManifestRuntimeWin32Container::GetTaskPane() const noexcept
+const std::optional<ManifestWin32TaskPane>& ManifestRuntimeWin32Container::GetTaskPane() const noexcept
 {
-    return std::get<ManifestWin32TaskPane>(_data);
+    return _taskpane;
 }
-
 }

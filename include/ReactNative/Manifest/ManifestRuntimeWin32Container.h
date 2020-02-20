@@ -101,20 +101,21 @@ public:
     static std::optional<ManifestRuntimeWin32Container> Create(
         const folly::dynamic* const container, Error& error) noexcept;
 
-    ManifestRuntimeWin32Container(
-        std::variant<ManifestWin32Dialog, ManifestWin32TaskPane>&& data) noexcept;
+    ManifestRuntimeWin32Container(ManifestWin32Dialog&& dialog) noexcept;
+    ManifestRuntimeWin32Container(ManifestWin32TaskPane&& taskpane) noexcept;
 
     //  Type of container to use when rendering the react-native experience.
     ManifestWin32ContainerType GetType() const noexcept;
 
-    //  Dialog container information. Only allowed when type is 'Dialog'.
-    const ManifestWin32Dialog& GetDialog() const noexcept;
+    //  Dialog container information. Only valid when type is 'Dialog'.
+    const std::optional<ManifestWin32Dialog>& GetDialog() const noexcept;
 
-    //  TaskPane container information. Only allowed when type is 'TaskPane'.
-    const ManifestWin32TaskPane& GetTaskPane() const noexcept;
+    //  TaskPane container information. Only valid type is 'TaskPane'.
+    const std::optional<ManifestWin32TaskPane>& GetTaskPane() const noexcept;
 
 private:
-    std::variant<ManifestWin32Dialog, ManifestWin32TaskPane> _data;
+    std::optional<ManifestWin32Dialog> _dialog;
+    std::optional<ManifestWin32TaskPane> _taskpane;
 };
 
 }
