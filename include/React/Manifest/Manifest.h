@@ -6,13 +6,13 @@
 
 #include <folly/dynamic.h>
 
-#include <ReactNative/Error.h>
-#include <ReactNative/Manifest/ManifestBundle.h>
-#include <ReactNative/Manifest/ManifestComponent.h>
-#include <ReactNative/Manifest/ManifestPackager.h>
-#include <ReactNative/Manifest/ManifestRuntime.h>
+#include <React/Error.h>
+#include <React/Manifest/ManifestBundle.h>
+#include <React/Manifest/ManifestComponent.h>
+#include <React/Manifest/ManifestPackager.h>
+#include <React/Manifest/ManifestRuntime.h>
 
-namespace ReactNative::Platform
+namespace Microsoft::React
 {
 
 enum class ManifestSource
@@ -22,9 +22,9 @@ enum class ManifestSource
 };
 
 /*
- *	A react-native manifest contains a set of react-native components, grouped
- *	together under a single JavaScript bundle. The manifest also describes
- *	runtime configuration and native dependencies.
+ *  A react-native manifest contains a set of react-native experiences, grouped
+ *  together under a single JavaScript bundle. The manifest also describes
+ *  runtime configuration and native dependencies.
  */
 class Manifest final
 {
@@ -53,33 +53,33 @@ public:
         ManifestRuntime&& runtime, std::string&& assetsPath, ManifestBundle&& bundle,
         ManifestPackager&& packager, std::string&& webDebugHost) noexcept;
 
-    //	Source of the manifest content.
+    //  Source of the manifest content.
     ManifestSource GetSource() const noexcept;
 
-    //	Collection of named components in the manifest. Each maps to a registered
-    //	react-native component (AppRegistry.registerComponent).
+    //  Collection of named components in the manifest. Each maps to a registered
+    //  react-native component (AppRegistry.registerComponent).
     const std::vector<ManifestComponent>& GetComponents() const noexcept;
 
     //	Get a component by name, or nullptr if it was not found.
     const ManifestComponent* FindComponent(const char* const name) const noexcept;
 
-    //	Runtime configuration for the bundle of react-native components
+    //	Runtime configuration for the bundle of react-native experiences
     const ManifestRuntime& GetRuntime() const noexcept;
 
-    //	Path to assets (strings, images, icons, ...) referenced by the bundle
+    //  Path to assets (strings, images, icons, ...) referenced by the bundle
     //
-    //	@default 'assets'
+    //  @default 'assets'
     const std::string& GetAssetsPath() const noexcept;
 
-    //	Description of the bundle file
+    //  Description of the bundle file
     const ManifestBundle& GetBundle() const noexcept;
 
-    //	Packager configuration for the bundle of react-native components
+    //  Packager configuration for the bundle of react-native experiences
     const ManifestPackager& GetPackager() const noexcept;
 
-    //	Host (and optional port) of the web debug server.
+    //  Host (and optional port) of the web debug server.
     //
-    //	@default packager server host/port
+    //  @default packager server host/port
     const std::string& GetWebDebugHost() const noexcept;
 
 private:

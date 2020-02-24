@@ -2,10 +2,10 @@
 
 #include <folly/json.h>
 
-#include <ReactNative/DynamicReader.h>
-#include <ReactNative/Manifest/Manifest.h>
+#include <React/DynamicReader.h>
+#include <React/Manifest/Manifest.h>
 
-namespace ReactNative::Platform 
+namespace Microsoft::React
 {
 
 std::optional<Manifest> Manifest::Create(ManifestSource source,

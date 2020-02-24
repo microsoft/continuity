@@ -1,8 +1,8 @@
 #include <string>
 
-#include <ReactNative/DynamicReader.h>
+#include <React/DynamicReader.h>
 
-namespace ReactNative::Platform
+namespace Microsoft::React
 {
 
 const folly::dynamic* FindDynamicChild(const folly::dynamic& data, const char* const name) noexcept

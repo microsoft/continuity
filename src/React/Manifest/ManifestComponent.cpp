@@ -1,7 +1,7 @@
-#include <ReactNative/DynamicReader.h>
-#include <ReactNative/Manifest/ManifestComponent.h>
+#include <React/DynamicReader.h>
+#include <React/Manifest/ManifestComponent.h>
 
-namespace ReactNative::Platform
+namespace Microsoft::React
 {
 
 std::optional<ManifestComponent> ManifestComponent::Create(

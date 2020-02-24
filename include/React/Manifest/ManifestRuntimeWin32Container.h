@@ -4,10 +4,10 @@
 #include <variant>
 
 #include <folly/dynamic.h>
-#include <ReactNative/Error.h>
-#include <ReactNative/Manifest/ManifestRuntimeWin32Container.h>
+#include <React/Error.h>
+#include <React/Manifest/ManifestRuntimeWin32Container.h>
 
-namespace ReactNative::Platform 
+namespace Microsoft::React
 {
 
 class ManifestWin32Dialog final
@@ -17,17 +17,17 @@ public:
      *  Read Win32 dialog configuration.
      *
      *      "container": {
-     *         "type": "dialog",
-     *         "width": 500,
-     *         "height": 350,
-     *         "showOkButton": true,
-     *         "showCancelButton": true
+     *          "type": "dialog",
+     *          "width": 500,
+     *          "height": 350,
+     *          "showOkButton": true,
+     *          "showCancelButton": true
      *      }
      */
     static ManifestWin32Dialog Create(const folly::dynamic& dialog) noexcept;
 
     ManifestWin32Dialog(std::optional<int64_t>&& width, std::optional<int64_t>&& height,
-       bool showOkButton, bool showCancelButton) noexcept;
+        bool showOkButton, bool showCancelButton) noexcept;
 
     //  Width of the dialog container in device-independent pixels.
     //  When omitted, width is determined by the layout engine.
@@ -48,10 +48,10 @@ public:
     bool GetShowCancelButton() const noexcept;
 
 private:
-   std::optional<int64_t> _width;
-   std::optional<int64_t> _height;
-   bool _showOkButton;
-   bool _showCancelButton;
+    std::optional<int64_t> _width;
+    std::optional<int64_t> _height;
+    bool _showOkButton;
+    bool _showCancelButton;
 };
 
 
@@ -62,8 +62,8 @@ public:
      *  Read Win32 task-pane configuration.
      *
      *      "container": {
-     *         "type": "taskpane",
-     *         "msotbid": 123
+     *          "type": "taskpane",
+     *          "msotbid": 123
      *      }
      */
     static ManifestWin32TaskPane Create(const folly::dynamic& taskpane) noexcept;
@@ -77,7 +77,7 @@ public:
     int64_t GetMsotbid() const noexcept;
 
 private:
-   int64_t _msotbid;
+    int64_t _msotbid;
 };
 
 
@@ -91,13 +91,13 @@ class ManifestRuntimeWin32Container final
 {
 public:
     /*
-     *  Read Win32 runtime container information.
-     *
-     *      "container": {
-     *          "type": "dialog|taskpane"
-     *          ... props specific to each type ...
-     *      }
-     */
+    *   Read Win32 runtime container information.
+    *
+    *       "container": {
+    *           "type": "dialog|taskpane"
+    *           ... props specific to each type ...
+    *       }
+    */
     static std::optional<ManifestRuntimeWin32Container> Create(
         const folly::dynamic* const container, Error& error) noexcept;
 

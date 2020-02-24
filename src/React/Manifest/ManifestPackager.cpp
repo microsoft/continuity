@@ -1,9 +1,9 @@
 #include <sstream>
 
-#include <ReactNative/DynamicReader.h>
-#include <ReactNative/Manifest/ManifestPackager.h>
+#include <React/DynamicReader.h>
+#include <React/Manifest/ManifestPackager.h>
 
-namespace ReactNative::Platform
+namespace Microsoft::React
 {
 
 constexpr const char* const c_PackagerEnvironmentDevelopment = "development";
