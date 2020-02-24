@@ -1,7 +1,7 @@
-#include <ReactNative/DynamicReader.h>
-#include <ReactNative/Manifest/ManifestBundle.h>
+#include <React/DynamicReader.h>
+#include <React/Manifest/ManifestBundle.h>
 
-namespace ReactNative::Platform 
+namespace Microsoft::React
 {
 
 constexpr const char* const c_BundleFileNameProperty = "fileName";

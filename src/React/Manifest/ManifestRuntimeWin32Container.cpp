@@ -1,7 +1,7 @@
-#include <ReactNative/DynamicReader.h>
-#include <ReactNative/Manifest/ManifestRuntimeWin32Container.h>
+#include <React/DynamicReader.h>
+#include <React/Manifest/ManifestRuntimeWin32Container.h>
 
-namespace ReactNative::Platform
+namespace Microsoft::React
 {
 
 constexpr const char* const c_RuntimeWin32ContainerTypeProperty = "type";
@@ -116,7 +116,7 @@ ManifestWin32ContainerType ManifestRuntimeWin32Container::GetType() const noexce
         return ManifestWin32ContainerType::TaskPane;
     }
 
-    std::terminate();
+    VerifyElseCrash(false);
 }
 
 const std::optional<ManifestWin32Dialog>& ManifestRuntimeWin32Container::GetDialog() const noexcept
@@ -128,4 +128,5 @@ const std::optional<ManifestWin32TaskPane>& ManifestRuntimeWin32Container::GetTa
 {
     return _taskpane;
 }
+
 }

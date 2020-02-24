@@ -4,10 +4,10 @@
 #include <variant>
 
 #include <folly/dynamic.h>
-#include <ReactNative/Error.h>
-#include <ReactNative/Manifest/ManifestRuntimeWin32Container.h>
+#include <React/Error.h>
+#include <React/Manifest/ManifestRuntimeWin32Container.h>
 
-namespace ReactNative::Platform 
+namespace Microsoft::React
 {
 
 class ManifestRuntimeWin32 final

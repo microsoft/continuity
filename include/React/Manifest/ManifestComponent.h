@@ -4,9 +4,9 @@
 
 #include <folly/dynamic.h>
 
-#include <ReactNative/Error.h>
+#include <React/Error.h>
 
-namespace ReactNative::Platform 
+namespace Microsoft::React
 {
 
 class ManifestComponent final
@@ -15,7 +15,7 @@ public:
     /*
      *  Read a component description from the manifest.
      *
-     *  The component name uniquely identifies the react-native component within
+     *  The component name uniquely identifies the react-native experience within
      *  the bundle. At runtime, the react-native runtime looks for the component
      *  in a JavaScript registry (AppRegistry.registerComponent). It renders
      *  whatever it finds as the root react-native element.
@@ -30,7 +30,8 @@ public:
 
     ManifestComponent(std::string&& name, std::string&& displayName, std::string&& backgroundColor) noexcept;
 
-    //  Name of the registered react-native component (AppRegistry.registerComponent).
+    //  Name of the registered react-native component (AppRegistry.registerComponent)
+    //  which is the root of the react-native experience.
     const std::string& GetName() const noexcept;
 
     //  Display name to show when referring to the component

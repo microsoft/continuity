@@ -4,9 +4,9 @@
 #include <string>
 
 #include <folly/dynamic.h>
-#include <ReactNative/Error.h>
+#include <React/Error.h>
 
-namespace ReactNative::Platform
+namespace Microsoft::React
 {
 
 class ManifestRuntimeLibrary final

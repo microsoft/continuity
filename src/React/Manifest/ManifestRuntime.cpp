@@ -1,7 +1,7 @@
-#include <ReactNative/DynamicReader.h>
-#include <ReactNative/Manifest/ManifestRuntime.h>
+#include <React/DynamicReader.h>
+#include <React/Manifest/ManifestRuntime.h>
 
-namespace ReactNative::Platform
+namespace Microsoft::React
 {
 
 constexpr const char* const c_RuntimeDevModeProperty = "devMode";
@@ -48,7 +48,7 @@ std::optional<ManifestRuntime> ManifestRuntime::Create(
         };
     }
 
-    //  Provide a default runtime configuration.
+    //	Provide a default runtime configuration.
     return ManifestRuntime {
         c_RuntimeDevModeDefault,
         c_RuntimeAttachToWebDebuggerDefault,

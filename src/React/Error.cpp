@@ -1,6 +1,6 @@
-#include <ReactNative/Error.h>
+#include <React/Error.h>
 
-namespace ReactNative::Platform 
+namespace Microsoft::React
 {
 
 void Error::Assign(const char* message) noexcept

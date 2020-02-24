@@ -1,7 +1,7 @@
-#include <ReactNative/DynamicReader.h>
-#include <ReactNative/Manifest/ManifestRuntimeWin32.h>
+#include <React/DynamicReader.h>
+#include <React/Manifest/ManifestRuntimeWin32.h>
 
-namespace ReactNative::Platform 
+namespace Microsoft::React
 {
 
 constexpr const char* const c_RuntimeWin32ContainerProperty = "container";

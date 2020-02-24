@@ -6,7 +6,7 @@
 
 #include <ReactNativePlatformSDK/Error.h>
 
-namespace ReactNative::Platform
+namespace Microsoft::React
 {
 
 enum class PackagerEnvironment

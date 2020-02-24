@@ -5,11 +5,11 @@
 
 #include <folly/dynamic.h>
 
-#include <ReactNative/Error.h>
-#include <ReactNative/Manifest/ManifestRuntimeLibrary.h>
-#include <ReactNative/Manifest/ManifestRuntimeWin32.h>
+#include <React/Error.h>
+#include <React/Manifest/ManifestRuntimeLibrary.h>
+#include <React/Manifest/ManifestRuntimeWin32.h>
 
-namespace ReactNative::Platform
+namespace Microsoft::React
 {
 
 class ManifestRuntime final

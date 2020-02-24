@@ -4,7 +4,7 @@
 
 #include <folly/dynamic.h>
 
-namespace ReactNative::Platform
+namespace Microsoft::React
 {
 
 class ManifestBundle final
