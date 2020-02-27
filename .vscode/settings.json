@@ -1,0 +1,6 @@
+{
+    "editor.renderWhitespace": "all",
+    "editor.detectIndentation": false,
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true
+}
