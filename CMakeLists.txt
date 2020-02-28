@@ -15,15 +15,16 @@ project(
     LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
+
+set(SRC_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set(INC_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/include)
+set(NUGET_ROOT ${CMAKE_CURRENT_BINARY_DIR}/nuget)
+file(MAKE_DIRECTORY ${NUGET_ROOT})
+
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+source_group(TREE ${INC_ROOT} PREFIX "Header Files" FILES ${HEADERS})
 
 include(CTest)
-include(FetchContent)
-
-include(NuGet)
-nuget(install ${CMAKE_CURRENT_SOURCE_DIR}/packages.config)
-
-include(folly)
 
 add_subdirectory(src)
 if(BUILD_TESTING)

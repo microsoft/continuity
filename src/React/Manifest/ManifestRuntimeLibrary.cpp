@@ -1,5 +1,5 @@
 #include <React/DynamicReader.h>
-#include <ReactNativePlatformSDK/ManifestRuntimeLibrary.h>
+#include <React/Manifest/ManifestRuntimeLibrary.h>
 
 namespace Microsoft::React
 {

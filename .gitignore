@@ -61,6 +61,3 @@ buck-out/
 
 # CocoaPods
 **/Pods/
-
-# NuGet
-nuget_packages/

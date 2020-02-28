@@ -4,7 +4,7 @@
 
 #include <folly/dynamic.h>
 
-#include <ReactNativePlatformSDK/Error.h>
+#include <React/Error.h>
 
 namespace Microsoft::React
 {
