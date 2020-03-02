@@ -1,0 +1,8 @@
+/src/**
+**/lib/**/*.js
+**/lib-commonjs/**/*.js
+**/dist/*.js
+*.exp.js
+**/common/changes/**/*.*
+**/CHANGELOG.json
+/packages/reka-compiler/src/test/outputs/**
