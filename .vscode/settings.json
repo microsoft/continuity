@@ -1,7 +1,7 @@
 {
   "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
   "C_Cpp.formatting": "Disabled",
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.detectIndentation": false,
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
