@@ -2,5 +2,6 @@
     "editor.renderWhitespace": "all",
     "editor.detectIndentation": false,
     "files.eol": "\n",
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools"
 }

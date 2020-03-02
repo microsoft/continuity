@@ -116,7 +116,7 @@ ManifestWin32ContainerType ManifestRuntimeWin32Container::GetType() const noexce
         return ManifestWin32ContainerType::TaskPane;
     }
 
-    VerifyElseCrash(false);
+    std::terminate();
 }
 
 const std::optional<ManifestWin32Dialog>& ManifestRuntimeWin32Container::GetDialog() const noexcept

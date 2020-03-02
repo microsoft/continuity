@@ -1,22 +1,13 @@
-## Download Boost
+## Download folly, but don't pull in its CMake build definition (we only want to build/publish a piece of it)
 
-include(NuGet)
-nuget(install boost -Version 1.68.0.0 -Framework native -OutputDirectory ${NUGET_ROOT} -NonInteractive)
-set(boost_SOURCE_DIR ${NUGET_ROOT}/boost.1.68.0.0/lib/native)
-
-## Download Folly
-
-include(FetchContent)
 FetchContent_Declare(
     folly
     URL "https://github.com/facebook/folly/archive/v2019.09.30.00.zip"
     URL_HASH SHA512=2edb1e0b50a75604530d8bdcc35cacef500cb8b1466d546b3a201882da69cfba1b91493225b71d5bcf99f610d5b1668b115edebcfb25f9e36dc75e8632afaa58)
-
 FetchContent_GetProperties(folly)
 if(NOT folly_POPULATED)
     message(STATUS "Downloading folly...")
     FetchContent_Populate(folly)
-    message(VERBOSE "folly: source=${folly_SOURCE_DIR} build=${folly_BINARY_DIR}")
 endif()
 
 ## Create the folly build target
@@ -173,12 +164,10 @@ list(APPEND HEADERS
     stubs/glog/logging.h
     stubs/sys/mman.h
     stubs/sys/time.h
-    stubs/unistd.h
-)
+    stubs/unistd.h)
 
-list(APPEND HEADERS_WIN32
-    ${folly_SOURCE_DIR}/folly/portability/SysMman.h
-)
+list(APPEND HEADERS_WINDOWS
+    ${folly_SOURCE_DIR}/folly/portability/SysMman.h)
 
 list(APPEND SOURCES
     ${folly_SOURCE_DIR}/folly/lang/Assume.cpp
@@ -196,39 +185,34 @@ list(APPEND SOURCES
     ${folly_SOURCE_DIR}/folly/Unicode.cpp
     ${folly_SOURCE_DIR}/folly/memory/detail/MallocImpl.cpp
     ${folly_SOURCE_DIR}/folly/lang/ColdClass.cpp
-)
+    stubs/folly/SafeAssert_EmptyImpl.cpp)
 
-list(APPEND SOURCES_WIN32
-    ${folly_SOURCE_DIR}/folly/portability/SysMman.cpp
-)
+list(APPEND SOURCES_WINDOWS
+    ${folly_SOURCE_DIR}/folly/portability/SysMman.cpp)
 
-add_library(folly ${HEADERS} ${SOURCES})
+add_library(folly)
 
 target_sources(folly
     PUBLIC
-        $<$<PLATFORM_ID:Windows>:${HEADERS_WIN32}>
+        ${HEADERS}
+        $<$<PLATFORM_ID:Windows>:${HEADERS_WINDOWS}>
     PRIVATE
-        $<$<PLATFORM_ID:Windows>:${SOURCES_WIN32}>
-)
+        ${SOURCES}
+        $<$<PLATFORM_ID:Windows>:${SOURCES_WINDOWS}>)
 
-target_compile_definitions(folly
-    PUBLIC
-        FOLLY_NO_CONFIG
-        NOMINMAX
-        _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS
-        BOOST_ALL_NO_LIB=1
-        BOOST_ERROR_CODE_HEADER_ONLY
-        BOOST_NO_RTTI
-        BOOST_NO_TYPEID
-        BOOST_SYSTEM_SOURCE
-        GTEST_HAS_RTTI=0
-        WIN32_LEAN_AND_MEAN
-        WINRT_LEAN_AND_MEAN
-)
+target_compile_definitions(folly PRIVATE ${PROJECT_COMPILE_DEFINITIONS})
+
+target_compile_options(folly
+    PRIVATE
+        $<$<PLATFORM_ID:Windows>:/Gz>)
 
 target_include_directories(folly
     PUBLIC
-        ${boost_SOURCE_DIR}/include
-        ${CMAKE_CURRENT_SOURCE_DIR}/stubs
         ${folly_SOURCE_DIR}
-)
+        ${CMAKE_CURRENT_SOURCE_DIR}/stubs
+    PRIVATE
+        ${PROJECT_INCLUDE_DIRECTORIES})
+
+target_link_options(folly
+    PUBLIC
+        $<$<PLATFORM_ID:Windows>:/NATVIS:${CMAKE_CURRENT_SOURCE_DIR}/Folly.natvis>)
