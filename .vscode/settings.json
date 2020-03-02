@@ -1,7 +1,41 @@
 {
-    "editor.renderWhitespace": "all",
-    "editor.detectIndentation": false,
-    "files.eol": "\n",
-    "files.trimTrailingWhitespace": true,
-    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools"
+  "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
+  "C_Cpp.formatting": "Disabled",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "editor.insertSpaces": true,
+  "editor.wordWrapColumn": 120,
+  "eslint.enable": true,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.packageManager": "yarn",
+  "files.associations": {
+    "exception": "cpp",
+    "array": "cpp",
+    "vector": "cpp",
+    "xstring": "cpp",
+    "xutility": "cpp",
+    "*.ipp": "cpp"
+  },
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/bower_components": true,
+    "**/coverage": true,
+    "**/*.scss.ts": false
+  },
+  "files.trimTrailingWhitespace": true,
+  "prettier.endOfLine": "lf",
+  "prettier.printWidth": 120,
+  "prettier.singleQuote": true,
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/lib": true,
+    "**/lib-amd": true,
+    "**/dist": true,
+    "**/*.scss.ts": true
+  }
 }
