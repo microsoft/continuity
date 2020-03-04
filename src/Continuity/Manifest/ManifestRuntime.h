@@ -1,7 +1,7 @@
 #pragma once
 
+#include <Continuity/ReactManifest.h>
 #include <folly/dynamic.h>
-#include <React/ReactManifest.h>
 
 #include "Manifest/ManifestRuntimeLibrary.h"
 #include "Manifest/ManifestRuntimeWin32.h"
