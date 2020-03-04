@@ -26,7 +26,6 @@ file(MAKE_DIRECTORY ${NUGET_ROOT})
 ### Configuration variables
 
 set(PROJECT_COMPILE_DEFINITIONS "")
-set(PROJECT_INCLUDE_DIRECTORIES "")
 
 
 ### Build-type configuration
@@ -39,7 +38,7 @@ elseif(CMAKE_BUILD_TYPE STREQUAL Release)
     list(APPEND PROJECT_COMPILE_DEFINITIONS
         NDEBUG)
 else()
-    message(FATAL_ERROR "This project does not support build type '${CMAKE_BUILD_TYPE}'")
+    message(FATAL_ERROR "This project does not support build type '${CMAKE_BUILD_TYPE}'. Only 'Debug' and 'Release' builds are allowed.")
 endif()
 
 
@@ -48,12 +47,12 @@ endif()
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # Enforce minimum target version of Windows
     if(CMAKE_SYSTEM_VERSION VERSION_LESS "10.0.15063.0")
-        message(FATAL_ERROR "This project does not support target Windows version ${CMAKE_SYSTEM_VERSION} -- must be at least version 10.0.15063.0")
+        message(FATAL_ERROR "This project does not support target Windows build ${CMAKE_SYSTEM_VERSION}. You oldest allowed Windows build is 10.0.15063.0 (version 1703, Redstone 2).")
     endif()
 
     # Warn when not using Ninja to generate build scripts
     if(NOT CMAKE_GENERATOR STREQUAL "Ninja")
-        message(WARNING "Warning: CMake generator '${CMAKE_GENERATOR}' is not supported but may work -- only Ninja is supported")
+        message(WARNING "Warning: CMake generator '${CMAKE_GENERATOR}' is not supported but may work. 'Ninja' is the only supported generator.")
     endif()
 
     # _WIN32_WINNT_WIN8 = 0x0602
@@ -70,7 +69,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 #elseif(CMAKE_SYSTEM_NAME STREQUAL "iOS")
 #elseif(CMAKE_SYSTEM_NAME STREQUAL "Android")
 else()
-    message(FATAL_ERROR "This project does not support the '${CMAKE_SYSTEM_NAME}' platform")
+    message(FATAL_ERROR "This project does not support the '${CMAKE_SYSTEM_NAME}' platform.")
 endif()
 
 
@@ -80,7 +79,7 @@ set(CMAKE_CXX_STANDARD 17)
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     # Enforce required platform toolset
     if(NOT MSVC_TOOLSET_VERSION EQUAL 141)
-        message(FATAL_ERROR "This project does not support Visual Studio toolset ${MSVC_TOOLSET_VERSION} -- it requires toolset version 141")
+        message(FATAL_ERROR "This project does not support Visual Studio toolset ${MSVC_TOOLSET_VERSION}. It only supports toolset 141 (Visual Studio 2017).")
     endif()
 
     set(ARCHITECTURE_NAME X86)
@@ -129,7 +128,6 @@ list(APPEND PROJECT_COMPILE_DEFINITIONS
     BOOST_NO_RTTI
     BOOST_NO_TYPEID
     BOOST_SYSTEM_SOURCE)
-list(APPEND PROJECT_INCLUDE_DIRECTORIES ${boost_SOURCE_DIR}/include)
 
 # Mso
 include(FetchContent)

@@ -1,5 +1,5 @@
-#include <React/DynamicReader.h>
-#include <React/Manifest/ManifestRuntimeWin32Container.h>
+#include "DynamicReader.h"
+#include "Manifest/ManifestRuntimeWin32Container.h"
 
 namespace Microsoft::React
 {
@@ -20,30 +20,30 @@ constexpr const char* const c_Win32TaskPaneMsotbidProperty = "msotbid";
 constexpr int64_t c_Win32TaskPaneMsotbidDefault = 1;
 
 
-ManifestWin32Dialog ManifestWin32Dialog::Create(const folly::dynamic& dialog) noexcept
-{
-    return ManifestWin32Dialog {
-        GetDynamicInt(dialog, c_ManifestWin32DialogWidthProperty),
-        GetDynamicInt(dialog, c_ManifestWin32DialogHeightProperty),
-        GetDynamicBool(dialog, c_ManifestWin32DialogShowOkButtonProperty, c_ManifestWin32DialogShowOkButtonDefault),
-        GetDynamicBool(dialog, c_ManifestWin32DialogShowCancelButtonProperty, c_ManifestWin32DialogShowCancelButtonDefault)
-    };
-}
-
 ManifestWin32Dialog::ManifestWin32Dialog(std::optional<int64_t>&& width, std::optional<int64_t>&& height,
     bool showOkButton, bool showCancelButton) noexcept
     : _width{std::move(width)}, _height{std::move(height)}, _showOkButton{showOkButton}, _showCancelButton{showCancelButton}
 {
 }
 
-const std::optional<int64_t>& ManifestWin32Dialog::GetWidth() const noexcept
+bool ManifestWin32Dialog::GetWidth(int64_t& width) const noexcept
 {
-    return _width;
+    if (_width)
+    {
+        width = _width.value();
+        return true;
+    }
+    return false;
 }
 
-const std::optional<int64_t>& ManifestWin32Dialog::GetHeight() const noexcept
+bool ManifestWin32Dialog::GetHeight(int64_t& height) const noexcept
 {
-    return _height;
+    if (_height)
+    {
+        height = _height.value();
+        return true;
+    }
+    return false;
 }
 
 bool ManifestWin32Dialog::GetShowOkButton() const noexcept
@@ -57,12 +57,17 @@ bool ManifestWin32Dialog::GetShowCancelButton() const noexcept
 }
 
 
-ManifestWin32TaskPane ManifestWin32TaskPane::Create(const folly::dynamic& taskpane) noexcept
+Mso::TCntRef<ManifestWin32Dialog> ReadManifestWin32Dialog(
+    const folly::dynamic& dialogData) noexcept
 {
-    return ManifestWin32TaskPane {
-        GetDynamicInt(taskpane, c_Win32TaskPaneMsotbidProperty, c_Win32TaskPaneMsotbidDefault)
-    };
+    auto dialog = Mso::Make<ManifestWin32Dialog>(
+        GetDynamicInt(dialogData, c_ManifestWin32DialogWidthProperty),
+        GetDynamicInt(dialogData, c_ManifestWin32DialogHeightProperty),
+        GetDynamicBool(dialogData, c_ManifestWin32DialogShowOkButtonProperty, c_ManifestWin32DialogShowOkButtonDefault),
+        GetDynamicBool(dialogData, c_ManifestWin32DialogShowCancelButtonProperty, c_ManifestWin32DialogShowCancelButtonDefault));
+    return Mso::TCntRef<ManifestWin32Dialog>{*dialog.Detach(), false};
 }
+
 
 ManifestWin32TaskPane::ManifestWin32TaskPane(int64_t msotbid) noexcept
     : _msotbid{msotbid}
@@ -74,34 +79,25 @@ int64_t ManifestWin32TaskPane::GetMsotbid() const noexcept
     return _msotbid;
 }
 
-std::optional<ManifestRuntimeWin32Container> ManifestRuntimeWin32Container::Create(
-   const folly::dynamic* const container, Error& error) noexcept
+
+Mso::TCntRef<ManifestWin32TaskPane> ReadManifestWin32TaskPane(
+    const folly::dynamic& taskPaneData) noexcept
 {
-    if (container && container->isObject())
-    {
-        auto type = GetDynamicString(*container, c_RuntimeWin32ContainerTypeProperty, "");
-        if (type == "dialog")
-        {
-            return ManifestRuntimeWin32Container{ManifestWin32Dialog::Create(*container)};
-        }
-        if (type == "taskpane")
-        {
-            return ManifestRuntimeWin32Container{ManifestWin32TaskPane::Create(*container)};
-        }
-
-        error.Assign("Invalid win32 runtime container type");
-    }
-
-    return std::nullopt;
+    auto taskPane = Mso::Make<ManifestWin32TaskPane>(
+        GetDynamicInt(taskPaneData, c_Win32TaskPaneMsotbidProperty, c_Win32TaskPaneMsotbidDefault));
+    return Mso::TCntRef<ManifestWin32TaskPane>{*taskPane.Detach(), false};
 }
 
-ManifestRuntimeWin32Container::ManifestRuntimeWin32Container(ManifestWin32Dialog&& dialog) noexcept
+
+ManifestRuntimeWin32Container::ManifestRuntimeWin32Container(
+    Mso::TCntPtr<ManifestWin32Dialog>&& dialog) noexcept
     : _dialog{std::move(dialog)}
 {
 }
 
-ManifestRuntimeWin32Container::ManifestRuntimeWin32Container(ManifestWin32TaskPane&& taskpane) noexcept
-    : _taskpane{std::move(taskpane)}
+ManifestRuntimeWin32Container::ManifestRuntimeWin32Container(
+    Mso::TCntPtr<ManifestWin32TaskPane>&& taskPane) noexcept
+    : _taskPane{std::move(taskPane)}
 {
 }
 
@@ -111,7 +107,7 @@ ManifestWin32ContainerType ManifestRuntimeWin32Container::GetType() const noexce
     {
         return ManifestWin32ContainerType::Dialog;
     }
-    else if (_taskpane)
+    else if (_taskPane)
     {
         return ManifestWin32ContainerType::TaskPane;
     }
@@ -119,14 +115,47 @@ ManifestWin32ContainerType ManifestRuntimeWin32Container::GetType() const noexce
     std::terminate();
 }
 
-const std::optional<ManifestWin32Dialog>& ManifestRuntimeWin32Container::GetDialog() const noexcept
+IManifestWin32Dialog* ManifestRuntimeWin32Container::GetDialog() const noexcept
 {
-    return _dialog;
+    return _dialog.Get();
 }
 
-const std::optional<ManifestWin32TaskPane>& ManifestRuntimeWin32Container::GetTaskPane() const noexcept
+IManifestWin32TaskPane* ManifestRuntimeWin32Container::GetTaskPane() const noexcept
 {
-    return _taskpane;
+    return _taskPane.Get();
+}
+
+
+Mso::TCntPtr<ManifestRuntimeWin32Container> ReadManifestRuntimeWin32Container(
+    const folly::dynamic* containerData, ReactError& error) noexcept
+{
+    if (containerData && containerData->isObject())
+    {
+        auto type = GetDynamicString(*containerData, c_RuntimeWin32ContainerTypeProperty, "");
+        if (type == "dialog")
+        {
+            auto dialog = ReadManifestWin32Dialog(*containerData);
+            auto container = Mso::Make<ManifestRuntimeWin32Container>(dialog.Ptr());
+
+            error = ReactError::Success;
+            return container;
+        }
+
+        if (type == "taskpane")
+        {
+            auto taskPane = ReadManifestWin32TaskPane(*containerData);
+            auto container = Mso::Make<ManifestRuntimeWin32Container>(taskPane.Ptr());
+
+            error = ReactError::Success;
+            return container;
+        }
+
+        error = ReactError::ManifestRuntimeWin32ContainerInvalidType;
+        return {};
+    }
+
+    error = ReactError::Success;
+    return {};
 }
 
 }

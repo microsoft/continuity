@@ -1,37 +1,43 @@
-#include <React/DynamicReader.h>
-#include <React/Manifest/ManifestRuntimeWin32.h>
+#include "DynamicReader.h"
+#include "Manifest/ManifestRuntimeWin32.h"
 
 namespace Microsoft::React
 {
 
 constexpr const char* const c_RuntimeWin32ContainerProperty = "container";
 
-std::optional<ManifestRuntimeWin32> ManifestRuntimeWin32::Create(
-    const folly::dynamic* const win32, Error& error) noexcept
-{
-    if (win32 && win32->isObject())
-    {
-        auto container = ManifestRuntimeWin32Container::Create(FindDynamicChild(*win32, c_RuntimeWin32ContainerProperty), error);
-        if (error)
-        {
-            return std::nullopt;
-        }
-
-        return ManifestRuntimeWin32{std::move(container)};
-    }
-
-    return std::nullopt;
-}
-
 ManifestRuntimeWin32::ManifestRuntimeWin32(
-    std::optional<ManifestRuntimeWin32Container>&& container) noexcept
+    Mso::TCntPtr<ManifestRuntimeWin32Container>&& container) noexcept
     : _container{std::move(container)}
 {
 }
 
-const std::optional<ManifestRuntimeWin32Container>& ManifestRuntimeWin32::GetContainer() const noexcept
+IManifestRuntimeWin32Container* ManifestRuntimeWin32::GetContainer() const noexcept
 {
-    return _container;
+    return _container.Get();
+}
+
+
+Mso::TCntPtr<ManifestRuntimeWin32> ReadManifestRuntimeWin32(const folly::dynamic* win32Data,
+    ReactError& error) noexcept
+{
+    if (win32Data && win32Data->isObject())
+    {
+        auto container = ReadManifestRuntimeWin32Container(
+            FindDynamicChild(*win32Data, c_RuntimeWin32ContainerProperty), error);
+        if (ReactError::Success != error)
+        {
+            return {};
+        }
+
+        auto win32 = Mso::Make<ManifestRuntimeWin32>(std::move(container));
+
+        error = ReactError::Success;
+        return win32.Get();
+    }
+
+    error = ReactError::Success;
+    return {};
 }
 
 }

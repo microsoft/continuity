@@ -1,11 +1,11 @@
 #include <string>
 
-#include <React/DynamicReader.h>
+#include "DynamicReader.h"
 
 namespace Microsoft::React
 {
 
-const folly::dynamic* FindDynamicChild(const folly::dynamic& data, const char* const name) noexcept
+const folly::dynamic* FindDynamicChild(const folly::dynamic& data, const char* name) noexcept
 {
     const auto iter = data.find(name);
     if (data.items().end() == iter)
@@ -16,7 +16,8 @@ const folly::dynamic* FindDynamicChild(const folly::dynamic& data, const char* c
     return &iter->second;
 }
 
-folly::dynamic GetDynamicObject(const folly::dynamic& data, const char* const name, folly::dynamic&& defaultValue) noexcept
+folly::dynamic GetDynamicObject(const folly::dynamic& data, const char* name,
+    folly::dynamic&& defaultValue) noexcept
 {
     const auto child = FindDynamicChild(data, name);
     if (!child || !child->isObject())
@@ -27,7 +28,8 @@ folly::dynamic GetDynamicObject(const folly::dynamic& data, const char* const na
     return *child;
 }
 
-std::optional<std::string> GetDynamicString(const folly::dynamic& data, const char* const name) noexcept
+std::optional<std::string> GetDynamicString(const folly::dynamic& data,
+    const char* name) noexcept
 {
     const auto child = FindDynamicChild(data, name);
     if (!child || !child->isString())
@@ -38,7 +40,8 @@ std::optional<std::string> GetDynamicString(const folly::dynamic& data, const ch
     return child->getString();
 }
 
-std::string GetDynamicString(const folly::dynamic& data, const char* const name, const char* const defaultValue) noexcept
+std::string GetDynamicString(const folly::dynamic& data, const char* name,
+    const char* defaultValue) noexcept
 {
     auto value = GetDynamicString(data, name);
     if (!value)
@@ -49,7 +52,8 @@ std::string GetDynamicString(const folly::dynamic& data, const char* const name,
     return *value;
 }
 
-std::optional<double> GetDynamicDouble(const folly::dynamic& data, const char* const name) noexcept
+std::optional<double> GetDynamicDouble(const folly::dynamic& data,
+    const char* name) noexcept
 {
     const auto child = FindDynamicChild(data, name);
     if (!child || !child->isDouble())
@@ -60,7 +64,8 @@ std::optional<double> GetDynamicDouble(const folly::dynamic& data, const char* c
     return child->getDouble();
 }
 
-double GetDynamicDouble(const folly::dynamic& data, const char* const name, double defaultValue) noexcept
+double GetDynamicDouble(const folly::dynamic& data, const char* name,
+    double defaultValue) noexcept
 {
     auto value = GetDynamicDouble(data, name);
     if (!value)
@@ -71,7 +76,8 @@ double GetDynamicDouble(const folly::dynamic& data, const char* const name, doub
     return *value;
 }
 
-std::optional<int64_t> GetDynamicInt(const folly::dynamic& data, const char* const name) noexcept
+std::optional<int64_t> GetDynamicInt(const folly::dynamic& data,
+    const char* name) noexcept
 {
     const auto child = FindDynamicChild(data, name);
     if (!child || !child->isInt())
@@ -82,7 +88,8 @@ std::optional<int64_t> GetDynamicInt(const folly::dynamic& data, const char* con
     return child->getInt();
 }
 
-int64_t GetDynamicInt(const folly::dynamic& data, const char* const name, int64_t defaultValue) noexcept
+int64_t GetDynamicInt(const folly::dynamic& data, const char* name,
+    int64_t defaultValue) noexcept
 {
     auto value = GetDynamicInt(data, name);
     if (!value)
@@ -93,7 +100,8 @@ int64_t GetDynamicInt(const folly::dynamic& data, const char* const name, int64_
     return *value;
 }
 
-bool GetDynamicBool(const folly::dynamic& data, const char* const name, bool defaultValue) noexcept
+bool GetDynamicBool(const folly::dynamic& data, const char* name,
+    bool defaultValue) noexcept
 {
     const auto child = FindDynamicChild(data, name);
     if (!child || !child->isBool())

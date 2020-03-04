@@ -1,5 +1,5 @@
-#include <React/DynamicReader.h>
-#include <React/Manifest/ManifestRuntime.h>
+#include "DynamicReader.h"
+#include "Manifest/ManifestRuntime.h"
 
 namespace Microsoft::React
 {
@@ -21,72 +21,12 @@ constexpr bool c_RuntimeByteCodeCachingDefault = true;
 constexpr const char* const c_RuntimeWin32Property = "win32";
 
 
-std::optional<ManifestRuntime> ManifestRuntime::Create(
-    const folly::dynamic* const runtime, Error& error) noexcept
-{
-    if (runtime && runtime->isObject())
-    {
-        auto libraries = CreateLibraries(FindDynamicChild(*runtime, c_RuntimeLibrariesProperty), error);
-        if (error)
-        {
-            return std::nullopt;
-        }
-
-        auto win32 = ManifestRuntimeWin32::Create(FindDynamicChild(*runtime, c_RuntimeWin32Property), error);
-        if (error)
-        {
-            return std::nullopt;
-        }
-
-        return ManifestRuntime {
-            GetDynamicBool(*runtime, c_RuntimeDevModeProperty, c_RuntimeDevModeDefault),
-            GetDynamicBool(*runtime, c_RuntimeAttachToWebDebuggerProperty, c_RuntimeAttachToWebDebuggerDefault),
-            GetDynamicBool(*runtime, c_RuntimeLiveReloadProperty, c_RuntimeLiveReloadDefault),
-            std::move(libraries),
-            GetDynamicBool(*runtime, c_RuntimeByteCodeCachingProperty, c_RuntimeByteCodeCachingDefault),
-            std::move(win32)
-        };
-    }
-
-    //	Provide a default runtime configuration.
-    return ManifestRuntime {
-        c_RuntimeDevModeDefault,
-        c_RuntimeAttachToWebDebuggerDefault,
-        c_RuntimeLiveReloadDefault,
-        {},
-        c_RuntimeByteCodeCachingDefault,
-        {}
-    };
-}
-
-std::vector<ManifestRuntimeLibrary> ManifestRuntime::CreateLibraries(
-    const folly::dynamic* const manifestLibraries, Error& error) noexcept
-{
-    if (manifestLibraries && manifestLibraries->isArray())
-    {
-        std::vector<ManifestRuntimeLibrary> libraries;
-
-        for (const auto& manifestLibrary : *manifestLibraries)
-        {
-            auto library = ManifestRuntimeLibrary::Create(manifestLibrary, error);
-            if (error)
-            {
-                return {};
-            }
-            libraries.push_back(std::move(library.value()));
-        }
-
-        return libraries;
-    }
-
-    return {};
-}
-
 ManifestRuntime::ManifestRuntime(bool devMode, bool attachToWebDebugger, bool liveReload,
-    std::vector<ManifestRuntimeLibrary>&& libraries, bool byteCodeCaching,
-    std::optional<ManifestRuntimeWin32>&& win32) noexcept
+    Mso::TCntRef<ManifestRuntimeLibraryCollection>&& libraries,
+    bool byteCodeCaching, Mso::TCntPtr<ManifestRuntimeWin32>&& win32) noexcept
     : _devMode{devMode}, _attachToWebDebugger{attachToWebDebugger}, _liveReload{liveReload},
-    _libraries{std::move(libraries)}, _byteCodeCaching{byteCodeCaching}, _win32{std::move(win32)}
+    _libraries{std::move(libraries)}, _byteCodeCaching{byteCodeCaching},
+    _win32{std::move(win32)}
 {
 }
 
@@ -105,9 +45,9 @@ bool ManifestRuntime::GetLiveReload() const noexcept
     return _liveReload;
 }
 
-const std::vector<ManifestRuntimeLibrary>& ManifestRuntime::GetLibraries() const noexcept
+IManifestRuntimeLibraryCollection& ManifestRuntime::GetLibraries() const noexcept
 {
-    return _libraries;
+    return _libraries.Get();
 }
 
 bool ManifestRuntime::GetByteCodeCaching() const noexcept
@@ -115,9 +55,50 @@ bool ManifestRuntime::GetByteCodeCaching() const noexcept
     return _byteCodeCaching;
 }
 
-const std::optional<ManifestRuntimeWin32>& ManifestRuntime::GetWin32() const noexcept
+IManifestRuntimeWin32* ManifestRuntime::GetWin32() const noexcept
 {
-    return _win32;
+    return _win32.Get();
+}
+
+
+Mso::TCntRef<ManifestRuntime> ReadManifestRuntime(const folly::dynamic* runtimeData,
+    ReactError& error) noexcept
+{
+    if (runtimeData && runtimeData->isObject())
+    {
+        auto libraries = ReadManifestRuntimeLibraryCollection(
+            FindDynamicChild(*runtimeData, c_RuntimeLibrariesProperty), error);
+        if (ReactError::Success != error)
+        {
+            return {};
+        }
+
+        auto win32 = ReadManifestRuntimeWin32(FindDynamicChild(*runtimeData, c_RuntimeWin32Property), error);
+        if (ReactError::Success != error)
+        {
+            return {};
+        }
+
+        auto runtime = Mso::Make<ManifestRuntime>(
+            GetDynamicBool(*runtimeData, c_RuntimeDevModeProperty, c_RuntimeDevModeDefault),
+            GetDynamicBool(*runtimeData, c_RuntimeAttachToWebDebuggerProperty, c_RuntimeAttachToWebDebuggerDefault),
+            GetDynamicBool(*runtimeData, c_RuntimeLiveReloadProperty, c_RuntimeLiveReloadDefault),
+            std::move(libraries),
+            GetDynamicBool(*runtimeData, c_RuntimeByteCodeCachingProperty, c_RuntimeByteCodeCachingDefault),
+            std::move(win32));
+
+        error = ReactError::Success;
+        return Mso::TCntRef<ManifestRuntime>{*runtime.Detach(), false};
+    }
+
+    //	Provide a default runtime configuration.
+    auto runtime = Mso::Make<ManifestRuntime>(
+        c_RuntimeDevModeDefault, c_RuntimeAttachToWebDebuggerDefault,
+        c_RuntimeLiveReloadDefault, Mso::TCntRef<ManifestRuntimeLibraryCollection>{},
+        c_RuntimeByteCodeCachingDefault, Mso::TCntPtr<ManifestRuntimeWin32>{});
+
+    error = ReactError::Success;
+    return Mso::TCntRef<ManifestRuntime>{*runtime.Detach(), false};
 }
 
 }

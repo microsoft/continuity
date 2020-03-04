@@ -1,49 +1,107 @@
-#include <React/DynamicReader.h>
-#include <React/Manifest/ManifestComponent.h>
+#include "DynamicReader.h"
+#include "Manifest/ManifestComponent.h"
 
 namespace Microsoft::React
 {
 
-std::optional<ManifestComponent> ManifestComponent::Create(
-    const folly::dynamic& componentName, const folly::dynamic& component, Error& error) noexcept
+ManifestComponent::ManifestComponent(std::string&& name, std::string&& displayName,
+    std::string&& backgroundColor) noexcept
+    : _name{std::move(name)}, _displayName{std::move(displayName)},
+    _backgroundColor{std::move(backgroundColor)}
+{
+}
+
+const char* ManifestComponent::GetName() const noexcept
+{
+    return _name.c_str();
+}
+
+const char* ManifestComponent::GetDisplayName() const noexcept
+{
+    return _displayName.c_str();
+}
+
+const char* ManifestComponent::GetBackgroundColor() const noexcept
+{
+    return _backgroundColor.c_str();
+}
+
+
+Mso::TCntRef<ManifestComponent> ReadManifestComponent(const folly::dynamic& componentName,
+    const folly::dynamic& componentData, ReactError& error) noexcept
 {
     if (!componentName.isString() || componentName.getString().empty())
     {
-        error.Assign("Component name must be a non-empty string");
-        return std::nullopt;
+        error = ReactError::ManifestComponentNameEmpty;
+        return {};
     }
     auto name = std::string{componentName.getString()};
 
-    if (!component.isObject())
+    if (!componentData.isObject())
     {
-        error.Assign("Invalid component definition");
-        return std::nullopt;
+        error = ReactError::ManifestComponentInvalid;
+        return {};
     }
 
-    return ManifestComponent{
-        std::move(name),
-        GetDynamicString(component, "displayName", componentName.getString().c_str()),
-        GetDynamicString(component, "backgroundColor", "#ffffff")};
+    auto component = Mso::Make<ManifestComponent>(std::move(name),
+        GetDynamicString(componentData, "displayName", componentName.getString().c_str()),
+        GetDynamicString(componentData, "backgroundColor", "#ffffff"));
+
+    error = ReactError::Success;
+    return Mso::TCntRef<ManifestComponent>{*component.Detach(), false};
 }
 
-ManifestComponent::ManifestComponent(std::string&& name, std::string&& displayName, std::string&& backgroundColor) noexcept
-    : _name{std::move(name)}, _displayName{std::move(displayName)}, _backgroundColor{std::move(backgroundColor)}
+
+ManifestComponentCollection::ManifestComponentCollection(
+    std::vector<Mso::TCntRef<ManifestComponent>>&& components) noexcept
+    : _components{std::move(components)}
 {
 }
 
-const std::string& ManifestComponent::GetName() const noexcept
+IManifestComponent* ManifestComponentCollection::FindComponent(
+    const char* name) const noexcept
 {
-    return _name;
+    auto iter = std::find_if(_components.begin(), _components.end(),
+        [name](const Mso::TCntRef<ManifestComponent>& component) noexcept
+        {
+            return component->GetName() == name;
+        }
+    );
+
+    if (_components.end() != iter)
+    {
+        return iter->Ptr();
+    }
+
+    return nullptr;
 }
 
-const std::string& ManifestComponent::GetDisplayName() const noexcept
-{
-    return _displayName;
-}
 
-const std::string& ManifestComponent::GetBackgroundColor() const noexcept
+Mso::TCntRef<ManifestComponentCollection> ReadManifestComponentCollection(
+    const folly::dynamic* collectionData, ReactError& error) noexcept
 {
-    return _backgroundColor;
+    if (!collectionData || !collectionData->isObject())
+    {
+        error = ReactError::ManifestComponentListInvalid;
+        return {};
+    }
+
+    std::vector<Mso::TCntRef<ManifestComponent>> components;
+
+    for (const auto& componentData : collectionData->items())
+    {
+        auto component = ReadManifestComponent(componentData.first, componentData.second, error);
+        if (ReactError::Success != error)
+        {
+            return {};
+        }
+        components.push_back(std::move(component));
+    }
+
+    auto collection = Mso::Make<ManifestComponentCollection>(std::move(components));
+
+    error = ReactError::Success;
+    return Mso::TCntRef<ManifestComponentCollection>{*collection.Detach(), false};
 }
 
 }

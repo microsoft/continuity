@@ -13,7 +13,8 @@ namespace Microsoft::React
  *
  * If the child exists, return a pointer to it. Otherwise, return nullptr.
  */
-const folly::dynamic* FindDynamicChild(const folly::dynamic& data, const char* const name) noexcept;
+const folly::dynamic* FindDynamicChild(const folly::dynamic& data,
+    const char* name) noexcept;
 
 /*
  * Retrieve the named child object from the folly::dynamic container.
@@ -21,7 +22,8 @@ const folly::dynamic* FindDynamicChild(const folly::dynamic& data, const char* c
  * If the child exists and has type 'object', return a copy of the object.
  * Otherwise, return the default value.
  */
-folly::dynamic GetDynamicObject(const folly::dynamic& data, const char* const name, folly::dynamic&& defaultValue) noexcept;
+folly::dynamic GetDynamicObject(const folly::dynamic& data, const char* name,
+    folly::dynamic&& defaultValue) noexcept;
 
 /*
  * Retrieve the named child string from the folly::dynamic container.
@@ -29,8 +31,10 @@ folly::dynamic GetDynamicObject(const folly::dynamic& data, const char* const na
  * If the child exists and has type 'string', return a copy of the string.
  * Otherwise, return std::nullopt or the default value.
  */
-std::optional<std::string> GetDynamicString(const folly::dynamic& data, const char* const name) noexcept;
-std::string GetDynamicString(const folly::dynamic& data, const char* const name, const char* const defaultValue) noexcept;
+std::optional<std::string> GetDynamicString(const folly::dynamic& data,
+    const char* name) noexcept;
+std::string GetDynamicString(const folly::dynamic& data,
+    const char* name, const char* defaultValue) noexcept;
 
 /*
  * Retrieve the named child double-precision value from the folly::dynamic container.
@@ -38,8 +42,10 @@ std::string GetDynamicString(const folly::dynamic& data, const char* const name,
  * If the child exists and has type 'double', return a copy of the value.
  * Otherwise, return std::nullopt or the default value.
  */
-std::optional<double> GetDynamicDouble(const folly::dynamic& data, const char* const name) noexcept;
-double GetDynamicDouble(const folly::dynamic& data, const char* const name, double defaultValue) noexcept;
+std::optional<double> GetDynamicDouble(const folly::dynamic& data,
+    const char* name) noexcept;
+double GetDynamicDouble(const folly::dynamic& data,
+    const char* name, double defaultValue) noexcept;
 
 /*
  * Retrieve the named child integer value from the folly::dynamic container.
@@ -47,8 +53,10 @@ double GetDynamicDouble(const folly::dynamic& data, const char* const name, doub
  * If the child exists and has type 'integer', return a copy of the value.
  * Otherwise, return std::nullopt or the default value.
  */
-std::optional<int64_t> GetDynamicInt(const folly::dynamic& data, const char* const name) noexcept;
-int64_t GetDynamicInt(const folly::dynamic& data, const char* const name, int64_t defaultValue) noexcept;
+std::optional<int64_t> GetDynamicInt(const folly::dynamic& data,
+    const char* name) noexcept;
+int64_t GetDynamicInt(const folly::dynamic& data,
+    const char* name, int64_t defaultValue) noexcept;
 
 /*
  * Retrieve the named child boolean value from the folly::dynamic container.
@@ -56,6 +64,7 @@ int64_t GetDynamicInt(const folly::dynamic& data, const char* const name, int64_
  * If the child exists and has type 'boolean', return a copy of the value.
  * Otherwise, return the default value.
  */
-bool GetDynamicBool(const folly::dynamic& data, const char* const name, bool defaultValue) noexcept;
+bool GetDynamicBool(const folly::dynamic& data, const char* name,
+    bool defaultValue) noexcept;
 
 }
