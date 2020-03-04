@@ -1,6 +1,6 @@
 #pragma once
 
-#include <React/ReactApi.h>
+#include <Continuity/ReactApi.h>
 
 namespace Microsoft::React
 {
