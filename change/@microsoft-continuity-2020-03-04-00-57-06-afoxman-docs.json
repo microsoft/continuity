@@ -1,0 +1,9 @@
+{
+  "type": "none",
+  "comment": "Update docs with build instructions.",
+  "packageName": "@microsoft/continuity",
+  "email": "adam@thefoxmans.net",
+  "commit": "23ab00df77bd64f9369998775638cf863523d5de",
+  "dependentChangeType": "patch",
+  "date": "2020-03-04T08:57:06.006Z"
+}
