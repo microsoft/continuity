@@ -1,6 +1,5 @@
 #include <folly/dynamic.h>
 #include <folly/json.h>
-#include <React/ReactManifest.h>
 
 #include "DynamicReader.h"
 #include "Manifest/Manifest.h"

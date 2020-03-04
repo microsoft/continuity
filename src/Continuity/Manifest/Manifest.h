@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include <React/ReactManifest.h>
+#include <Continuity/ReactManifest.h>
 
 #include "Manifest/ManifestBundle.h"
 #include "Manifest/ManifestComponent.h"

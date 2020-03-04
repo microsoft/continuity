@@ -1,0 +1,9 @@
+{
+  "type": "none",
+  "comment": "Rename public headers to include/Continuity/... and library to Continuity.dll.",
+  "packageName": "@microsoft/continuity",
+  "email": "adam@thefoxmans.net",
+  "commit": "1cb4d5b4499e3f8037312d76be44d7dd9619104f",
+  "dependentChangeType": "patch",
+  "date": "2020-03-04T21:02:55.370Z"
+}

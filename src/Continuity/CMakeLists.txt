@@ -1,6 +1,6 @@
 list(APPEND HEADERS
-    ${INC_ROOT}/React/ReactApi.h
-    ${INC_ROOT}/React/ReactManifest.h)
+    ${INC_ROOT}/Continuity/ReactApi.h
+    ${INC_ROOT}/Continuity/ReactManifest.h)
 
 list(APPEND HEADERS_INTERNAL
     DynamicReader.h
@@ -25,33 +25,33 @@ list(APPEND SOURCES
     Manifest/ManifestRuntimeWin32.cpp
     Manifest/ManifestRuntimeWin32Container.cpp)
 
-add_library(Microsoft.React SHARED)
+add_library(Continuity SHARED)
 
-target_sources(Microsoft.React
+target_sources(Continuity
     PUBLIC
         ${HEADERS}
     PRIVATE
         ${HEADERS_INTERNAL}
         ${SOURCES})
 
-target_compile_definitions(Microsoft.React
+target_compile_definitions(Continuity
     PRIVATE
         ${PROJECT_COMPILE_DEFINITIONS}
         MICROSOFT_REACT_BUILD
         _HAS_AUTO_PTR_ETC=1)
 
-target_compile_options(Microsoft.React
+target_compile_options(Continuity
     PRIVATE
         $<$<PLATFORM_ID:Windows>:/Gz>)
 
-target_include_directories(Microsoft.React
+target_include_directories(Continuity
     PUBLIC
         ${INC_ROOT}
     PRIVATE
         ${boost_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(Microsoft.React
+target_link_libraries(Continuity
     PRIVATE
         folly
         Mso::object

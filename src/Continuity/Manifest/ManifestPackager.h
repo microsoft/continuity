@@ -2,8 +2,8 @@
 
 #include <string>
 
+#include <Continuity/ReactManifest.h>
 #include <folly/dynamic.h>
-#include <React/ReactManifest.h>
 
 #include "stubs/Mso.h"
 
