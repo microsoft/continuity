@@ -211,7 +211,7 @@ target_include_directories(folly
         ${folly_SOURCE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}/stubs
     PRIVATE
-        ${PROJECT_INCLUDE_DIRECTORIES})
+        ${boost_SOURCE_DIR}/include)
 
 target_link_options(folly
     PUBLIC

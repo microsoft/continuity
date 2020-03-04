@@ -1,11 +1,10 @@
 {
   "name": "@microsoft/continuity",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "change": "beachball change",
     "check": "beachball check",
-    "beachball:publish": "beachball publish"
+    "beachball:publish": "beachball publish --no-publish"
   },
   "devDependencies": {
     "beachball": "^1.18.4"

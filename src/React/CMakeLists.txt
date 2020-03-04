@@ -43,9 +43,11 @@ target_include_directories(Microsoft.React
     PUBLIC
         ${INC_ROOT}
     PRIVATE
-        ${PROJECT_INCLUDE_DIRECTORIES})
+        ${boost_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(Microsoft.React
     PRIVATE
         folly
+        Mso::object
         Mso::smartPtr)

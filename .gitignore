@@ -61,3 +61,8 @@ buck-out/
 
 # CocoaPods
 **/Pods/
+
+# CMake
+build/
+Debug/
+Release/
