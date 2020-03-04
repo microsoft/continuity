@@ -1,7 +1,5 @@
-#include <sstream>
-
-#include <React/DynamicReader.h>
-#include <React/Manifest/ManifestPackager.h>
+#include "DynamicReader.h"
+#include "Manifest/ManifestPackager.h"
 
 namespace Microsoft::React
 {
@@ -24,75 +22,26 @@ constexpr const char* const c_PackagerMinifyProperty = "minify";
 constexpr bool c_PackagerMinifyDefault = false;
 
 
-std::optional<ManifestPackager> ManifestPackager::Create(
-    const folly::dynamic* const packager, const std::string& defaultFileName,
-    const std::string& defaultExtension, Error& error) noexcept
-{
-    if (packager && packager->isObject())
-    {
-        auto environment = StringToPackagerEnvironment(
-            GetDynamicString(*packager, c_PackagerEnvironmentProperty, c_PackagerEnvironmentDefaultString),
-            error);
-        if (error)
-        {
-            return std::nullopt;
-        }
-
-        return ManifestPackager {
-            GetDynamicString(*packager, c_PackagerHostProperty, c_PackagerHostDefault),
-            GetDynamicString(*packager, c_PackagerFileNameProperty, defaultFileName.c_str()),
-            GetDynamicString(*packager, c_PackagerExtensionProperty, defaultExtension.c_str()),
-            *environment,
-            GetDynamicBool(*packager, c_PackagerMinifyProperty, c_PackagerMinifyDefault)
-        };
-    }
-
-    //  Provide a default packager configuration.
-    return ManifestPackager {
-        std::string{c_PackagerHostDefault},
-        std::string{defaultFileName},
-        std::string{defaultExtension},
-        c_PackagerEnvironmentDefault,
-        c_PackagerMinifyDefault
-    };
-}
-
-std::optional<PackagerEnvironment> ManifestPackager::StringToPackagerEnvironment(
-    const std::string& environment, Error& error) noexcept
-{
-    if (environment == c_PackagerEnvironmentDevelopment)
-    {
-        return PackagerEnvironment::Development;
-    }
-    if (environment == c_PackagerEnvironmentProduction)
-    {
-        return PackagerEnvironment::Production;
-    }
-
-    error.Assign("Invalid packager environment type");
-    return std::nullopt;
-}
-
-ManifestPackager::ManifestPackager(std::string&& host, std::string&& fileName, std::string&& extension,
-    PackagerEnvironment environment, bool minify) noexcept
-    : _host{std::move(host)}, _fileName{std::move(fileName)}, _extension{std::move(extension)},
-    _environment{environment}, _minify{minify}
+ManifestPackager::ManifestPackager(std::string&& host, std::string&& fileName,
+    std::string&& extension, PackagerEnvironment environment, bool minify) noexcept
+    : _host{std::move(host)}, _fileName{std::move(fileName)},
+    _extension{std::move(extension)}, _environment{environment}, _minify{minify}
 {
 }
 
-const std::string& ManifestPackager::GetHost() const noexcept
+const char* ManifestPackager::GetHost() const noexcept
 {
-    return _host;
+    return _host.c_str();
 }
 
-const std::string& ManifestPackager::GetFileName() const noexcept
+const char* ManifestPackager::GetFileName() const noexcept
 {
-    return _fileName;
+    return _fileName.c_str();
 }
 
-const std::string& ManifestPackager::GetExtension() const noexcept
+const char* ManifestPackager::GetExtension() const noexcept
 {
-    return _extension;
+    return _extension.c_str();
 }
 
 PackagerEnvironment ManifestPackager::GetEnvironment() const noexcept
@@ -103,6 +52,50 @@ PackagerEnvironment ManifestPackager::GetEnvironment() const noexcept
 bool ManifestPackager::GetMinify() const noexcept
 {
     return _minify;
+}
+
+
+Mso::TCntRef<ManifestPackager> ReadManifestPackager(const folly::dynamic* packagerData,
+    const std::string& defaultFileName, const std::string& defaultExtension,
+    ReactError& error) noexcept
+{
+    if (packagerData && packagerData->isObject())
+    {
+        PackagerEnvironment environment;
+        auto environmentValue = GetDynamicString(*packagerData, c_PackagerEnvironmentProperty,
+            c_PackagerEnvironmentDefaultString);
+        if (environmentValue == c_PackagerEnvironmentDevelopment)
+        {
+            environment = PackagerEnvironment::Development;
+        }
+        else if (environmentValue == c_PackagerEnvironmentProduction)
+        {
+            environment = PackagerEnvironment::Production;
+        }
+        else
+        {
+            error = ReactError::ManifestPackagerEnvironmentInvalid;
+            return {};
+        }
+
+        auto packager = Mso::Make<ManifestPackager>(
+            GetDynamicString(*packagerData, c_PackagerHostProperty, c_PackagerHostDefault),
+            GetDynamicString(*packagerData, c_PackagerFileNameProperty, defaultFileName.c_str()),
+            GetDynamicString(*packagerData, c_PackagerExtensionProperty, defaultExtension.c_str()),
+            environment,
+            GetDynamicBool(*packagerData, c_PackagerMinifyProperty, c_PackagerMinifyDefault));
+
+        error = ReactError::Success;
+        return Mso::TCntRef<ManifestPackager>{*packager.Detach(), false};
+    }
+
+    //  Provide a default packager configuration.
+    auto packager = Mso::Make<ManifestPackager>(std::string{c_PackagerHostDefault},
+        std::string{defaultFileName}, std::string{defaultExtension}, c_PackagerEnvironmentDefault,
+        c_PackagerMinifyDefault);
+
+    error = ReactError::Success;
+    return Mso::TCntRef<ManifestPackager>{*packager.Detach(), false};
 }
 
 }

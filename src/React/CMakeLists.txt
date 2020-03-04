@@ -1,18 +1,21 @@
 list(APPEND HEADERS
-    ${INC_ROOT}/React/DynamicReader.h
-    ${INC_ROOT}/React/Error.h
-    ${INC_ROOT}/React/Manifest/Manifest.h
-    ${INC_ROOT}/React/Manifest/ManifestBundle.h
-    ${INC_ROOT}/React/Manifest/ManifestComponent.h
-    ${INC_ROOT}/React/Manifest/ManifestPackager.h
-    ${INC_ROOT}/React/Manifest/ManifestRuntime.h
-    ${INC_ROOT}/React/Manifest/ManifestRuntimeLibrary.h
-    ${INC_ROOT}/React/Manifest/ManifestRuntimeWin32.h
-    ${INC_ROOT}/React/Manifest/ManifestRuntimeWin32Container.h)
+    ${INC_ROOT}/React/ReactApi.h
+    ${INC_ROOT}/React/ReactManifest.h)
+
+list(APPEND HEADERS_INTERNAL
+    DynamicReader.h
+    Manifest/Manifest.h
+    Manifest/ManifestBundle.h
+    Manifest/ManifestComponent.h
+    Manifest/ManifestPackager.h
+    Manifest/ManifestRuntime.h
+    Manifest/ManifestRuntimeLibrary.h
+    Manifest/ManifestRuntimeWin32.h
+    Manifest/ManifestRuntimeWin32Container.h
+    stubs/Mso.h)
 
 list(APPEND SOURCES
     DynamicReader.cpp
-    Error.cpp
     Manifest/Manifest.cpp
     Manifest/ManifestBundle.cpp
     Manifest/ManifestComponent.cpp
@@ -28,11 +31,13 @@ target_sources(Microsoft.React
     PUBLIC
         ${HEADERS}
     PRIVATE
+        ${HEADERS_INTERNAL}
         ${SOURCES})
 
 target_compile_definitions(Microsoft.React
     PRIVATE
         ${PROJECT_COMPILE_DEFINITIONS}
+        MICROSOFT_REACT_BUILD
         _HAS_AUTO_PTR_ETC=1)
 
 target_compile_options(Microsoft.React
