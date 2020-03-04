@@ -1,6 +1,6 @@
 {
   "type": "patch",
-  "comment": "Refine build error messages. Remove PROJECT_INCLUDE_DIRECTORIES variable (not worth the complexity).",
+  "comment": "Refine build error messages. Remove PROJECT_INCLUDE_DIRECTORIES variable (not worth the complexity). Microsoft.React: add explicit dependency on Mso::object to mirror what is used in the code. Fix beachball integration by making the repo public. Change publish command to go through the motions without the final step of pushing to the NPM registry. Add CMake build dirs to .gitignore.",
   "packageName": "@microsoft/continuity",
   "email": "adam@thefoxmans.net",
   "commit": "23abb9f5c1fe77458c0cea16b2eb35e0444301df",
