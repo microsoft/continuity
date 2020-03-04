@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": "Refine build error messages. Remove PROJECT_INCLUDE_DIRECTORIES variable (not worth the complexity).",
+  "packageName": "@microsoft/continuity",
+  "email": "adam@thefoxmans.net",
+  "commit": "23abb9f5c1fe77458c0cea16b2eb35e0444301df",
+  "dependentChangeType": "patch",
+  "date": "2020-03-04T08:18:14.641Z"
+}
