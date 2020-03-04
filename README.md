@@ -11,23 +11,26 @@ Continuity uses CMake, and currently builds for Win32 only.
 Use CMake to generate Ninja build scripts.
 
 ```
-mkdir Debug
 cmake -B Debug -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug
-
-mkdir Release
 cmake -B Release -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
 ```
 
 ### Build
 
-Use CMake again to run the build.
+Use Ninja or CMake to build Continuity.
 
 ```
+cd Debug
+ninja
+
+cd Release
+ninja
+
 cmake --build Debug
 cmake --build Release
 ```
 
-The public headers are under `include/React`, and the Win32 DLL is `{Debug|Release}/src/React/Microsoft.React.dll`.
+The public headers are under `include/Continuity`, and the Win32 DLL is `{Debug|Release}/src/Continuity/Continuity.dll`.
 
 ## Contributing
 
