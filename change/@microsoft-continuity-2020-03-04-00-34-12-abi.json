@@ -1,9 +1,0 @@
-{
-  "type": "major",
-  "comment": "=== Build\n* Refine build error messages. Remove PROJECT_INCLUDE_DIRECTORIES variable (not worth the complexity).\n* Microsoft.React: add explicit dependency on Mso::object to mirror what is used in the code.\n* Add CMake build dirs to .gitignore.\n* Work around an MSO build issue. Debug builds aren't supported. Suppress debug build defines, include Mso headers, and then restore the defines.\n\n=== Versioning\n* Fix beachball integration by making the repo public.\n* Change publish command to go through the motions without the final step of pushing to the NPM registry.\n\n=== Manifest Library: ABI\n* Split each class into a reference-counted public interface and an internal implementation.\n* Use only primitive types and interfaces.\n* Replace Error objects with error codes.\n* Separate publicly headers for inclusion in NuGet package\n* Export public library functions.",
-  "packageName": "@microsoft/continuity",
-  "email": "adam@thefoxmans.net",
-  "commit": "8993192c85b22434626757616bc772fffa705628",
-  "dependentChangeType": "patch",
-  "date": "2020-03-04T08:34:12.606Z"
-}
