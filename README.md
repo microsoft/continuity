@@ -2,10 +2,36 @@
 
 Continuity is a platform for using react-native within a native application.
 
+## Building
+
+Continuity uses CMake, and currently builds for Win32 only.
+
+### Prepare the build
+
+Use CMake to generate Ninja build scripts.
+
+```
+mkdir Debug
+cmake -B Debug -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug
+
+mkdir Release
+cmake -B Release -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
+```
+
+### Build
+
+Use CMake again to run the build.
+
+```
+cmake --build Debug
+cmake --build Release
+```
+
+The public headers are under `include/React`, and the Win32 DLL is `{Debug|Release}/src/React/Microsoft.React.dll`.
 
 ## Contributing
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
+This project welcomes contributions and suggestions. Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
 
