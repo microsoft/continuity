@@ -40,10 +40,6 @@ target_compile_definitions(Continuity
         MICROSOFT_REACT_BUILD
         _HAS_AUTO_PTR_ETC=1)
 
-target_compile_options(Continuity
-    PRIVATE
-        $<$<PLATFORM_ID:Windows>:/Gz>)
-
 target_include_directories(Continuity
     PUBLIC
         ${INC_ROOT}

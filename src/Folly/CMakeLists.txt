@@ -202,10 +202,6 @@ target_sources(folly
 
 target_compile_definitions(folly PRIVATE ${PROJECT_COMPILE_DEFINITIONS})
 
-target_compile_options(folly
-    PRIVATE
-        $<$<PLATFORM_ID:Windows>:/Gz>)
-
 target_include_directories(folly
     PUBLIC
         ${folly_SOURCE_DIR}
