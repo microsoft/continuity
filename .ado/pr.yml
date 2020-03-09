@@ -1,4 +1,4 @@
-name: $(Date:yyyy-MM-dd).rev$(Rev:r)
+name: $(Date:yyyy-MM-dd).$(Rev:r)
 
 trigger: none
 pr:
@@ -9,8 +9,7 @@ variables:
   runCodesignValidationInjection: false
 
 jobs:
-  - job: WindowsPR
-    displayName: Windows PR
+  - job: Windows
     strategy:
       matrix:
         X64Debug:
