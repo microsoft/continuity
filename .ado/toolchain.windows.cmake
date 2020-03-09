@@ -1,0 +1,11 @@
+set(CMAKE_BUILD_TYPE $ENV{FLAVOR})
+set(CMAKE_SYSTEM_NAME Windows)
+set(CMAKE_SYSTEM_VERSION $ENV{WINSDK})
+set(CMAKE_C_COMPILER $ENV{VCToolsInstallDir}/bin/Hostx64/$ENV{PLATFORM}\cl.exe)
+set(CMAKE_CXX_COMPILER ${CMAKE_C_COMPILER})
+
+message(STATUS "[Windows Toolchain] CMAKE_BUILD_TYPE     : ${CMAKE_BUILD_TYPE}")
+message(STATUS "[Windows Toolchain] CMAKE_SYSTEM_NAME    : ${CMAKE_SYSTEM_NAME}")
+message(STATUS "[Windows Toolchain] CMAKE_SYSTEM_VERSION : ${CMAKE_SYSTEM_VERSION}")
+message(STATUS "[Windows Toolchain] CMAKE_C_COMPILER     : ${CMAKE_C_COMPILER}")
+message(STATUS "[Windows Toolchain] CMAKE_CXX_COMPILER   : ${CMAKE_CXX_COMPILER}")

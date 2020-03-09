@@ -47,9 +47,9 @@ jobs:
         displayName: Generate Ninja Build
         inputs:
           workingDirectory: $(Build.BinariesDirectory)
-          cmakeArgs: -G Ninja -DCMAKE_BUILD_TYPE=$(Flavor) -DCMAKE_SYSTEM_NAME=Windows -DCMAKE_SYSTEM_VERSION=$(WinSDK) -DCMAKE_C_COMPILER='$(env:VCToolsInstallDir)\bin\Hostx64\$(Platform)\cl.exe' -DCMAKE_CXX_COMPILER='$(env:VCToolsInstallDir)\bin\Hostx64\$(Platform)\cl.exe' $(Build.SourcesDirectory)
+          cmakeArgs: -G Ninja -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\.ado\toolchain.windows.cmake $(Build.SourcesDirectory)
         env:
-          BOOST_ROOT: $(env:BOOST_ROOT_1_69_0)
+          BOOST_ROOT: $[variables.BOOST_ROOT_1_69_0]
 
       - task: CmdLine@2
         displayName: Build
