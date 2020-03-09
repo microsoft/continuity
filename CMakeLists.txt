@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
+message(STATUS "CMake Source: ${CMAKE_SOURCE_DIR}")
+message(STATUS "CMake Binary: ${CMAKE_BINARY_DIR}")
+
 project(
     MicrosoftContinuity
     VERSION 0.1
@@ -120,7 +123,7 @@ include(CTest)
 include(NuGet)
 
 # boost
-if(NOT ${BOOST_ROOT})
+if($ENV{BOOST_ROOT} STREQUAL "")
     nuget(install boost -Version 1.68.0.0 -Framework native -OutputDirectory ${NUGET_ROOT} -NonInteractive)
     set(BOOST_ROOT ${NUGET_ROOT}/boost.1.68.0.0/lib/native)
     list(APPEND PROJECT_COMPILE_DEFINITIONS
@@ -129,6 +132,12 @@ if(NOT ${BOOST_ROOT})
         BOOST_NO_RTTI
         BOOST_NO_TYPEID
         BOOST_SYSTEM_SOURCE)
+else()
+    if(EXISTS $ENV{BOOST_ROOT}/lib/native)
+        set(BOOST_ROOT $ENV{BOOST_ROOT}/lib/native)
+    else()
+        set(BOOST_ROOT $ENV{BOOST_ROOT})
+    endif()
 endif()
 message(STATUS "Boost: ${BOOST_ROOT}")
 

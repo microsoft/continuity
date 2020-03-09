@@ -4,33 +4,50 @@ Continuity is a platform for using react-native within a native application.
 
 ## Building
 
-Continuity uses CMake, and currently builds for Win32 only.
+Continuity uses CMake and Ninja.
 
-### Prepare the build
+### Windows
 
-Use CMake to generate Ninja build scripts.
-
-```
-cmake -B Debug -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug
-cmake -B Release -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
-```
-
-### Build
-
-Use Ninja or CMake to build Continuity.
+1. Install the Visual Studio 2017 build tools package
 
 ```
-cd Debug
-ninja
-
-cd Release
-ninja
-
-cmake --build Debug
-cmake --build Release
+choco install visualstudio2017buildtools
 ```
 
-The public headers are under `include/Continuity`, and the Win32 DLL is `{Debug|Release}/src/Continuity/Continuity.dll`.
+2. Generate Ninja build scripts
+
+```
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
+
+cmake -B build\Debug\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug
+cmake -B build\Release\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
+
+cmake -B build\Debug\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug
+cmake -B build\Release\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
+```
+
+3. Run the build
+
+```
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
+
+ninja -C build\Debug\%VSCMD_ARG_TGT_ARCH%
+ninja -C build\Release\%VSCMD_ARG_TGT_ARCH%
+
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
+
+ninja -C build\Debug\%VSCMD_ARG_TGT_ARCH%
+ninja -C build\Release\%VSCMD_ARG_TGT_ARCH%
+```
+
+The public headers are under `include/Continuity`, and the Windows DLLs are:
+
+- `build\Debug\x86\src\Continuity\Continuity.dll`
+- `build\Debug\x64\src\Continuity\Continuity.dll`
+- `build\Release\x86\src\Continuity\Continuity.dll`
+- `build\Release\x64\src\Continuity\Continuity.dll`
 
 ## Contributing
 
