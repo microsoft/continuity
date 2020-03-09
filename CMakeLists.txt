@@ -120,14 +120,17 @@ include(CTest)
 include(NuGet)
 
 # boost
-nuget(install boost -Version 1.68.0.0 -Framework native -OutputDirectory ${NUGET_ROOT} -NonInteractive)
-set(boost_SOURCE_DIR ${NUGET_ROOT}/boost.1.68.0.0/lib/native)
-list(APPEND PROJECT_COMPILE_DEFINITIONS
-    BOOST_ALL_NO_LIB=1
-    BOOST_ERROR_CODE_HEADER_ONLY
-    BOOST_NO_RTTI
-    BOOST_NO_TYPEID
-    BOOST_SYSTEM_SOURCE)
+if(NOT ${BOOST_ROOT})
+    nuget(install boost -Version 1.68.0.0 -Framework native -OutputDirectory ${NUGET_ROOT} -NonInteractive)
+    set(BOOST_ROOT ${NUGET_ROOT}/boost.1.68.0.0/lib/native)
+    list(APPEND PROJECT_COMPILE_DEFINITIONS
+        BOOST_ALL_NO_LIB=1
+        BOOST_ERROR_CODE_HEADER_ONLY
+        BOOST_NO_RTTI
+        BOOST_NO_TYPEID
+        BOOST_SYSTEM_SOURCE)
+endif()
+message(STATUS "Boost: ${BOOST_ROOT}")
 
 # Mso
 include(FetchContent)

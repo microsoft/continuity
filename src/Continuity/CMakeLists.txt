@@ -44,7 +44,7 @@ target_include_directories(Continuity
     PUBLIC
         ${INC_ROOT}
     PRIVATE
-        ${boost_SOURCE_DIR}/include
+        ${BOOST_ROOT}/include
         ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(Continuity

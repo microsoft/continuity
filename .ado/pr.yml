@@ -1,19 +1,57 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+name: $(Date:yyyyMMdd).$(Rev:.r)
+trigger: none
+pr: master
+jobs:
+  - job: WindowsPR
+    displayName: Windows PR
+    strategy:
+      matrix:
+        X64Debug:
+          Flavor: Debug
+          Platform: x64
+          VSArch: amd64
+        X64Release:
+          Flavor: Release
+          Platform: x64
+          VSArch: arm64
+        X86Debug:
+          Flavor: Debug
+          Platform: x86
+          VSArch: x86
+        X86Release:
+          Flavor: Release
+          Platform: x86
+          VSArch: x86
+    pool:
+      vmImage: 'vs2017-win2016'
+    timeoutMinutes: 30
+    cancelTimeoutInMinutes: 2
+    steps:
+      - checkout: self
+        clean: false
+        submodules: false
 
-trigger:
-- master
+      - script: choco install ninja
+        displayName: Install Ninja
 
-pool:
-  vmImage: 'ubuntu-latest'
+      - task: BatchScript@1
+        displayName: Setup Visual C++ Environment
+        inputs:
+          filename: 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\Tools\VsDevCmd.bat'
+          arguments: '-arch=$(VSArch)'
+          modifyEnvironment: true
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+      - task: CMake@1
+        displayName: Generate Ninja Build
+        inputs:
+          workingDirectory: $(Build.BinariesDirectory)/$(Flavor)/$(Platform)
+          cmakeArgs: -G Ninja -DCMAKE_BUILD_TYPE=$(Flavor) -DBOOST_ROOT=$(env:BOOST_ROOT_1_69_0) $(Build.SourcesDirectory)
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+      - task: CmdLine@2
+        displayName: Build
+        inputs:
+          workingDirectory: $(Build.BinariesDirectory)/$(Flavor)/$(Platform)
+          script: ninja -v
+#
+# TODO: add a unit-test task here -- CTest or googletesT
+#
