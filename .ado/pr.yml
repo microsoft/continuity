@@ -1,4 +1,4 @@
-name: $(Date:yyyyMMdd)$(Rev:.r)
+name: pr.windows.$(Date:yyyy-MM-dd).rev$(Rev:r)
 
 trigger: none
 pr:
