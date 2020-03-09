@@ -1,6 +1,7 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
 trigger: none
-pr: master
+pr:
+  - master
 jobs:
   - job: WindowsPR
     displayName: Windows PR
