@@ -25,7 +25,7 @@ jobs:
           Flavor: Release
           Platform: x86
     pool:
-      vmImage: 'vs2017-win2016'
+      vmImage: 'windows-2019'
     timeoutInMinutes: 30
     cancelTimeoutInMinutes: 2
     steps:
@@ -39,22 +39,22 @@ jobs:
       - task: BatchScript@1
         displayName: Setup Visual C++ Environment
         inputs:
-          filename: 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
+          filename: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
           arguments: '$(Platform) $(WinSDK)'
           modifyEnvironment: true
 
       - task: CMake@1
         displayName: Generate Ninja Build
         inputs:
-          workingDirectory: $(Build.BinariesDirectory)/$(Flavor)/$(Platform)
-          cmakeArgs: -G Ninja -DCMAKE_BUILD_TYPE=$(Flavor) $(Build.SourcesDirectory)
+          workingDirectory: $(Build.BinariesDirectory)
+          cmakeArgs: -G Ninja -DCMAKE_BUILD_TYPE=$(Flavor) -DCMAKE_SYSTEM_NAME=Windows -DCMAKE_SYSTEM_VERSION=$(WinSDK) $(Build.SourcesDirectory)
         env:
           BOOST_ROOT: $(env:BOOST_ROOT_1_69_0)
 
       - task: CmdLine@2
         displayName: Build
         inputs:
-          workingDirectory: $(Build.BinariesDirectory)/$(Flavor)/$(Platform)
+          workingDirectory: $(Build.BinariesDirectory)
           script: ninja -v
 #
 # TODO: add a unit-test task here -- CTest or googletesT

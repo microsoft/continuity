@@ -8,21 +8,27 @@ Continuity uses CMake and Ninja.
 
 ### Windows
 
-1. Install the Visual Studio 2017 build tools package
+_If you already have Visual Studio 2019 installed with C++ tools, skip to step 3._
+
+1. Install Visual Studio 2019 build tools
 
 ```
-choco install visualstudio2017buildtools
+choco install visualstudio2019buildtools
+choco install visualstudio2019-workload-vctools
+choco install visualstudio2019-workload-universalbuildtools
 ```
 
-2. Generate Ninja build scripts
+2. Install a [Windows 10 SDK](https://developer.microsoft.com/en-us/windows/downloads/sdk-archive). Choose a recent release. Don't go back any farther than `10.0.15063.0` (Spring Creators Update, version 1703).
+
+3. Generate Ninja build scripts
 
 ```
-"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86 10.0.18362.0
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
 
 cmake -B build\Debug\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug
 cmake -B build\Release\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
 
-"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64 10.0.18362.0
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
 
 cmake -B build\Debug\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug
 cmake -B build\Release\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
@@ -31,18 +37,18 @@ cmake -B build\Release\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Rel
 3. Run the build
 
 ```
-"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86 10.0.18362.0
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
 
 ninja -C build\Debug\%VSCMD_ARG_TGT_ARCH%
 ninja -C build\Release\%VSCMD_ARG_TGT_ARCH%
 
-"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64 10.0.18362.0
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
 
 ninja -C build\Debug\%VSCMD_ARG_TGT_ARCH%
 ninja -C build\Release\%VSCMD_ARG_TGT_ARCH%
 ```
 
-The public headers are under `include/Continuity`, and the Windows DLLs are:
+The public headers are under `include\Continuity`, and the Windows DLLs are:
 
 - `build\Debug\x86\src\Continuity\Continuity.dll`
 - `build\Debug\x64\src\Continuity\Continuity.dll`
