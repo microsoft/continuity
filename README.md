@@ -4,33 +4,56 @@ Continuity is a platform for using react-native within a native application.
 
 ## Building
 
-Continuity uses CMake, and currently builds for Win32 only.
+Continuity uses CMake and Ninja.
 
-### Prepare the build
+### Windows
 
-Use CMake to generate Ninja build scripts.
+_If you already have Visual Studio 2019 installed with C++ tools, skip to step 3._
 
-```
-cmake -B Debug -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug
-cmake -B Release -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
-```
-
-### Build
-
-Use Ninja or CMake to build Continuity.
+1. Install Visual Studio 2019 build tools
 
 ```
-cd Debug
-ninja
-
-cd Release
-ninja
-
-cmake --build Debug
-cmake --build Release
+choco install visualstudio2019buildtools
+choco install visualstudio2019-workload-vctools
+choco install visualstudio2019-workload-universalbuildtools
 ```
 
-The public headers are under `include/Continuity`, and the Win32 DLL is `{Debug|Release}/src/Continuity/Continuity.dll`.
+2. Install a [Windows 10 SDK](https://developer.microsoft.com/en-us/windows/downloads/sdk-archive). Choose a recent release. Don't go back any farther than `10.0.15063.0` (Spring Creators Update, version 1703).
+
+3. Generate Ninja build scripts
+
+```
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
+
+cmake -B build\Debug\x86 -S . -G Ninja -DFLAVOR=Debug -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
+cmake -B build\Release\x86 -S . -G Ninja -DFLAVOR=Release -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
+
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
+
+cmake -B build\Debug\x64 -S . -G Ninja -DFLAVOR=Debug -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
+cmake -B build\Release\x64 -S . -G Ninja -DFLAVOR=Release -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
+```
+
+3. Run the build
+
+```
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
+
+ninja -C build\Debug\x86
+ninja -C build\Release\x86
+
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
+
+ninja -C build\Debug\x64
+ninja -C build\Release\x64
+```
+
+The public headers are under `include\Continuity`, and the Windows DLLs are:
+
+- `build\Debug\x86\src\Continuity\Continuity.dll`
+- `build\Debug\x64\src\Continuity\Continuity.dll`
+- `build\Release\x86\src\Continuity\Continuity.dll`
+- `build\Release\x64\src\Continuity\Continuity.dll`
 
 ## Contributing
 

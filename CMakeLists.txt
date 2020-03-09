@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
+message(STATUS "CMake Source: ${CMAKE_SOURCE_DIR}")
+message(STATUS "CMake Binary: ${CMAKE_BINARY_DIR}")
+
 project(
     MicrosoftContinuity
     VERSION 0.1
@@ -78,8 +81,8 @@ endif()
 set(CMAKE_CXX_STANDARD 17)
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     # Enforce required platform toolset
-    if(NOT MSVC_TOOLSET_VERSION EQUAL 141)
-        message(FATAL_ERROR "This project does not support Visual Studio toolset ${MSVC_TOOLSET_VERSION}. It only supports toolset 141 (Visual Studio 2017).")
+    if(NOT MSVC_TOOLSET_VERSION EQUAL 142)
+        message(FATAL_ERROR "This project does not support Visual Studio toolset ${MSVC_TOOLSET_VERSION}. It only supports toolset 142 (Visual Studio 2019).")
     endif()
 
     set(ARCHITECTURE_NAME X86)
@@ -87,8 +90,8 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
         set(ARCHITECTURE_NAME X64)
     endif()
 
-    # These are related to packing/alignment, which makes them a little risky, but MSO requires them.
-    set(DISABLE_RISKY_WARNINGS_FOR_MSO "/wd4121 /wd4315")
+    # These are related to packing/alignment and [[nodiscard]], which makes them a little risky, but MSO requires them.
+    set(DISABLE_RISKY_WARNINGS_FOR_MSO "/wd4121 /wd4315 /wd4834")
 
     set(CMAKE_CXX_FLAGS "/nologo /EHsc /GR- /GS /permissive- /sdl /utf-8 /W4 /WX /Zi")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4018 /wd4068 /wd4100 /wd4101 /wd4127 /wd4146 /wd4189 /wd4201 /wd4244 /wd4251 /wd4267 /wd4290 /wd4293 /wd4305 /wd4309 /wd4324 /wd4456 /wd4458 /wd4505 /wd4702 /wd4800 /wd4804")
@@ -120,14 +123,24 @@ include(CTest)
 include(NuGet)
 
 # boost
-nuget(install boost -Version 1.68.0.0 -Framework native -OutputDirectory ${NUGET_ROOT} -NonInteractive)
-set(boost_SOURCE_DIR ${NUGET_ROOT}/boost.1.68.0.0/lib/native)
-list(APPEND PROJECT_COMPILE_DEFINITIONS
-    BOOST_ALL_NO_LIB=1
-    BOOST_ERROR_CODE_HEADER_ONLY
-    BOOST_NO_RTTI
-    BOOST_NO_TYPEID
-    BOOST_SYSTEM_SOURCE)
+if($ENV{BOOST_ROOT} STREQUAL "")
+    nuget(install boost -Version 1.68.0.0 -Framework native -OutputDirectory ${NUGET_ROOT} -NonInteractive)
+    set(BOOST_ROOT ${NUGET_ROOT}/boost.1.68.0.0/lib/native)
+    list(APPEND PROJECT_COMPILE_DEFINITIONS
+        BOOST_ALL_NO_LIB=1
+        BOOST_ERROR_CODE_HEADER_ONLY
+        BOOST_NO_RTTI
+        BOOST_NO_TYPEID
+        BOOST_SYSTEM_SOURCE)
+else()
+    if(EXISTS $ENV{BOOST_ROOT}/lib/native)
+        set(BOOST_ROOT $ENV{BOOST_ROOT}/lib/native)
+    else()
+        set(BOOST_ROOT $ENV{BOOST_ROOT})
+    endif()
+endif()
+file(TO_CMAKE_PATH ${BOOST_ROOT} BOOST_ROOT)
+message(STATUS "Boost: ${BOOST_ROOT}")
 
 # Mso
 include(FetchContent)

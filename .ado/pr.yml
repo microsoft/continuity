@@ -1,19 +1,59 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+name: $(Date:yyyy-MM-dd).$(Rev:r)
 
-trigger:
-- master
+trigger: none
+pr:
+  - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+variables:
+  Ado.WinSDK: 10.0.18362.0
+  runCodesignValidationInjection: false
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+jobs:
+  - job: Windows
+    strategy:
+      matrix:
+        X64Debug:
+          Ado.Flavor: Debug
+          Ado.Architecture: x64
+        X64Release:
+          Ado.Flavor: Release
+          Ado.Architecture: x64
+        X86Debug:
+          Ado.Flavor: Debug
+          Ado.Architecture: x86
+        X86Release:
+          Ado.Flavor: Release
+          Ado.Architecture: x86
+    pool:
+      vmImage: 'windows-2019'
+    timeoutInMinutes: 30
+    cancelTimeoutInMinutes: 2
+    steps:
+      - checkout: self
+        clean: false
+        submodules: false
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+      - script: choco install ninja
+        displayName: Install Ninja
+
+      - task: BatchScript@1
+        displayName: Setup Visual C++ Environment
+        inputs:
+          filename: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
+          arguments: '$(Ado.Architecture) $(Ado.WinSDK)'
+          modifyEnvironment: true
+
+      - task: CMake@1
+        displayName: Generate Ninja Build
+        inputs:
+          workingDirectory: $(Build.BinariesDirectory)
+          cmakeArgs: -G Ninja -DFLAVOR=$(Ado.Flavor) -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\CMake\toolchain.windows.cmake $(Build.SourcesDirectory)
+
+      - task: CmdLine@2
+        displayName: Build
+        inputs:
+          workingDirectory: $(Build.BinariesDirectory)
+          script: ninja -v
+#
+# TODO: add a unit-test task here -- CTest or googletesT
+#
