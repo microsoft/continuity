@@ -10,8 +10,11 @@ set(CMAKE_SYSTEM_VERSION $ENV{WINSDK})
 set(CMAKE_C_COMPILER ${MSVC_COMPILER})
 set(CMAKE_CXX_COMPILER ${MSVC_COMPILER})
 
+set(BOOST_ROOT $ENV{BOOST_ROOT_1_69_0})
+
 message(STATUS "[Windows Toolchain] CMAKE_BUILD_TYPE     : ${CMAKE_BUILD_TYPE}")
 message(STATUS "[Windows Toolchain] CMAKE_SYSTEM_NAME    : ${CMAKE_SYSTEM_NAME}")
 message(STATUS "[Windows Toolchain] CMAKE_SYSTEM_VERSION : ${CMAKE_SYSTEM_VERSION}")
 message(STATUS "[Windows Toolchain] CMAKE_C_COMPILER     : ${CMAKE_C_COMPILER}")
 message(STATUS "[Windows Toolchain] CMAKE_CXX_COMPILER   : ${CMAKE_CXX_COMPILER}")
+message(STATUS "[Windows Toolchain] BOOST_ROOT           : ${BOOST_ROOT}")

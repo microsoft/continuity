@@ -48,8 +48,6 @@ jobs:
         inputs:
           workingDirectory: $(Build.BinariesDirectory)
           cmakeArgs: -G Ninja -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\.ado\toolchain.windows.cmake $(Build.SourcesDirectory)
-        env:
-          BOOST_ROOT: $[variables.BOOST_ROOT_1_69_0]
 
       - task: CmdLine@2
         displayName: Build
