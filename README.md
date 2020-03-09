@@ -17,12 +17,12 @@ choco install visualstudio2017buildtools
 2. Generate Ninja build scripts
 
 ```
-"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86 10.0.18362.0
 
 cmake -B build\Debug\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug
 cmake -B build\Release\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
 
-"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64 10.0.18362.0
 
 cmake -B build\Debug\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug
 cmake -B build\Release\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
@@ -31,12 +31,12 @@ cmake -B build\Release\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Rel
 3. Run the build
 
 ```
-"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86 10.0.18362.0
 
 ninja -C build\Debug\%VSCMD_ARG_TGT_ARCH%
 ninja -C build\Release\%VSCMD_ARG_TGT_ARCH%
 
-"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
+"%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64 10.0.18362.0
 
 ninja -C build\Debug\%VSCMD_ARG_TGT_ARCH%
 ninja -C build\Release\%VSCMD_ARG_TGT_ARCH%
