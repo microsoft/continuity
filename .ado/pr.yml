@@ -1,4 +1,4 @@
-name: pr.windows.$(Date:yyyy-MM-dd).rev$(Rev:r)
+name: $(Date:yyyy-MM-dd).rev$(Rev:r)
 
 trigger: none
 pr:
@@ -6,6 +6,7 @@ pr:
 
 variables:
   WinSDK: 10.0.18362.0
+  runCodesignValidationInjection: false
 
 jobs:
   - job: WindowsPR
@@ -15,15 +16,15 @@ jobs:
         X64Debug:
           Flavor: Debug
           Platform: x64
-        # X64Release:
-        #   Flavor: Release
-        #   Platform: x64
-        # X86Debug:
-        #   Flavor: Debug
-        #   Platform: x86
-        # X86Release:
-        #   Flavor: Release
-        #   Platform: x86
+        X64Release:
+          Flavor: Release
+          Platform: x64
+        X86Debug:
+          Flavor: Debug
+          Platform: x86
+        X86Release:
+          Flavor: Release
+          Platform: x86
     pool:
       vmImage: 'windows-2019'
     timeoutInMinutes: 30
