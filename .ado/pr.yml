@@ -15,15 +15,15 @@ jobs:
         X64Debug:
           Flavor: Debug
           Platform: x64
-        X64Release:
-          Flavor: Release
-          Platform: x64
-        X86Debug:
-          Flavor: Debug
-          Platform: x86
-        X86Release:
-          Flavor: Release
-          Platform: x86
+        # X64Release:
+        #   Flavor: Release
+        #   Platform: x64
+        # X86Debug:
+        #   Flavor: Debug
+        #   Platform: x86
+        # X86Release:
+        #   Flavor: Release
+        #   Platform: x86
     pool:
       vmImage: 'windows-2019'
     timeoutInMinutes: 30
@@ -47,7 +47,7 @@ jobs:
         displayName: Generate Ninja Build
         inputs:
           workingDirectory: $(Build.BinariesDirectory)
-          cmakeArgs: -G Ninja -DCMAKE_BUILD_TYPE=$(Flavor) -DCMAKE_SYSTEM_NAME=Windows -DCMAKE_SYSTEM_VERSION=$(WinSDK) $(Build.SourcesDirectory)
+          cmakeArgs: -G Ninja -DCMAKE_BUILD_TYPE=$(Flavor) -DCMAKE_SYSTEM_NAME=Windows -DCMAKE_SYSTEM_VERSION=$(WinSDK) -DCMAKE_C_COMPILER='$(env:VCToolsInstallDir)\bin\Hostx64\$(Platform)\cl.exe' -DCMAKE_CXX_COMPILER='$(env:VCToolsInstallDir)\bin\Hostx64\$(Platform)\cl.exe' $(Build.SourcesDirectory)
         env:
           BOOST_ROOT: $(env:BOOST_ROOT_1_69_0)
 
