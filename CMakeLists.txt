@@ -139,6 +139,7 @@ else()
         set(BOOST_ROOT $ENV{BOOST_ROOT})
     endif()
 endif()
+file(TO_CMAKE_PATH ${BOOST_ROOT} BOOST_ROOT)
 message(STATUS "Boost: ${BOOST_ROOT}")
 
 # Mso

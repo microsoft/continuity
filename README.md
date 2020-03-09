@@ -25,13 +25,13 @@ choco install visualstudio2019-workload-universalbuildtools
 ```
 "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
 
-cmake -B build\Debug\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug
-cmake -B build\Release\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake -B build\Debug\x86 -S . -G Ninja -DFLAVOR=Debug -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
+cmake -B build\Release\x86 -S . -G Ninja -DFLAVOR=Release -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
 
 "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
 
-cmake -B build\Debug\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug
-cmake -B build\Release\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake -B build\Debug\x64 -S . -G Ninja -DFLAVOR=Debug -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
+cmake -B build\Release\x64 -S . -G Ninja -DFLAVOR=Release -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
 ```
 
 3. Run the build
@@ -39,13 +39,13 @@ cmake -B build\Release\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=Rel
 ```
 "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
 
-ninja -C build\Debug\%VSCMD_ARG_TGT_ARCH%
-ninja -C build\Release\%VSCMD_ARG_TGT_ARCH%
+ninja -C build\Debug\x86
+ninja -C build\Release\x86
 
 "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
 
-ninja -C build\Debug\%VSCMD_ARG_TGT_ARCH%
-ninja -C build\Release\%VSCMD_ARG_TGT_ARCH%
+ninja -C build\Debug\x64
+ninja -C build\Release\x64
 ```
 
 The public headers are under `include\Continuity`, and the Windows DLLs are:

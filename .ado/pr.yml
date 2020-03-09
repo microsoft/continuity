@@ -5,7 +5,7 @@ pr:
   - master
 
 variables:
-  WinSDK: 10.0.18362.0
+  Ado.WinSDK: 10.0.18362.0
   runCodesignValidationInjection: false
 
 jobs:
@@ -14,17 +14,17 @@ jobs:
     strategy:
       matrix:
         X64Debug:
-          Flavor: Debug
-          Platform: x64
+          Ado.Flavor: Debug
+          Ado.Architecture: x64
         X64Release:
-          Flavor: Release
-          Platform: x64
+          Ado.Flavor: Release
+          Ado.Architecture: x64
         X86Debug:
-          Flavor: Debug
-          Platform: x86
+          Ado.Flavor: Debug
+          Ado.Architecture: x86
         X86Release:
-          Flavor: Release
-          Platform: x86
+          Ado.Flavor: Release
+          Ado.Architecture: x86
     pool:
       vmImage: 'windows-2019'
     timeoutInMinutes: 30
@@ -41,14 +41,14 @@ jobs:
         displayName: Setup Visual C++ Environment
         inputs:
           filename: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
-          arguments: '$(Platform) $(WinSDK)'
+          arguments: '$(Ado.Architecture) $(Ado.WinSDK)'
           modifyEnvironment: true
 
       - task: CMake@1
         displayName: Generate Ninja Build
         inputs:
           workingDirectory: $(Build.BinariesDirectory)
-          cmakeArgs: -G Ninja -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\.ado\toolchain.windows.cmake $(Build.SourcesDirectory)
+          cmakeArgs: -G Ninja -DFLAVOR=$(Ado.Flavor) -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\CMake\toolchain.windows.cmake $(Build.SourcesDirectory)
 
       - task: CmdLine@2
         displayName: Build
