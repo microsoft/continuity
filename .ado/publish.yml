@@ -52,7 +52,7 @@ jobs:
 
       - task: CopyFiles@2
         displayName: Stage headers
-        condition: and(eq(variables['Flavor'], 'Debug'), eq(variables['Architecture'], 'x86'))
+        condition: and(eq(variables.Flavor, 'Debug'), eq(variables.Architecture, 'x86'))
         inputs:
           sourceFolder: $(Build.SourcesDirectory)/include
           targetFolder: $(Build.ArtifactStagingDirectory)/include
@@ -68,8 +68,11 @@ jobs:
             Continuity.lib
             Continuity.pdb
 
-      - publish: $(System.ArtifactStagingDirectory)
-        artifact: Windows-$(Flavor)-$(Architecture)
+      - task: PublishPipelineArtifact@1
+        displayName: Publish as pipeline artifact
+        inputs:
+          targetPath: $(System.ArtifactStagingDirectory)
+          artifactName: Windows-$(Flavor)-$(Architecture)
 
   - job: WindowsNuGetPublish
     displayName: Windows NuGet Publish
