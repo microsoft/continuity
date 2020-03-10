@@ -1,29 +1,29 @@
-name: $(Date:yyyy-MM-dd).$(Rev:r)
+name: PR.$(Date:yyyy-MM-dd).$(Rev:r)
 
 trigger: none
 pr:
   - master
 
 variables:
-  Ado.WinSDK: 10.0.18362.0
   runCodesignValidationInjection: false
+#  system.debug: true
 
 jobs:
   - job: Windows
     strategy:
       matrix:
         X64Debug:
-          Ado.Flavor: Debug
-          Ado.Architecture: x64
+          Flavor: Debug
+          Architecture: x64
         X64Release:
-          Ado.Flavor: Release
-          Ado.Architecture: x64
+          Flavor: Release
+          Architecture: x64
         X86Debug:
-          Ado.Flavor: Debug
-          Ado.Architecture: x86
+          Flavor: Debug
+          Architecture: x86
         X86Release:
-          Ado.Flavor: Release
-          Ado.Architecture: x86
+          Flavor: Release
+          Architecture: x86
     pool:
       vmImage: 'windows-2019'
     timeoutInMinutes: 30
@@ -33,27 +33,7 @@ jobs:
         clean: false
         submodules: false
 
-      - script: choco install ninja
-        displayName: Install Ninja
-
-      - task: BatchScript@1
-        displayName: Setup Visual C++ Environment
-        inputs:
-          filename: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
-          arguments: '$(Ado.Architecture) $(Ado.WinSDK)'
-          modifyEnvironment: true
-
-      - task: CMake@1
-        displayName: Generate Ninja Build
-        inputs:
-          workingDirectory: $(Build.BinariesDirectory)
-          cmakeArgs: -G Ninja -DFLAVOR=$(Ado.Flavor) -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\CMake\toolchain.windows.cmake $(Build.SourcesDirectory)
-
-      - task: CmdLine@2
-        displayName: Build
-        inputs:
-          workingDirectory: $(Build.BinariesDirectory)
-          script: ninja -v
-#
-# TODO: add a unit-test task here -- CTest or googletesT
-#
+      - template: templates/windows-build.yml
+        parameters:
+          Flavor: $(Flavor)
+          Architecture: $(Architecture)
