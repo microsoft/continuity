@@ -101,7 +101,7 @@ jobs:
         parameters:
           Artifact: Windows-Release-x64
 
-      - script: node -p "'##vso[task.setvariable variable=PackageVersion;isOutput=true]'+require('./package.json').version"
+      - script: node -p "'##vso[task.setvariable variable=PackageVersion]'+require('./package.json').version"
         displayName: Read package.json Version
         workingDirectory: $(Build.SourcesDirectory)
 
