@@ -6,6 +6,7 @@ pr:
 
 variables:
   runCodesignValidationInjection: false
+  system.debug: true
 
 jobs:
   - job: Windows

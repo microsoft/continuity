@@ -18,6 +18,8 @@ pr:
 
 variables:
   ArtifactId: Microsoft.Continuity
+  runCodesignValidationInjection: false
+  system.debug: true
 
 jobs:
   - job: WindowsBuild
