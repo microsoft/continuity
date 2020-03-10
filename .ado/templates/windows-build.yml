@@ -12,17 +12,17 @@ steps:
     displayName: Setup Visual C++ Environment
     inputs:
       filename: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
-      arguments: '$(Architecture) $(WinSDK)'
+      arguments: ${{ parameters.Architecture }} ${{ parameters.WinSDK }}
       modifyEnvironment: true
 
   - task: CMake@1
     displayName: Generate Ninja Build
     inputs:
-      workingDirectory: $(Build.BinariesDirectory)/$(Flavor)/$(Architecture)
-      cmakeArgs: -G Ninja -DFLAVOR=$(Flavor) -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\CMake\toolchain.windows.cmake $(Build.SourcesDirectory)
+      workingDirectory: $(Build.BinariesDirectory)/${{ parameters.Flavor }}/${{ parameters.Architecture }}
+      cmakeArgs: -G Ninja -DFLAVOR=${{ parameters.Flavor }} -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\CMake\toolchain.windows.cmake $(Build.SourcesDirectory)
 
   - task: CmdLine@2
     displayName: Build
     inputs:
-      workingDirectory: $(Build.BinariesDirectory)/$(Flavor)/$(Architecture)
+      workingDirectory: $(Build.BinariesDirectory)/${{ parameters.Flavor }}/${{ parameters.Architecture }}
       script: ninja -v
