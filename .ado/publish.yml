@@ -5,13 +5,16 @@
 
 name: 0.0.$(Date:yyMM.d)$(Rev:rrr)
 
-trigger:
-  batch: true
-  branches:
-    include:
-      - master
+# trigger:
+#   batch: true
+#   branches:
+#     include:
+#       - master
 
-pr: none
+# pr: none
+
+pr:
+  - master
 
 variables:
   ArtifactId: Microsoft.Continuity
