@@ -13,14 +13,100 @@ trigger:
 
 pr: none
 
-pool:
-  vmImage: 'ubuntu-latest'
+variables:
+  ArtifactId: Microsoft.Continuity
 
-steps:
-  - script: echo Hello, world!
-    displayName: 'Run a one-line script'
+jobs:
+  - job: WindowsBuild
+    displayName: Windows Build
+    strategy:
+      matrix:
+        X64Debug:
+          Flavor: Debug
+          Architecture: x64
+        X64Release:
+          Flavor: Release
+          Architecture: x64
+        X86Debug:
+          Flavor: Debug
+          Architecture: x86
+        X86Release:
+          Flavor: Release
+          Architecture: x86
+    pool:
+      vmImage: 'windows-2019'
+    timeoutInMinutes: 30
+    cancelTimeoutInMinutes: 2
+    steps:
+      - checkout: self
+        clean: false
+        submodules: false
 
-  - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      echo See https://aka.ms/yaml
-    displayName: 'Run a multi-line script'
+      - template: templates/windows-build.yml
+        parameters:
+          Flavor: $(Flavor)
+          Architecture: $(Architecture)
+
+      - task: CopyFiles@2
+        displayName: Stage headers
+        condition: and(eq(variables['Flavor'], 'Debug'), eq(variables['Architecture'], 'x86')
+        inputs:
+          sourceFolder: $(Build.SourcesDirectory)/include
+          targetFolder: $(Build.ArtifactStagingDirectory)/include
+          contents: '**'
+
+      - task: CopyFiles@2
+        displayName: Stage library
+        inputs:
+          sourceFolder: $(Build.BinariesDirectory)/$(Flavor)/$(Architecture)/src/Continuity
+          targetFolder: $(Build.ArtifactStagingDirectory)/$(Flavor)/$(Architecture)
+          contents: |
+            Continuity.dll
+            Continuity.lib
+            Continuity.pdb
+
+      - publish: $(System.ArtifactStagingDirectory)
+        artifact: Windows-$(Flavor)-$(Architecture)
+
+  - job: WindowsNuGetPublish
+    displayName: Windows NuGet Publish
+    dependson: WindowsBuild
+    condition: succeeded()
+    pool:
+      vmImage: 'windows-2019'
+    timeoutInMinutes: 10
+    cancelTimeoutInMinutes: 2
+    steps:
+      - template: .ado/templates/download-and-stage-artifact.yml
+        parameters:
+          Artifact: Windows-Debug-x86
+
+      - template: .ado/templates/download-and-stage-artifact.yml
+        parameters:
+          Artifact: Windows-Release-x86
+
+      - template: .ado/templates/download-and-stage-artifact.yml
+        parameters:
+          Artifact: Windows-Debug-x64
+
+      - template: .ado/templates/download-and-stage-artifact.yml
+        parameters:
+          Artifact: Windows-Release-x64
+
+      - script: node -p "'##vso[task.setvariable variable=PackageVersion;isOutput=true]'+require('./package.json').version"
+        displayName: Read package.json Version
+        workingDirectory: $(Build.SourcesDirectory)
+
+      - task: NuGetCommand@2
+        displayName: Create NuGet Package
+        inputs:
+          command: pack
+          packagesToPack: $(System.SourcesDirectory)/Continuity.nuspec
+          packDestination: $(Pipeline.Workspace)/nuget
+          buildProperties: commit=$(Build.SourceVersion);id=$(ArtifactId);version=$[variables.PackageVersion];staging=$(Build.ArtifactStagingDirectory)
+
+      - task: PublishPipelineArtifact@1
+        displayName: Publish NuGet Package
+        inputs:
+          targetPath: $(Pipeline.Workspace)/nuget
+          artifactName: $(ArtifactId)

@@ -12,17 +12,17 @@ jobs:
     strategy:
       matrix:
         X64Debug:
-          Ado.Flavor: Debug
-          Ado.Architecture: x64
+          Flavor: Debug
+          Architecture: x64
         X64Release:
-          Ado.Flavor: Release
-          Ado.Architecture: x64
+          Flavor: Release
+          Architecture: x64
         X86Debug:
-          Ado.Flavor: Debug
-          Ado.Architecture: x86
+          Flavor: Debug
+          Architecture: x86
         X86Release:
-          Ado.Flavor: Release
-          Ado.Architecture: x86
+          Flavor: Release
+          Architecture: x86
     pool:
       vmImage: 'windows-2019'
     timeoutInMinutes: 30
@@ -32,10 +32,7 @@ jobs:
         clean: false
         submodules: false
 
-      - template: templates/windows-build.yml
+      - template: .ado/templates/windows-build.yml
         parameters:
-          Ado.Flavor: $(Ado.Flavor)
-          Ado.Architecture: $(Ado.Architecture)
-#
-# TODO: add a unit-test task here -- CTest or googletesT
-#
+          Flavor: $(Flavor)
+          Architecture: $(Architecture)

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>$id$</id>
+        <version>$version$</version>
+        <description>Libraries, tools and documentation for using react-native in native applications.</description>
+        <authors>Microsoft</authors>
+        <projectUrl>https://github.com/microsoft/continuity</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <repository type="git" url="https://github.com/microsoft/continuity.git" commit="$commit$" />
+    </metadata>
+    <files>
+        <file src="$staging$\**\*.*" target=""/>
+    </files>
+</package>

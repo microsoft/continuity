@@ -1,9 +1,9 @@
 parameters:
-  Ado.Flavor:
-  Ado.Architecture:
+  Flavor:
+  Architecture:
 
 variables:
-  Ado.WinSDK: 10.0.18362.0
+  WinSDK: 10.0.18362.0
 
 steps:
   - script: choco install ninja
@@ -13,17 +13,17 @@ steps:
     displayName: Setup Visual C++ Environment
     inputs:
       filename: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
-      arguments: '$(Ado.Architecture) $(Ado.WinSDK)'
+      arguments: '$(Architecture) $(WinSDK)'
       modifyEnvironment: true
 
   - task: CMake@1
     displayName: Generate Ninja Build
     inputs:
-      workingDirectory: $(Build.BinariesDirectory)/$(Ado.Flavor)/$(Ado.Architecture)
-      cmakeArgs: -G Ninja -DFLAVOR=$(Ado.Flavor) -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\CMake\toolchain.windows.cmake $(Build.SourcesDirectory)
+      workingDirectory: $(Build.BinariesDirectory)/$(Flavor)/$(Architecture)
+      cmakeArgs: -G Ninja -DFLAVOR=$(Flavor) -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\CMake\toolchain.windows.cmake $(Build.SourcesDirectory)
 
   - task: CmdLine@2
     displayName: Build
     inputs:
-      workingDirectory: $(Build.BinariesDirectory)/$(Ado.Flavor)/$(Ado.Architecture)
+      workingDirectory: $(Build.BinariesDirectory)/$(Flavor)/$(Architecture)
       script: ninja -v

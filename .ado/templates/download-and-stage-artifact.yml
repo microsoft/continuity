@@ -1,0 +1,14 @@
+parameters:
+  Artifact:
+
+steps:
+  - download: current
+    displayName: Download $(Artifact)
+    artifact: $(Artifact)
+
+  - task: CopyFiles@2
+    displayName: Stage $(Artifact)
+    inputs:
+      sourceFolder: $(Pipeline.Workspace)/$(Artifact)
+      targetFolder: $(Build.ArtifactStagingDirectory)
+      contents: '**'
