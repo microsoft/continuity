@@ -1,7 +1,8 @@
 parameters:
-  Flavor:
-  Architecture:
-  WinSDK: 10.0.18362.0
+  - name: Flavor
+  - name: Architecture
+  - name: WinSDK
+    default: '10.0.18362.0'
 
 steps:
   - script: choco install ninja
