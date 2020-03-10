@@ -32,7 +32,7 @@ jobs:
         clean: false
         submodules: false
 
-      - template: .ado/templates/windows-build.yml
+      - template: templates/windows-build.yml
         parameters:
           Flavor: $(Flavor)
           Architecture: $(Architecture)

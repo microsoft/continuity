@@ -80,19 +80,19 @@ jobs:
     timeoutInMinutes: 10
     cancelTimeoutInMinutes: 2
     steps:
-      - template: .ado/templates/download-and-stage-artifact.yml
+      - template: templates/download-and-stage-artifact.yml
         parameters:
           Artifact: Windows-Debug-x86
 
-      - template: .ado/templates/download-and-stage-artifact.yml
+      - template: templates/download-and-stage-artifact.yml
         parameters:
           Artifact: Windows-Release-x86
 
-      - template: .ado/templates/download-and-stage-artifact.yml
+      - template: templates/download-and-stage-artifact.yml
         parameters:
           Artifact: Windows-Debug-x64
 
-      - template: .ado/templates/download-and-stage-artifact.yml
+      - template: templates/download-and-stage-artifact.yml
         parameters:
           Artifact: Windows-Release-x64
 
