@@ -2,6 +2,32 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Tue, 10 Mar 2020 09:36:00 GMT",
+      "tag": "@microsoft/continuity_v1.0.1",
+      "version": "1.0.1",
+      "comments": {
+        "none": [
+          {
+            "comment": "Rename public headers to include/Continuity/... and library to Continuity.dll.",
+            "author": "adam@thefoxmans.net",
+            "commit": "1cb4d5b4499e3f8037312d76be44d7dd9619104f"
+          },
+          {
+            "comment": "CI loops for PR and Build",
+            "author": "adam@thefoxmans.net",
+            "commit": "9c36e2f443b4b9b4e946f5ee9b772980c93ef657"
+          }
+        ],
+        "patch": [
+          {
+            "comment": "Remove /Gz (__stdcall) from the build because it can't be applied to all dependent libs, and it causes unresolved-externals when pulling in dependent headers.",
+            "author": "adam@thefoxmans.net",
+            "commit": "eaed76c0eb33c2bcd96ecefed2cb99c4f6c32016"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 04 Mar 2020 09:02:00 GMT",
       "tag": "@microsoft/continuity_v1.0.0",
       "version": "1.0.0",

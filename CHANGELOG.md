@@ -1,7 +1,13 @@
 # Change Log - @microsoft/continuity
 
-This log was last generated on Wed, 04 Mar 2020 09:02:00 GMT and should not be manually modified.
+This log was last generated on Tue, 10 Mar 2020 09:36:00 GMT and should not be manually modified.
 
+## 1.0.1
+Tue, 10 Mar 2020 09:36:00 GMT
+
+### Patches
+
+- Remove /Gz (__stdcall) from the build because it can't be applied to all dependent libs, and it causes unresolved-externals when pulling in dependent headers. (adam@thefoxmans.net)
 ## 1.0.0
 Wed, 04 Mar 2020 09:02:00 GMT
 

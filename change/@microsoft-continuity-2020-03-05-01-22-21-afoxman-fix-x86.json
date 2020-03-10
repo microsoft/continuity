@@ -1,9 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Remove /Gz (__stdcall) from the build because it can't be applied to all dependent libs, and it causes unresolved-externals when pulling in dependent headers.",
-  "packageName": "@microsoft/continuity",
-  "email": "adam@thefoxmans.net",
-  "commit": "eaed76c0eb33c2bcd96ecefed2cb99c4f6c32016",
-  "dependentChangeType": "patch",
-  "date": "2020-03-05T09:22:21.328Z"
-}

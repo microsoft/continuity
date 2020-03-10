@@ -1,9 +1,0 @@
-{
-  "type": "none",
-  "comment": "CI loops for PR and Build",
-  "packageName": "@microsoft/continuity",
-  "email": "adam@thefoxmans.net",
-  "commit": "9c36e2f443b4b9b4e946f5ee9b772980c93ef657",
-  "dependentChangeType": "patch",
-  "date": "2020-03-10T09:27:57.407Z"
-}
