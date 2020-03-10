@@ -1,14 +1,14 @@
 parameters:
-  Artifact:
+  - name: Artifact
 
 steps:
   - download: current
-    displayName: Download $(Artifact)
-    artifact: $(Artifact)
+    displayName: Download ${{ parameters.Artifact }}
+    artifact: ${{ parameters.Artifact }}
 
   - task: CopyFiles@2
-    displayName: Stage $(Artifact)
+    displayName: Stage ${{ parameters.Artifact }}
     inputs:
-      sourceFolder: $(Pipeline.Workspace)/$(Artifact)
+      sourceFolder: $(Pipeline.Workspace)/${{ parameters.Artifact }}
       targetFolder: $(Build.ArtifactStagingDirectory)
       contents: '**'
