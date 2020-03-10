@@ -1,8 +1,6 @@
 parameters:
   Flavor:
   Architecture:
-
-variables:
   WinSDK: 10.0.18362.0
 
 steps:
