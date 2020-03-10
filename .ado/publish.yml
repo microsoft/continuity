@@ -73,7 +73,7 @@ jobs:
 
   - job: WindowsNuGetPublish
     displayName: Windows NuGet Publish
-    dependson: WindowsBuild
+    dependsOn: WindowsBuild
     condition: succeeded()
     pool:
       vmImage: 'windows-2019'
