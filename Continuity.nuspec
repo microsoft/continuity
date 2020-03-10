@@ -10,6 +10,6 @@
         <repository type="git" url="https://github.com/microsoft/continuity.git" commit="$commit$" />
     </metadata>
     <files>
-        <file src="$staging$\**\*.*" target=""/>
+        <file src="**\*.*" target=""/>
     </files>
 </package>

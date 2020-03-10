@@ -105,13 +105,10 @@ jobs:
         displayName: Read package.json Version
         workingDirectory: $(Build.SourcesDirectory)
 
-      - task: NuGetCommand@2
+      - task: NuGetToolInstaller@1
+
+      - script: nuget pack $(Build.SourcesDirectory)\Continuity.nuspec -OutputDirectory $(Pipeline.Workspace)\nuget -BasePath $(Build.ArtifactStagingDirectory) -Properties "commit=$(Build.SourceVersion);id=$(ArtifactId);version=$[variables.PackageVersion]" -Verbosity detailed -NonInteractive
         displayName: Create NuGet Package
-        inputs:
-          command: pack
-          packagesToPack: $(System.SourcesDirectory)/Continuity.nuspec
-          packDestination: $(Pipeline.Workspace)/nuget
-          buildProperties: commit=$(Build.SourceVersion);id=$(ArtifactId);version=$[variables.PackageVersion];staging=$(Build.ArtifactStagingDirectory)
 
       - task: PublishPipelineArtifact@1
         displayName: Publish NuGet Package
