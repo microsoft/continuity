@@ -1,25 +1,17 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+name: Build.$(Date:yyyy-MM-dd).$(Rev:r)
 
-name: 0.0.$(Date:yyMM.d)$(Rev:rrr)
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
 
-# trigger:
-#   batch: true
-#   branches:
-#     include:
-#       - master
-
-# pr: none
-
-pr:
-  - master
+pr: none
 
 variables:
   ArtifactId: Microsoft.Continuity
-  runCodesignValidationInjection: false
-  system.debug: true
+#  runCodesignValidationInjection: false
+#  system.debug: true
 
 jobs:
   - job: WindowsBuild
