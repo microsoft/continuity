@@ -71,7 +71,7 @@ jobs:
       - task: PublishPipelineArtifact@1
         displayName: Publish as pipeline artifact
         inputs:
-          targetPath: $(System.ArtifactStagingDirectory)
+          path: $(Build.ArtifactStagingDirectory)
           artifactName: Windows-$(Flavor)-$(Architecture)
 
   - job: WindowsNuGetPublish
