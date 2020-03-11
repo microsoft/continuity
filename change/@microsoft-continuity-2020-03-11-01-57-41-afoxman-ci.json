@@ -1,9 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update CI loop definitions and correct variable misuse. Align names in CMake scripts with names in CI loops.",
-  "packageName": "@microsoft/continuity",
-  "email": "adam@thefoxmans.net",
-  "commit": "83b38cb042b80894735087ed88269a948f632574",
-  "dependentChangeType": "patch",
-  "date": "2020-03-11T08:57:40.957Z"
-}

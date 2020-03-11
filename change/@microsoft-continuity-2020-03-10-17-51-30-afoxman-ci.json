@@ -1,9 +1,0 @@
-{
-  "type": "none",
-  "comment": "Add change-log check to PR loop",
-  "packageName": "@microsoft/continuity",
-  "email": "adam@thefoxmans.net",
-  "commit": "e55d4f48f0ac3f5edfc8c3c9573607e46f443b2b",
-  "dependentChangeType": "patch",
-  "date": "2020-03-11T00:51:30.423Z"
-}
