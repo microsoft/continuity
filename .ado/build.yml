@@ -19,17 +19,17 @@ jobs:
     strategy:
       matrix:
         X64Debug:
-          Flavor: Debug
-          Architecture: x64
+          BFlavor: Debug
+          BArchitecture: x64
         X64Release:
-          Flavor: Release
-          Architecture: x64
+          BFlavor: Release
+          BArchitecture: x64
         X86Debug:
-          Flavor: Debug
-          Architecture: x86
+          BFlavor: Debug
+          BArchitecture: x86
         X86Release:
-          Flavor: Release
-          Architecture: x86
+          BFlavor: Release
+          BArchitecture: x86
     pool:
       vmImage: 'windows-2019'
     timeoutInMinutes: 30
@@ -41,10 +41,10 @@ jobs:
 
       - template: templates/windows-build.yml
         parameters:
-          Flavor: $(Flavor)
-          Architecture: $(Architecture)
+          Flavor: $(BFlavor)
+          Architecture: $(BArchitecture)
 
       - template: templates/windows-publish.yml
         parameters:
-          Flavor: ${{ variables.Flavor }}
-          Architecture: ${{ variables.Architecture }}
+          Flavor: $(BFlavor)
+          Architecture: $[ variables.BArchitecture ]
