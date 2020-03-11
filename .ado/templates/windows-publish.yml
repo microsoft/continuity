@@ -1,11 +1,7 @@
-parameters:
-  - name: Flavor
-  - name: Architecture
-
 steps:
   - task: CopyFiles@2
     displayName: Stage headers
-    condition: and(eq(${{ parameters.Flavor }}, 'Debug'), eq(${{ parameters.Architecture }}, 'x86'))
+    condition: and(eq(variables.BuildConfiguration, 'Debug'), eq(variables.BuildPlatform, 'x86'))
     inputs:
       sourceFolder: $(Build.SourcesDirectory)/include
       targetFolder: $(Build.ArtifactStagingDirectory)/include
@@ -14,8 +10,8 @@ steps:
   - task: CopyFiles@2
     displayName: Stage library
     inputs:
-      sourceFolder: $(Build.BinariesDirectory)/${{ parameters.Flavor }}/${{ parameters.Architecture }}/src/Continuity
-      targetFolder: $(Build.ArtifactStagingDirectory)/${{ parameters.Flavor }}/${{ parameters.Architecture }}
+      sourceFolder: $(Build.BinariesDirectory)/$(BuildConfiguration)/$(BuildPlatform)/src/Continuity
+      targetFolder: $(Build.ArtifactStagingDirectory)/$(BuildConfiguration)/$(BuildPlatform)
       contents: |
         Continuity.dll
         Continuity.lib
@@ -25,4 +21,4 @@ steps:
     displayName: Publish artifacts
     inputs:
       path: $(Build.ArtifactStagingDirectory)
-      artifactName: Windows-${{ parameters.Flavor }}-${{ parameters.Architecture }}
+      artifactName: Windows-$(BuildConfiguration)-$(BuildPlatform)

@@ -1,9 +1,3 @@
-parameters:
-  - name: Flavor
-  - name: Architecture
-  - name: WinSDK
-    default: '10.0.18362.0'
-
 steps:
   - script: choco install ninja
     displayName: Install Ninja
@@ -12,17 +6,17 @@ steps:
     displayName: Setup Visual C++ Environment
     inputs:
       filename: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
-      arguments: ${{ parameters.Architecture }} ${{ parameters.WinSDK }}
+      arguments: $(BuildPlatform) $(BuildWindowsSDK)
       modifyEnvironment: true
 
   - task: CMake@1
     displayName: Generate Ninja Build
     inputs:
-      workingDirectory: $(Build.BinariesDirectory)/${{ parameters.Flavor }}/${{ parameters.Architecture }}
-      cmakeArgs: -G Ninja -DFLAVOR=${{ parameters.Flavor }} -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\CMake\toolchain.windows.cmake $(Build.SourcesDirectory)
+      workingDirectory: $(Build.BinariesDirectory)/$(BuildConfiguration)/$(BuildPlatform)
+      cmakeArgs: -G Ninja -DCMAKE_BUILD_TYPE=$(BuildConfiguration) -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\CMake\toolchain.windows.cmake $(Build.SourcesDirectory)
 
   - task: CmdLine@2
     displayName: Build
     inputs:
-      workingDirectory: $(Build.BinariesDirectory)/${{ parameters.Flavor }}/${{ parameters.Architecture }}
+      workingDirectory: $(Build.BinariesDirectory)/$(BuildConfiguration)/$(BuildPlatform)
       script: ninja -v

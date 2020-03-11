@@ -25,13 +25,13 @@ choco install visualstudio2019-workload-universalbuildtools
 ```
 "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
 
-cmake -B build\Debug\x86 -S . -G Ninja -DFLAVOR=Debug -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
-cmake -B build\Release\x86 -S . -G Ninja -DFLAVOR=Release -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
+cmake -B build\Debug\x86 -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
+cmake -B build\Release\x86 -S . -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
 
 "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
 
-cmake -B build\Debug\x64 -S . -G Ninja -DFLAVOR=Debug -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
-cmake -B build\Release\x64 -S . -G Ninja -DFLAVOR=Release -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
+cmake -B build\Debug\x64 -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
+cmake -B build\Release\x64 -S . -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
 ```
 
 3. Run the build

@@ -85,11 +85,6 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
         message(FATAL_ERROR "This project does not support Visual Studio toolset ${MSVC_TOOLSET_VERSION}. It only supports toolset 142 (Visual Studio 2019).")
     endif()
 
-    set(ARCHITECTURE_NAME X86)
-    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-        set(ARCHITECTURE_NAME X64)
-    endif()
-
     # These are related to packing/alignment and [[nodiscard]], which makes them a little risky, but MSO requires them.
     set(DISABLE_RISKY_WARNINGS_FOR_MSO "/wd4121 /wd4315 /wd4834")
 
@@ -99,11 +94,11 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     set(CMAKE_CXX_FLAGS_DEBUG "/Ob0 /Od /RTC1")
     set(CMAKE_CXX_FLAGS_RELEASE "/GL /guard:cf /Gy /O1 /Oi")
 
-    set(CMAKE_STATIC_LINKER_FLAGS "/nologo /MACHINE:${ARCHITECTURE_NAME}")
+    set(CMAKE_STATIC_LINKER_FLAGS "/nologo /MACHINE:${PLATFORM}")
     set(CMAKE_STATIC_LINKER_FLAGS_DEBUG "")
     set(CMAKE_STATIC_LINKER_FLAGS_RELEASE "/LTCG")
 
-    set(CMAKE_SHARED_LINKER_FLAGS "/nologo /MACHINE:${ARCHITECTURE_NAME} /SUBSYSTEM:console /DEBUG:full /WINMD:no")
+    set(CMAKE_SHARED_LINKER_FLAGS "/nologo /MACHINE:${PLATFORM} /SUBSYSTEM:console /DEBUG:full /WINMD:no")
     set(CMAKE_SHARED_LINKER_FLAGS_DEBUG "/INCREMENTAL /OPT:NOICF,NOREF")
     set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "/INCREMENTAL:NO /OPT:ICF,REF /GUARD:cf /LTCG")
 
