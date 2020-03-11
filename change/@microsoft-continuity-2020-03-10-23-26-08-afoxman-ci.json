@@ -1,0 +1,9 @@
+{
+  "type": "none",
+  "comment": "Move NuGet publishing from Build loop to a new Release Build loop.",
+  "packageName": "@microsoft/continuity",
+  "email": "adam@thefoxmans.net",
+  "commit": "a104914c8d1ca8dac877da4421f16532ffe8fa20",
+  "dependentChangeType": "patch",
+  "date": "2020-03-11T06:26:08.684Z"
+}
