@@ -6,8 +6,7 @@ trigger:
     include:
       - master
 
-pr:
-  - master
+pr: none
 
 variables:
   - template: variables.yml
