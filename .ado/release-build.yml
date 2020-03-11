@@ -8,9 +8,7 @@ trigger:
 pr: none
 
 variables:
-  ArtifactId: Microsoft.Continuity
-  runCodesignValidationInjection: false
-#  system.debug: true
+  - template: variables.yml
 
 jobs:
   - job: WindowsBuild
@@ -18,17 +16,17 @@ jobs:
     strategy:
       matrix:
         X64Debug:
-          Flavor: Debug
-          Architecture: x64
+          BuildConfiguration: Debug
+          BuildPlatform: x64
         X64Release:
-          Flavor: Release
-          Architecture: x64
+          BuildConfiguration: Release
+          BuildPlatform: x64
         X86Debug:
-          Flavor: Debug
-          Architecture: x86
+          BuildConfiguration: Debug
+          BuildPlatform: x86
         X86Release:
-          Flavor: Release
-          Architecture: x86
+          BuildConfiguration: Release
+          BuildPlatform: x86
     pool:
       vmImage: 'windows-2019'
     timeoutInMinutes: 30
@@ -39,14 +37,8 @@ jobs:
         submodules: false
 
       - template: templates/windows-build.yml
-        parameters:
-          Flavor: $(Flavor)
-          Architecture: $(Architecture)
 
       - template: templates/windows-publish.yml
-        parameters:
-          Flavor: $(Flavor)
-          Architecture: $(Architecture)
 
   - job: WindowsNuGetPublish
     displayName: Windows NuGet Publish
@@ -79,11 +71,11 @@ jobs:
 
       - task: NuGetToolInstaller@1
 
-      - script: nuget pack $(Build.SourcesDirectory)\Continuity.nuspec -OutputDirectory $(Pipeline.Workspace)\nuget -BasePath $(Build.ArtifactStagingDirectory) -Properties "commit=$(Build.SourceVersion);id=$(ArtifactId);version=$(PackageVersion)" -Verbosity detailed -NonInteractive
+      - script: nuget pack $(Build.SourcesDirectory)\Continuity.nuspec -OutputDirectory $(Pipeline.Workspace)\nuget -BasePath $(Build.ArtifactStagingDirectory) -Properties "commit=$(Build.SourceVersion);id=$(ReleaseArtifactId);version=$(PackageVersion)" -Verbosity detailed -NonInteractive
         displayName: Create NuGet Package
 
       - task: PublishPipelineArtifact@1
         displayName: Publish NuGet Package
         inputs:
           targetPath: $(Pipeline.Workspace)/nuget
-          artifactName: $(ArtifactId)
+          artifactName: $(ReleaseArtifactId)

@@ -10,8 +10,7 @@ pr:
   - master
 
 variables:
-  runCodesignValidationInjection: false
-  system.debug: true
+  - template: variables.yml
 
 jobs:
   - job: WindowsBuild
@@ -19,17 +18,17 @@ jobs:
     strategy:
       matrix:
         X64Debug:
-          BFlavor: Debug
-          BArchitecture: x64
+          BuildConfiguration: Debug
+          BuildPlatform: x64
         X64Release:
-          BFlavor: Release
-          BArchitecture: x64
+          BuildConfiguration: Release
+          BuildPlatform: x64
         X86Debug:
-          BFlavor: Debug
-          BArchitecture: x86
+          BuildConfiguration: Debug
+          BuildPlatform: x86
         X86Release:
-          BFlavor: Release
-          BArchitecture: x86
+          BuildConfiguration: Release
+          BuildPlatform: x86
     pool:
       vmImage: 'windows-2019'
     timeoutInMinutes: 30
@@ -40,11 +39,5 @@ jobs:
         submodules: false
 
       - template: templates/windows-build.yml
-        parameters:
-          Flavor: $(BFlavor)
-          Architecture: $(BArchitecture)
 
       - template: templates/windows-publish.yml
-        parameters:
-          Flavor: $(BFlavor)
-          Architecture: $[ variables.BArchitecture ]
