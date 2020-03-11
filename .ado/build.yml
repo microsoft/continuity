@@ -10,7 +10,7 @@ pr: none
 
 variables:
   ArtifactId: Microsoft.Continuity
-#  runCodesignValidationInjection: false
+  runCodesignValidationInjection: false
 #  system.debug: true
 
 jobs:
