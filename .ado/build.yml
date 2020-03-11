@@ -48,3 +48,4 @@ jobs:
         parameters:
           Flavor: $(Flavor)
           Architecture: $(Architecture)
+          IncludeHeaders: $[ and(eq(variables.Flavor, 'Debug'), eq(variables.Architecture, 'x86')) ]

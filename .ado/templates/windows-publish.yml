@@ -1,11 +1,14 @@
 parameters:
   - name: Flavor
   - name: Architecture
+  - name: IncludeHeaders
+    type: boolean
+    default: false
 
 steps:
   - task: CopyFiles@2
     displayName: Stage headers
-    condition: ${{ and(eq(parameters.Flavor, 'Debug'), eq(parameters.Architecture, 'x86')) }}
+    condition: ${{ parameters.IncludeHeaders }}
     inputs:
       sourceFolder: $(Build.SourcesDirectory)/include
       targetFolder: $(Build.ArtifactStagingDirectory)/include
