@@ -7,6 +7,7 @@ parameters:
 steps:
   - script: choco install ninja
     displayName: Install Ninja
+    condition: and(eq(${{ parameters.Flavor }}, 'Debug'), eq(${{ parameters.Architecture }}, 'x86'))
 
   - task: BatchScript@1
     displayName: Setup Visual C++ Environment
