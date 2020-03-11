@@ -6,7 +6,8 @@ trigger:
     include:
       - master
 
-pr: none
+pr:
+  - master
 
 variables:
   runCodesignValidationInjection: false
