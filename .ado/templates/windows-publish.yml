@@ -1,0 +1,28 @@
+parameters:
+  - name: Flavor
+  - name: Architecture
+
+steps:
+  - task: CopyFiles@2
+    displayName: Stage headers
+    condition: and(eq(${{ parameters.Flavor }}, 'Debug'), eq(${{ parameters.Architecture }}, 'x86'))
+    inputs:
+      sourceFolder: $(Build.SourcesDirectory)/include
+      targetFolder: $(Build.ArtifactStagingDirectory)/include
+      contents: '**'
+
+  - task: CopyFiles@2
+    displayName: Stage library
+    inputs:
+      sourceFolder: $(Build.BinariesDirectory)/${{ parameters.Flavor }}/${{ parameters.Architecture }}/src/Continuity
+      targetFolder: $(Build.ArtifactStagingDirectory)/${{ parameters.Flavor }}/${{ parameters.Architecture }}
+      contents: |
+        Continuity.dll
+        Continuity.lib
+        Continuity.pdb
+
+  - task: PublishPipelineArtifact@1
+    displayName: Publish artifacts
+    inputs:
+      path: $(Build.ArtifactStagingDirectory)
+      artifactName: Windows-${{ parameters.Flavor }}-${{ parameters.Architecture }}

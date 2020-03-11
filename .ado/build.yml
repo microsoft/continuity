@@ -9,7 +9,6 @@ trigger:
 pr: none
 
 variables:
-  ArtifactId: Microsoft.Continuity
   runCodesignValidationInjection: false
 #  system.debug: true
 
@@ -44,66 +43,7 @@ jobs:
           Flavor: $(Flavor)
           Architecture: $(Architecture)
 
-      - task: CopyFiles@2
-        displayName: Stage headers
-        condition: and(eq(variables.Flavor, 'Debug'), eq(variables.Architecture, 'x86'))
-        inputs:
-          sourceFolder: $(Build.SourcesDirectory)/include
-          targetFolder: $(Build.ArtifactStagingDirectory)/include
-          contents: '**'
-
-      - task: CopyFiles@2
-        displayName: Stage library
-        inputs:
-          sourceFolder: $(Build.BinariesDirectory)/$(Flavor)/$(Architecture)/src/Continuity
-          targetFolder: $(Build.ArtifactStagingDirectory)/$(Flavor)/$(Architecture)
-          contents: |
-            Continuity.dll
-            Continuity.lib
-            Continuity.pdb
-
-      - task: PublishPipelineArtifact@1
-        displayName: Publish as pipeline artifact
-        inputs:
-          path: $(Build.ArtifactStagingDirectory)
-          artifactName: Windows-$(Flavor)-$(Architecture)
-
-  - job: WindowsNuGetPublish
-    displayName: Windows NuGet Publish
-    dependsOn: WindowsBuild
-    condition: succeeded()
-    pool:
-      vmImage: 'windows-2019'
-    timeoutInMinutes: 10
-    cancelTimeoutInMinutes: 2
-    steps:
-      - template: templates/download-and-stage-artifact.yml
+      - template: templates/windows-publish.yml
         parameters:
-          Artifact: Windows-Debug-x86
-
-      - template: templates/download-and-stage-artifact.yml
-        parameters:
-          Artifact: Windows-Release-x86
-
-      - template: templates/download-and-stage-artifact.yml
-        parameters:
-          Artifact: Windows-Debug-x64
-
-      - template: templates/download-and-stage-artifact.yml
-        parameters:
-          Artifact: Windows-Release-x64
-
-      - script: node -p "'##vso[task.setvariable variable=PackageVersion]'+require('./package.json').version"
-        displayName: Read package.json Version
-        workingDirectory: $(Build.SourcesDirectory)
-
-      - task: NuGetToolInstaller@1
-
-      - script: nuget pack $(Build.SourcesDirectory)\Continuity.nuspec -OutputDirectory $(Pipeline.Workspace)\nuget -BasePath $(Build.ArtifactStagingDirectory) -Properties "commit=$(Build.SourceVersion);id=$(ArtifactId);version=$(PackageVersion)" -Verbosity detailed -NonInteractive
-        displayName: Create NuGet Package
-
-      - task: PublishPipelineArtifact@1
-        displayName: Publish NuGet Package
-        inputs:
-          targetPath: $(Pipeline.Workspace)/nuget
-          artifactName: $(ArtifactId)
+          Flavor: $(Flavor)
+          Architecture: $(Architecture)
