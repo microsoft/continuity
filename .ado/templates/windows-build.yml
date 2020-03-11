@@ -13,7 +13,7 @@ steps:
     displayName: Generate Ninja Build
     inputs:
       workingDirectory: $(Build.BinariesDirectory)/$(BuildConfiguration)/$(BuildPlatform)
-      cmakeArgs: -G Ninja -DFLAVOR=$(BuildConfiguration) -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\CMake\toolchain.windows.cmake $(Build.SourcesDirectory)
+      cmakeArgs: -G Ninja -DCMAKE_BUILD_TYPE=$(BuildConfiguration) -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\CMake\toolchain.windows.cmake $(Build.SourcesDirectory)
 
   - task: CmdLine@2
     displayName: Build
