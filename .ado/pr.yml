@@ -9,7 +9,27 @@ variables:
 #  system.debug: true
 
 jobs:
-  - job: Windows
+  - job: ChangeLog
+    displayName: Change Log
+    pool:
+      vmImage: 'windows-2019'
+    timeoutInMinutes: 30
+
+    steps:
+      - checkout: self
+        clean: false
+        submodules: false
+
+      - script: yarn
+        displayName: Install packages
+
+      - script: yarn run check
+        displayName: Check for change files ('yarn run change' if this fails)
+
+  - job: WindowsBuild
+    displayName: Windows Build
+    dependsOn: ChangeLog
+    condition: succeeded()
     strategy:
       matrix:
         X64Debug:
