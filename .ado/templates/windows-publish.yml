@@ -1,11 +1,12 @@
 steps:
   - task: CopyFiles@2
-    displayName: Stage headers
+    displayName: Stage headers, nuspec
     condition: and(eq(variables.BuildConfiguration, 'Debug'), eq(variables.BuildPlatform, 'x86'))
     inputs:
-      sourceFolder: $(Build.SourcesDirectory)/include
-      targetFolder: $(Build.ArtifactStagingDirectory)/include
-      contents: '**'
+      targetFolder: $(Build.ArtifactStagingDirectory)
+      contents: |
+        Continuity.nuspec
+        include/**
 
   - task: CopyFiles@2
     displayName: Stage library
@@ -17,13 +18,9 @@ steps:
         Continuity.lib
         Continuity.pdb
 
-  - task: CopyFiles@2
-    displayName: Stage library def file
-    inputs:
-      sourceFolder: $(Build.SourcesDirectory)/src/Continuity
-      targetFolder: $(Build.ArtifactStagingDirectory)/$(BuildConfiguration)/$(BuildPlatform)
-      contents: |
-        Continuity.$(BuildPlatform).def
+  - script: copy /y Continuity.$(BuildPlatform).def $(Build.ArtifactStagingDirectory)\$(BuildConfiguration)\$(BuildPlatform)\Continuity.def
+    displayName: Stage library def
+    workingDirectory: $(Build.SourcesDirectory)/src/Continuity
 
   - task: PublishPipelineArtifact@1
     displayName: Publish artifacts

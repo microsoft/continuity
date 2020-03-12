@@ -19,11 +19,11 @@ jobs:
         clean: false
         submodules: false
 
-      - script: yarn
+      - script: yarn install --frozen-lockfile
         displayName: Install packages
 
-      - script: yarn run check
-        displayName: Check for change files ('yarn run change' if this fails)
+      - script: yarn run check --changehint "Run 'yarn run change' from root of repo to generate a change file."
+        displayName: Check for change files
 
   - job: WindowsBuild
     displayName: Windows Build
