@@ -3,8 +3,7 @@
   "version": "1.0.3",
   "scripts": {
     "change": "beachball change",
-    "check": "beachball check",
-    "beachball:publish": "beachball publish --no-publish"
+    "check": "beachball check"
   },
   "devDependencies": {
     "beachball": "^1.18.4"
