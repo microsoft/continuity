@@ -2,6 +2,20 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Thu, 12 Mar 2020 07:28:05 GMT",
+      "tag": "@microsoft/continuity_v1.0.3",
+      "version": "1.0.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add a .def file for x86 and x64.",
+            "author": "adam@thefoxmans.net",
+            "commit": "91da085d8ae7826acff2cad62568890ff0d40e31"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 11 Mar 2020 19:12:38 GMT",
       "tag": "@microsoft/continuity_v1.0.2",
       "version": "1.0.2",

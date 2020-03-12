@@ -1,7 +1,13 @@
 # Change Log - @microsoft/continuity
 
-This log was last generated on Wed, 11 Mar 2020 19:12:38 GMT and should not be manually modified.
+This log was last generated on Thu, 12 Mar 2020 07:28:05 GMT and should not be manually modified.
 
+## 1.0.3
+Thu, 12 Mar 2020 07:28:05 GMT
+
+### Patches
+
+- Add a .def file for x86 and x64. (adam@thefoxmans.net)
 ## 1.0.2
 Wed, 11 Mar 2020 19:12:38 GMT
 
