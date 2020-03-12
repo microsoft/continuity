@@ -2,6 +2,32 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Wed, 11 Mar 2020 19:12:38 GMT",
+      "tag": "@microsoft/continuity_v1.0.2",
+      "version": "1.0.2",
+      "comments": {
+        "none": [
+          {
+            "comment": "Add change-log check to PR loop",
+            "author": "adam@thefoxmans.net",
+            "commit": "e55d4f48f0ac3f5edfc8c3c9573607e46f443b2b"
+          },
+          {
+            "comment": "Move NuGet publishing from Build loop to a new Release Build loop.",
+            "author": "adam@thefoxmans.net",
+            "commit": "a104914c8d1ca8dac877da4421f16532ffe8fa20"
+          }
+        ],
+        "patch": [
+          {
+            "comment": "Update CI loop definitions and correct variable misuse. Align names in CMake scripts with names in CI loops.",
+            "author": "adam@thefoxmans.net",
+            "commit": "83b38cb042b80894735087ed88269a948f632574"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Mar 2020 09:36:00 GMT",
       "tag": "@microsoft/continuity_v1.0.1",
       "version": "1.0.1",

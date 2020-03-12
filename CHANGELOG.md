@@ -1,7 +1,13 @@
 # Change Log - @microsoft/continuity
 
-This log was last generated on Tue, 10 Mar 2020 09:36:00 GMT and should not be manually modified.
+This log was last generated on Wed, 11 Mar 2020 19:12:38 GMT and should not be manually modified.
 
+## 1.0.2
+Wed, 11 Mar 2020 19:12:38 GMT
+
+### Patches
+
+- Update CI loop definitions and correct variable misuse. Align names in CMake scripts with names in CI loops. (adam@thefoxmans.net)
 ## 1.0.1
 Tue, 10 Mar 2020 09:36:00 GMT
 
