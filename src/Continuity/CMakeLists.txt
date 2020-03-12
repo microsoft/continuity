@@ -52,3 +52,7 @@ target_link_libraries(Continuity
         folly
         Mso::object
         Mso::smartPtr)
+
+target_link_options(Continuity
+    PUBLIC
+        $<$<PLATFORM_ID:Windows>:/DEF:${CMAKE_CURRENT_SOURCE_DIR}/Continuity.${PLATFORM}.def>)
