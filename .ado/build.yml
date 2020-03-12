@@ -44,10 +44,10 @@ stages:
           - template: templates/windows-publish-build-artifact.yml
 
   - stage: Release
+    dependsOn: Build
+    condition: succeeded()
     jobs:
       - job: Release
-        dependsOn: WindowsBuild
-        condition: succeeded()
         pool:
           vmImage: 'windows-2019'
         timeoutInMinutes: 0
