@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": "Add a .def file for x86 and x64.",
+  "packageName": "@microsoft/continuity",
+  "email": "adam@thefoxmans.net",
+  "commit": "91da085d8ae7826acff2cad62568890ff0d40e31",
+  "dependentChangeType": "patch",
+  "date": "2020-03-12T07:16:13.071Z"
+}
