@@ -44,34 +44,35 @@ stages:
           - template: templates/windows-publish-build-artifact.yml
 
   - stage: Release
+    dependsOn: Build
+    condition: succeeded()
+    pool:
+      vmImage: 'windows-2019'
     jobs:
-      - job: Release
-        dependsOn: WindowsBuild
-        condition: succeeded()
-        pool:
-          vmImage: 'windows-2019'
-        timeoutInMinutes: 0
+      - job: BeachBallRelease
+        displayName: BeachBall Release
+        timeoutInMinutes: 15
         steps:
           - checkout: self
             clean: false
             submodules: false
 
-          ##
-          ##  Bump our version, create a GitHub release, and consolidate change notes into the log
-          ##
           - script: yarn install --frozen-lockfile
             displayName: Install yarn packages
 
           - script: yarn run beachball publish --no-publish --message "Beachball Publish (no NPM) ***NO_CI***" --yes
             displayName: Beachball publish (no NPM)
 
-          - script: node -p "'##vso[task.setvariable variable=PackageVersion]'+require('./package.json').version"
-            displayName: Read package.json version
-            workingDirectory: $(Build.SourcesDirectory)
+      - job: PublishNuGetPackage
+        displayName: Publish NuGet package
+        dependsOn: BeachBallRelease
+        condition: succeeded()
+        timeoutInMinutes: 15
+        steps:
+          - checkout: self
+            clean: false
+            submodules: false
 
-          ##
-          ##  Assemble the Windows NuGet package from build artifacts
-          ##
           - template: templates/download-and-stage-artifact.yml
             parameters:
               Artifact: Windows-Debug-x86
@@ -98,18 +99,19 @@ stages:
 
           - task: NuGetToolInstaller@1
 
+          - script: node -p "'##vso[task.setvariable variable=PackageVersion]'+require('./package.json').version"
+            displayName: Read package.json version
+            workingDirectory: $(Build.SourcesDirectory)
+
           - script: nuget pack Continuity.nuspec -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -Verbosity detailed -NonInteractive
             displayName: Create NuGet package
             workingDirectory: $(Build.ArtifactStagingDirectory)
 
-          ##
-          ##  Publish the Windows NuGet package to the react-native feed
-          ##
           - task: NuGetAuthenticate@0
             displayName: 'NuGet authentication'
 
           - task: NuGetCommand@2
-            displayName: 'Publish NuGet package'
+            displayName: 'Push to react-native feed'
             inputs:
               command: push
               packagesToPush: '$(Build.ArtifactStagingDirectory)\*.nupkg'
