@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": "Merge both release jobs together so that the package.json file read is done using the bumped version.",
+  "packageName": "@microsoft/continuity",
+  "email": "adam@thefoxmans.net",
+  "commit": "508b8eb87596e7b183bd7782ce61b291e1cc55e8",
+  "dependentChangeType": "patch",
+  "date": "2020-03-14T10:01:00.671Z"
+}
