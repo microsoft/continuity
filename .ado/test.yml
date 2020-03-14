@@ -21,6 +21,7 @@ jobs:
       - task: CmdLine@2
         inputs:
           script: |
+            call git checkout master
             call echo "test" > test.txt
             call git add test.txt
             call git commit -m "added test file"
