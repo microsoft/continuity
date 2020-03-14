@@ -54,8 +54,9 @@ stages:
         timeoutInMinutes: 15
         steps:
           - checkout: self
-            clean: false
+            clean: true
             submodules: false
+            persistCredentials: true
 
           - task: CmdLine@2
             displayName: Configure git user/email
