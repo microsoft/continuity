@@ -2,6 +2,20 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Sat, 14 Mar 2020 09:30:49 GMT",
+      "tag": "@microsoft/continuity_v1.0.4",
+      "version": "1.0.4",
+      "comments": {
+        "patch": [
+          {
+            "comment": "switch to rnbot",
+            "author": "adam@thefoxmans.net",
+            "commit": "3ae17220d0bf60dab019c76ac756f9f974e282e5"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 14 Mar 2020 08:27:44 GMT",
       "tag": "@microsoft/continuity_v1.0.3",
       "version": "1.0.3",

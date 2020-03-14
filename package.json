@@ -1,6 +1,6 @@
 {
   "name": "@microsoft/continuity",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
     "change": "beachball change",
     "check": "beachball check"
