@@ -1,9 +1,0 @@
-{
-  "type": "none",
-  "comment": "Expand Build CI pipeline to include a build stage and a release stage. (Release logic migrated from Azure release pipeline).",
-  "packageName": "@microsoft/continuity",
-  "email": "adam@thefoxmans.net",
-  "commit": "fd168aa6b09a1d1a0b818ffcf61ade59e7c0f0e4",
-  "dependentChangeType": "patch",
-  "date": "2020-03-12T17:55:43.552Z"
-}

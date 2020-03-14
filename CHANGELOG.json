@@ -2,6 +2,30 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Sat, 14 Mar 2020 08:27:44 GMT",
+      "tag": "@microsoft/continuity_v1.0.3",
+      "version": "1.0.3",
+      "comments": {
+        "none": [
+          {
+            "comment": "Refine PR logic to avoid yarn package version updates, and to give an actionable error when the developer didn't produce a change file.\n\nRemove release build CI loop, moving that logic into the release pipeline.\n\nRemove publish command from package.json. Only needed during the release process.",
+            "author": "adam@thefoxmans.net",
+            "commit": "82ff552951b9bff6f0feeaec3bdb9aded5eb096b"
+          },
+          {
+            "comment": "Expand Build CI pipeline to include a build stage and a release stage. (Release logic migrated from Azure release pipeline).",
+            "author": "adam@thefoxmans.net",
+            "commit": "fd168aa6b09a1d1a0b818ffcf61ade59e7c0f0e4"
+          },
+          {
+            "comment": "Separate beachball job from nuget job",
+            "author": "adam@thefoxmans.net",
+            "commit": "2d7e12fd078e68344d32b9d62692bec9990999ee"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 12 Mar 2020 07:28:05 GMT",
       "tag": "@microsoft/continuity_v1.0.3",
       "version": "1.0.3",
