@@ -2,6 +2,20 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Sat, 14 Mar 2020 10:08:43 GMT",
+      "tag": "@microsoft/continuity_v1.0.6",
+      "version": "1.0.6",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Merge both release jobs together so that the package.json file read is done using the bumped version.",
+            "author": "adam@thefoxmans.net",
+            "commit": "508b8eb87596e7b183bd7782ce61b291e1cc55e8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 14 Mar 2020 09:52:54 GMT",
       "tag": "@microsoft/continuity_v1.0.5",
       "version": "1.0.5",

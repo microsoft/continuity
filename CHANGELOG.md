@@ -1,7 +1,13 @@
 # Change Log - @microsoft/continuity
 
-This log was last generated on Sat, 14 Mar 2020 09:52:54 GMT and should not be manually modified.
+This log was last generated on Sat, 14 Mar 2020 10:08:43 GMT and should not be manually modified.
 
+## 1.0.6
+Sat, 14 Mar 2020 10:08:43 GMT
+
+### Patches
+
+- Merge both release jobs together so that the package.json file read is done using the bumped version. (adam@thefoxmans.net)
 ## 1.0.5
 Sat, 14 Mar 2020 09:52:54 GMT
 
