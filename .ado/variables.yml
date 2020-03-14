@@ -1,4 +1,5 @@
 variables:
   BuildWindowsSDK: 10.0.18362.0
+  NugetArtifactId: Microsoft.Continuity
   runCodesignValidationInjection: false
 #  system.debug: true
