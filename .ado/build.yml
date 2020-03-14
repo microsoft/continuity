@@ -49,9 +49,8 @@ stages:
     pool:
       vmImage: 'windows-2019'
     jobs:
-      - job: BeachBallRelease
-        displayName: BeachBall Release
-        timeoutInMinutes: 15
+      - job: Publish
+        timeoutInMinutes: 20
         steps:
           - checkout: self
             clean: true
@@ -70,16 +69,6 @@ stages:
 
           - script: yarn run beachball publish --no-publish --message "Beachball Publish (no NPM) ***NO_CI***" --yes
             displayName: Beachball publish (no NPM)
-
-      - job: PublishNuGetPackage
-        displayName: Publish NuGet package
-        dependsOn: BeachBallRelease
-        condition: succeeded()
-        timeoutInMinutes: 15
-        steps:
-          - checkout: self
-            clean: false
-            submodules: false
 
           - template: templates/download-and-stage-artifact.yml
             parameters:
