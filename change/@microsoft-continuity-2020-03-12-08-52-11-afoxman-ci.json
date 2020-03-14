@@ -1,9 +1,0 @@
-{
-  "type": "none",
-  "comment": "Refine PR logic to avoid yarn package version updates, and to give an actionable error when the developer didn't produce a change file.\n\nRemove release build CI loop, moving that logic into the release pipeline.\n\nRemove publish command from package.json. Only needed during the release process.",
-  "packageName": "@microsoft/continuity",
-  "email": "adam@thefoxmans.net",
-  "commit": "82ff552951b9bff6f0feeaec3bdb9aded5eb096b",
-  "dependentChangeType": "patch",
-  "date": "2020-03-12T15:52:11.042Z"
-}
