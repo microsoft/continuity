@@ -2,6 +2,20 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Sat, 14 Mar 2020 09:52:54 GMT",
+      "tag": "@microsoft/continuity_v1.0.5",
+      "version": "1.0.5",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Set the Nuget Artifact Id for CI loop builds",
+            "author": "adam@thefoxmans.net",
+            "commit": "7417f896fe5c9de76235003b8bc8fcbd016a774e"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 14 Mar 2020 09:30:49 GMT",
       "tag": "@microsoft/continuity_v1.0.4",
       "version": "1.0.4",

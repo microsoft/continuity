@@ -1,7 +1,13 @@
 # Change Log - @microsoft/continuity
 
-This log was last generated on Sat, 14 Mar 2020 09:30:49 GMT and should not be manually modified.
+This log was last generated on Sat, 14 Mar 2020 09:52:54 GMT and should not be manually modified.
 
+## 1.0.5
+Sat, 14 Mar 2020 09:52:54 GMT
+
+### Patches
+
+- Set the Nuget Artifact Id for CI loop builds (adam@thefoxmans.net)
 ## 1.0.4
 Sat, 14 Mar 2020 09:30:49 GMT
 
