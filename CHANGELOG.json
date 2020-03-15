@@ -2,6 +2,20 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Sun, 15 Mar 2020 06:34:18 GMT",
+      "tag": "@microsoft/continuity_v1.0.7",
+      "version": "1.0.7",
+      "comments": {
+        "patch": [
+          {
+            "comment": "add empty line to cause a change",
+            "author": "adam@thefoxmans.net",
+            "commit": "f539d09169275988f923b320a8b89fe02136608c"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 14 Mar 2020 10:08:43 GMT",
       "tag": "@microsoft/continuity_v1.0.6",
       "version": "1.0.6",
