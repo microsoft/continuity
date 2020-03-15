@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": "add empty line to cause a change",
+  "packageName": "@microsoft/continuity",
+  "email": "adam@thefoxmans.net",
+  "commit": "f539d09169275988f923b320a8b89fe02136608c",
+  "dependentChangeType": "patch",
+  "date": "2020-03-15T06:10:03.113Z"
+}
