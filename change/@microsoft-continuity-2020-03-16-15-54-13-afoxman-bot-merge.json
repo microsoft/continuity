@@ -1,0 +1,9 @@
+{
+  "type": "none",
+  "comment": "Add the rnsdkbot's SSH key, and use it when making commits in the pipeline. rnsdkbot is an admin, and will bypass branch protections.",
+  "packageName": "@microsoft/continuity",
+  "email": "adam@thefoxmans.net",
+  "commit": "8275fa8997e43ab3590c31154a35f5c88bced545",
+  "dependentChangeType": "patch",
+  "date": "2020-03-16T22:54:13.528Z"
+}
