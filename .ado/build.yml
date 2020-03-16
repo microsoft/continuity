@@ -53,16 +53,22 @@ stages:
         timeoutInMinutes: 20
         steps:
           - checkout: self
-            clean: true
+            clean: false
             submodules: false
-            persistCredentials: true
+
+          - task: InstallSSHKey@0
+            inputs:
+              knownHostsEntry: github.com,192.30.255.113 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
+              sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVmg0PBcc23t2Ys6C8o28qlHl8WL2tgptOky/sVSZ2dAMrTPog8ShQxs2c903PEuJGFtAnmBpjIDGcpSnJ38k+XDrkMvBgPReqjJQ+StNyriee8K2oPBOJURKWzGYvkMGC5daBv0keJxfFT71YhzHxoPwxCnXuodjAljhkmZsAYmeKt7MNUQILVpUxQOrVUmM3sN2ZaZ78hbpx+s3/G7kxYxsa4V+anT/HDyQBDLvyOGJce9yBZrI6B+pAbFiQ9dQg81EfRCtePJqjREjzQ5YMxCKlBi/ptL2xel9A7bsHuqK2xUeeY7Cix9ES/9AzTtgJaSmRh2jP7njooE29S81P rnsdkbot@microsoft.com
+              sshKeySecureFile: rnsdkbot_rsa
 
           - task: CmdLine@2
             displayName: Configure git user/email
             inputs:
               script: |
-                git config --global user.email "53619745+rnbot@users.noreply.github.com"
-                git config --global user.name "React-Native-Windows Bot"
+                call git config --global user.email "62199986+rnsdkbot@users.noreply.github.com"
+                call git config --global user.name "React-Native Platform SDK Bot"
+                call git remote set-url origin git@github.com:microsoft/continuity.git
 
           - script: yarn install --frozen-lockfile
             displayName: Install yarn packages
