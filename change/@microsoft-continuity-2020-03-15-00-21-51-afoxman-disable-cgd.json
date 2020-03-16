@@ -1,9 +1,0 @@
-{
-  "type": "none",
-  "comment": "Disable component governance detection. Not necessary for a purely C++ project. JS dependencies are for build tooling only.",
-  "packageName": "@microsoft/continuity",
-  "email": "adam@thefoxmans.net",
-  "commit": "e93c4588352f3f094c1b04e247f8ca1137f61f2a",
-  "dependentChangeType": "patch",
-  "date": "2020-03-15T07:21:50.922Z"
-}

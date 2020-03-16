@@ -2,6 +2,32 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Mon, 16 Mar 2020 23:31:30 GMT",
+      "tag": "@microsoft/continuity_v1.0.7",
+      "version": "1.0.7",
+      "comments": {
+        "patch": [
+          {
+            "comment": "add empty line to cause a change",
+            "author": "adam@thefoxmans.net",
+            "commit": "f539d09169275988f923b320a8b89fe02136608c"
+          }
+        ],
+        "none": [
+          {
+            "comment": "Disable component governance detection. Not necessary for a purely C++ project. JS dependencies are for build tooling only.",
+            "author": "adam@thefoxmans.net",
+            "commit": "e93c4588352f3f094c1b04e247f8ca1137f61f2a"
+          },
+          {
+            "comment": "Add the rnsdkbot's SSH key, and use it when making commits in the pipeline. rnsdkbot is an admin, and will bypass branch protections.",
+            "author": "adam@thefoxmans.net",
+            "commit": "8275fa8997e43ab3590c31154a35f5c88bced545"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 14 Mar 2020 10:08:43 GMT",
       "tag": "@microsoft/continuity_v1.0.6",
       "version": "1.0.6",

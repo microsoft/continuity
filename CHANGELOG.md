@@ -1,7 +1,13 @@
 # Change Log - @microsoft/continuity
 
-This log was last generated on Sat, 14 Mar 2020 10:08:43 GMT and should not be manually modified.
+This log was last generated on Mon, 16 Mar 2020 23:31:30 GMT and should not be manually modified.
 
+## 1.0.7
+Mon, 16 Mar 2020 23:31:30 GMT
+
+### Patches
+
+- add empty line to cause a change (adam@thefoxmans.net)
 ## 1.0.6
 Sat, 14 Mar 2020 10:08:43 GMT
 
