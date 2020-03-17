@@ -56,6 +56,9 @@ stages:
             clean: false
             submodules: false
 
+!!! error: detect when package version has not changed, and skip nunget publish
+
+
           - task: InstallSSHKey@0
             inputs:
               knownHostsEntry: github.com,192.30.255.113 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
@@ -73,27 +76,40 @@ stages:
           - script: yarn install --frozen-lockfile
             displayName: Install yarn packages
 
+          - script: node -p "'##vso[task.setvariable variable=PreviousPackageVersion]'+require('./package.json').version"
+            displayName: Read previous package.json version
+            workingDirectory: $(Build.SourcesDirectory)
+
           - script: yarn run beachball publish --no-publish --message "Beachball Publish (no NPM) ***NO_CI***" --yes
             displayName: Beachball publish (no NPM)
 
+          - script: node -p "'##vso[task.setvariable variable=PackageVersion]'+require('./package.json').version"
+            displayName: Read package.json version
+            workingDirectory: $(Build.SourcesDirectory)
+
           - template: templates/download-and-stage-artifact.yml
+            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             parameters:
               Artifact: Windows-Debug-x86
 
           - template: templates/download-and-stage-artifact.yml
+            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             parameters:
               Artifact: Windows-Release-x86
 
           - template: templates/download-and-stage-artifact.yml
+            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             parameters:
               Artifact: Windows-Debug-x64
 
           - template: templates/download-and-stage-artifact.yml
+            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             parameters:
               Artifact: Windows-Release-x64
 
           - task: CopyFiles@2
             displayName: Stage headers, nuspec
+            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             inputs:
               targetFolder: $(Build.ArtifactStagingDirectory)
               contents: |
@@ -101,20 +117,20 @@ stages:
                 include/**
 
           - task: NuGetToolInstaller@1
-
-          - script: node -p "'##vso[task.setvariable variable=PackageVersion]'+require('./package.json').version"
-            displayName: Read package.json version
-            workingDirectory: $(Build.SourcesDirectory)
+            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
 
           - script: nuget pack Continuity.nuspec -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -Verbosity detailed -NonInteractive
             displayName: Create NuGet package
             workingDirectory: $(Build.ArtifactStagingDirectory)
+            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
 
           - task: NuGetAuthenticate@0
             displayName: 'NuGet authentication'
+            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
 
           - task: NuGetCommand@2
             displayName: 'Push to react-native feed'
+            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             inputs:
               command: push
               packagesToPush: '$(Build.ArtifactStagingDirectory)\*.nupkg'

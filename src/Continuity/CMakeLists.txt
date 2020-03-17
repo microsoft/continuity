@@ -37,8 +37,7 @@ target_sources(Continuity
 target_compile_definitions(Continuity
     PRIVATE
         ${PROJECT_COMPILE_DEFINITIONS}
-        MICROSOFT_REACT_BUILD
-        _HAS_AUTO_PTR_ETC=1)
+        MICROSOFT_REACT_BUILD)
 
 target_include_directories(Continuity
     PUBLIC
