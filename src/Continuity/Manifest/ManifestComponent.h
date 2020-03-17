@@ -49,6 +49,8 @@ class ManifestComponentCollection final : public Mso::RefCountedObject<IManifest
 public:
     ManifestComponentCollection(std::vector<Mso::TCntRef<ManifestComponent>>&& components) noexcept;
 
+    uint32_t GetCount() const noexcept override;
+    IManifestComponent* GetComponent(uint32_t index) const noexcept override;
     IManifestComponent* FindComponent(const char* name) const noexcept override;
 
 private:
