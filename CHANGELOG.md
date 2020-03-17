@@ -1,7 +1,13 @@
 # Change Log - @microsoft/continuity
 
-This log was last generated on Mon, 16 Mar 2020 23:31:30 GMT and should not be manually modified.
+This log was last generated on Tue, 17 Mar 2020 22:32:59 GMT and should not be manually modified.
 
+## 1.0.8
+Tue, 17 Mar 2020 22:32:59 GMT
+
+### Patches
+
+- Add missing compile/link directives. Remove test CI pipeline. Fix build CI pipeline to skip nuget publishing when version has not changed. (adam@thefoxmans.net)
 ## 1.0.7
 Mon, 16 Mar 2020 23:31:30 GMT
 

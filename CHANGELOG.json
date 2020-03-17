@@ -2,6 +2,20 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Tue, 17 Mar 2020 22:32:59 GMT",
+      "tag": "@microsoft/continuity_v1.0.8",
+      "version": "1.0.8",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add missing compile/link directives. Remove test CI pipeline. Fix build CI pipeline to skip nuget publishing when version has not changed.",
+            "author": "adam@thefoxmans.net",
+            "commit": "a19e4c1d54e7e93004d50c1e30beaed95f05b977"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 17 Mar 2020 08:56:20 GMT",
       "tag": "@microsoft/continuity_v1.0.7",
       "version": "1.0.7",
