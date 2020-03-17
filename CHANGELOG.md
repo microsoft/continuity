@@ -1,7 +1,13 @@
 # Change Log - @microsoft/continuity
 
-This log was last generated on Tue, 17 Mar 2020 22:32:59 GMT and should not be manually modified.
+This log was last generated on Tue, 17 Mar 2020 23:08:59 GMT and should not be manually modified.
 
+## 1.0.9
+Tue, 17 Mar 2020 23:08:59 GMT
+
+### Patches
+
+- Add index-based access to the manifest's component collection. (adam@thefoxmans.net)
 ## 1.0.8
 Tue, 17 Mar 2020 22:32:59 GMT
 

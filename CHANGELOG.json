@@ -2,6 +2,20 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Tue, 17 Mar 2020 23:08:59 GMT",
+      "tag": "@microsoft/continuity_v1.0.9",
+      "version": "1.0.9",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add index-based access to the manifest's component collection.",
+            "author": "adam@thefoxmans.net",
+            "commit": "10f8684bbc7bb7895d71ce0a48ddd4d0054aab7a"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 17 Mar 2020 22:32:59 GMT",
       "tag": "@microsoft/continuity_v1.0.8",
       "version": "1.0.8",
