@@ -20,7 +20,9 @@ choco install visualstudio2019-workload-universalbuildtools
 
 2. Install a [Windows 10 SDK](https://developer.microsoft.com/en-us/windows/downloads/sdk-archive). Choose a recent release. Don't go back any farther than `10.0.15063.0` (Spring Creators Update, version 1703).
 
-3. Generate Ninja build scripts
+3. Download [NuGet](https://www.nuget.org/downloads). Choose the command-line version. Add it to your PATH.
+
+4. Generate Ninja build scripts
 
 ```
 "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
@@ -34,7 +36,7 @@ cmake -B build\Debug\x64 -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAI
 cmake -B build\Release\x64 -S . -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
 ```
 
-3. Run the build
+5. Run the build
 
 ```
 "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
