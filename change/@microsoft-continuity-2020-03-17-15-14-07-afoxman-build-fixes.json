@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": "Add missing compile/link directives. Remove test CI pipeline. Fix build CI pipeline to skip nuget publishing when version has not changed.",
+  "packageName": "@microsoft/continuity",
+  "email": "adam@thefoxmans.net",
+  "commit": "a19e4c1d54e7e93004d50c1e30beaed95f05b977",
+  "dependentChangeType": "patch",
+  "date": "2020-03-17T22:14:07.465Z"
+}
