@@ -1,13 +1,16 @@
 parameters:
   - name: Artifact
+  - name: Condition
 
 steps:
   - download: current
     displayName: Download ${{ parameters.Artifact }}
     artifact: ${{ parameters.Artifact }}
+    condition: ${{ parameters.Condition }}
 
   - task: CopyFiles@2
     displayName: Stage ${{ parameters.Artifact }}
+    condition: ${{ parameters.Condition }}
     inputs:
       sourceFolder: $(Pipeline.Workspace)/${{ parameters.Artifact }}
       targetFolder: $(Build.ArtifactStagingDirectory)

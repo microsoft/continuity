@@ -85,24 +85,24 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)
 
           - template: templates/download-and-stage-artifact.yml
-            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             parameters:
               Artifact: Windows-Debug-x86
+              Condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
 
           - template: templates/download-and-stage-artifact.yml
-            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             parameters:
               Artifact: Windows-Release-x86
+              Condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
 
           - template: templates/download-and-stage-artifact.yml
-            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             parameters:
               Artifact: Windows-Debug-x64
+              Condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
 
           - template: templates/download-and-stage-artifact.yml
-            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             parameters:
               Artifact: Windows-Release-x64
+              Condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
 
           - task: CopyFiles@2
             displayName: Stage headers, nuspec
