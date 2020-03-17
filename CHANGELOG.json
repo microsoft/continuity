@@ -2,6 +2,20 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Tue, 17 Mar 2020 08:56:20 GMT",
+      "tag": "@microsoft/continuity_v1.0.7",
+      "version": "1.0.7",
+      "comments": {
+        "none": [
+          {
+            "comment": "Fix boost build flags. Add missing step (install Nuget) to README.",
+            "author": "adam@thefoxmans.net",
+            "commit": "673333c99845f0bcb506954cfa1f7d879887095a"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 16 Mar 2020 23:31:30 GMT",
       "tag": "@microsoft/continuity_v1.0.7",
       "version": "1.0.7",
