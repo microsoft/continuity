@@ -40,6 +40,12 @@ struct IManifestComponent : IRefCounted
 
 struct IManifestComponentCollection : IRefCounted
 {
+    //  Get the count of component entries.
+    virtual uint32_t GetCount() const noexcept = 0;
+
+    //  Retrieve the component entry at the given 0-based index, or nullptr if the index is out of range.
+    virtual IManifestComponent* GetComponent(uint32_t index) const noexcept = 0;
+
     //  Get a component by name, or nullptr if it was not found.
     virtual IManifestComponent* FindComponent(const char* name) const noexcept = 0;
 };

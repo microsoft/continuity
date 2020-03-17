@@ -58,6 +58,20 @@ ManifestComponentCollection::ManifestComponentCollection(
 {
 }
 
+uint32_t ManifestComponentCollection::GetCount() const noexcept
+{
+    return _components.size();
+}
+
+IManifestComponent* ManifestComponentCollection::GetComponent(uint32_t index) const noexcept
+{
+    if (index < _components.size())
+    {
+        return _components[index].Ptr();
+    }
+    return nullptr;
+}
+
 IManifestComponent* ManifestComponentCollection::FindComponent(
     const char* name) const noexcept
 {
