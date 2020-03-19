@@ -64,5 +64,4 @@ buck-out/
 
 # CMake
 build/
-Debug/
-Release/
+dist/

@@ -1,2 +1,1 @@
-
-## TODO: test targets
+add_subdirectory(Continuity)

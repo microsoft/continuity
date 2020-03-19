@@ -8,7 +8,7 @@ project(
     VERSION 0.1
     DESCRIPTION "Microsoft Continuity: Libraries, tools and documentation for using react-native in native applications."
     HOMEPAGE_URL "https://github.com/microsoft/continuity"
-    LANGUAGES CXX)
+    LANGUAGES C CXX)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake")
 
@@ -119,9 +119,10 @@ endif()
 
 include(CTest)
 include(NuGet)
+include(FetchContent)
 
 # boost
-if($ENV{BOOST_ROOT} STREQUAL "")
+if("$ENV{BOOST_ROOT}" STREQUAL "")
     nuget(install boost -Version 1.68.0.0 -Framework native -OutputDirectory ${NUGET_ROOT} -NonInteractive)
     set(BOOST_ROOT ${NUGET_ROOT}/boost.1.68.0.0/lib/native)
 else()
@@ -142,15 +143,37 @@ list(APPEND PROJECT_COMPILE_DEFINITIONS
 file(TO_CMAKE_PATH ${BOOST_ROOT} BOOST_ROOT)
 message(STATUS "Boost: ${BOOST_ROOT}")
 
+
+# GoogleTest
+FetchContent_Declare(
+    googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG        release-1.10.0
+    GIT_SHALLOW    1)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+set(gtest_disable_pthreads ON CACHE BOOL "" FORCE)
+
+message(STATUS "Downloading GoogleTest...")
+FetchContent_MakeAvailable(googletest)
+if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    list(APPEND GOOGLETEST_COMPILE_DEFINITIONS
+            _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING
+            GTEST_HAS_RTTI=0)
+    target_compile_definitions(gtest PRIVATE ${GOOGLETEST_COMPILE_DEFINITIONS})
+    target_compile_definitions(gtest_main PRIVATE ${GOOGLETEST_COMPILE_DEFINITIONS})
+    target_compile_definitions(gmock PRIVATE ${GOOGLETEST_COMPILE_DEFINITIONS})
+    target_compile_definitions(gmock_main PRIVATE ${GOOGLETEST_COMPILE_DEFINITIONS})
+endif()
+list(APPEND PROJECT_COMPILE_DEFINITIONS GTEST_HAS_RTTI=0)
+
+
 # Mso
-include(FetchContent)
 FetchContent_Declare(
     Mso
     GIT_REPOSITORY  https://github.com/microsoft/Mso.git
     GIT_TAG         d1d3cbb9745b9654f3693b001db4a33375d990aa)
 message(STATUS "Downloading Mso...")
 FetchContent_MakeAvailable(Mso)
-list(APPEND PROJECT_COMPILE_DEFINITIONS GTEST_HAS_RTTI=0)
 
 
 ### Project directories
