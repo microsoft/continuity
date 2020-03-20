@@ -43,9 +43,11 @@ stages:
             parameters:
               Artifact: Windows-Release-x64
 
-          - publish: $(Build.ArtifactStagingDirectory)
+          - task: PublishPipelineArtifact@1
             displayName: Publish Windows-Dist
-            artifactName: Windows-Dist
+            inputs:
+              targetPath: $(Build.ArtifactStagingDirectory)
+              artifactName: Windows-Dist
 
   - stage: Release
     dependsOn: Build
