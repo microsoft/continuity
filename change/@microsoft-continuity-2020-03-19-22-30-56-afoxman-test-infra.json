@@ -1,9 +1,0 @@
-{
-  "type": "none",
-  "comment": "Update build to use cmake install to generate the distributable image. Include Continuity.pdb. Add a testing stage between build and release.",
-  "packageName": "@microsoft/continuity",
-  "email": "adam@thefoxmans.net",
-  "commit": "e548c8b8498447d10c4a91d1830d95ab532b7594",
-  "dependentChangeType": "patch",
-  "date": "2020-03-20T05:30:56.386Z"
-}
