@@ -27,4 +27,4 @@ jobs:
 
   - template: templates/windows-build-job.yml
     parameters:
-      - DependsOn: ChangeLog
+      DependsOn: ChangeLog

@@ -16,7 +16,7 @@ stages:
     jobs:
       - template: templates/windows-build-job.yml
         parameters:
-          - ShouldPublish: true
+          ShouldPublish: true
 
       - job: WindowsDist
         displayName: Windows Distribution
