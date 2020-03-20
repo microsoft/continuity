@@ -2,6 +2,20 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Fri, 20 Mar 2020 23:29:33 GMT",
+      "tag": "@microsoft/continuity_v1.0.12",
+      "version": "1.0.12",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Remove patterns from artifact downoad - they aren't working.",
+            "author": "adam@thefoxmans.net",
+            "commit": "87df10b6e1449d9dd644b898b00e2b307b9f9303"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 20 Mar 2020 23:05:45 GMT",
       "tag": "@microsoft/continuity_v1.0.11",
       "version": "1.0.11",

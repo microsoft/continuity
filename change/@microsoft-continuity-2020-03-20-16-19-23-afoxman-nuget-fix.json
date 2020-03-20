@@ -1,9 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Remove patterns from artifact downoad - they aren't working.",
-  "packageName": "@microsoft/continuity",
-  "email": "adam@thefoxmans.net",
-  "commit": "87df10b6e1449d9dd644b898b00e2b307b9f9303",
-  "dependentChangeType": "patch",
-  "date": "2020-03-20T23:19:23.597Z"
-}

@@ -1,7 +1,13 @@
 # Change Log - @microsoft/continuity
 
-This log was last generated on Fri, 20 Mar 2020 23:05:45 GMT and should not be manually modified.
+This log was last generated on Fri, 20 Mar 2020 23:29:33 GMT and should not be manually modified.
 
+## 1.0.12
+Fri, 20 Mar 2020 23:29:33 GMT
+
+### Patches
+
+- Remove patterns from artifact downoad - they aren't working. (adam@thefoxmans.net)
 ## 1.0.11
 Fri, 20 Mar 2020 23:05:45 GMT
 
