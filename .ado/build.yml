@@ -102,10 +102,9 @@ stages:
               'include/**'
               '**/Continuity.*'
 
-          - script: nuget pack $(Build.SourcesDirectory)/Continuity.nuspec -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -Verbosity detailed -NonInteractive
+          - script: nuget pack $(Build.SourcesDirectory)/Continuity.nuspec -BasePath $(Pipeline.Workspace)/Windows-Dist -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -Verbosity detailed -NonInteractive
             displayName: Create NuGet package
             condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
-            workingDirectory: $(Pipeline.Workspace)/Windows-Dist
 
           - task: NuGetAuthenticate@0
             displayName: 'NuGet authentication'
