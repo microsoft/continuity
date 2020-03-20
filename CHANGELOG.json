@@ -2,6 +2,20 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Fri, 20 Mar 2020 23:45:37 GMT",
+      "tag": "@microsoft/continuity_v1.0.13",
+      "version": "1.0.13",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Make output/working-dir explicit for nuget pack.",
+            "author": "adam@thefoxmans.net",
+            "commit": "e53a9dbd3106e3636a2ba3def949669a00569186"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 20 Mar 2020 23:29:33 GMT",
       "tag": "@microsoft/continuity_v1.0.12",
       "version": "1.0.12",

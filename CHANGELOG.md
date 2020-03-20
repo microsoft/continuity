@@ -1,7 +1,13 @@
 # Change Log - @microsoft/continuity
 
-This log was last generated on Fri, 20 Mar 2020 23:29:33 GMT and should not be manually modified.
+This log was last generated on Fri, 20 Mar 2020 23:45:37 GMT and should not be manually modified.
 
+## 1.0.13
+Fri, 20 Mar 2020 23:45:37 GMT
+
+### Patches
+
+- Make output/working-dir explicit for nuget pack. (adam@thefoxmans.net)
 ## 1.0.12
 Fri, 20 Mar 2020 23:29:33 GMT
 
