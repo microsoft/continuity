@@ -4,7 +4,7 @@ Continuity is a platform for using react-native within a native application.
 
 ## Building
 
-Continuity uses CMake and Ninja.
+Continuity uses [CMake](https://cmake.org) and [Ninja](https://ninja-build.org).
 
 ### Windows
 
@@ -41,21 +41,29 @@ cmake -B build\Release\x64 -S . -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOL
 ```
 "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
 
-ninja -C build\Debug\x86
-ninja -C build\Release\x86
+cmake --build build\Debug\x86
+cmake --install build\Debug\x86 --prefix dist --component dist
+
+cmake --build build\Release\x86
+cmake --install build\Release\x86 --prefix dist --component dist
 
 "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
 
-ninja -C build\Debug\x64
-ninja -C build\Release\x64
+cmake --build build\Debug\x64
+cmake --install build\Debug\x64 --prefix dist --component dist
+
+cmake --build build\Release\x64
+cmake --install build\Release\x64 --prefix dist --component dist
 ```
 
-The public headers are under `include\Continuity`, and the Windows DLLs are:
+6. Run tests
 
-- `build\Debug\x86\src\Continuity\Continuity.dll`
-- `build\Debug\x64\src\Continuity\Continuity.dll`
-- `build\Release\x86\src\Continuity\Continuity.dll`
-- `build\Release\x64\src\Continuity\Continuity.dll`
+```
+dist\Debug\x86\ManifestTests
+dist\Release\x86\ManifestTests"
+dist\Debug\x64\ManifestTests"
+dist\Release\x64\ManifestTests"
+```
 
 ## Contributing
 

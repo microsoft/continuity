@@ -55,3 +55,20 @@ target_link_libraries(Continuity
 target_link_options(Continuity
     PUBLIC
         $<$<PLATFORM_ID:Windows>:/DEF:${CMAKE_CURRENT_SOURCE_DIR}/Continuity.${PLATFORM}.def>)
+
+install(FILES ${HEADERS}
+    DESTINATION include/Continuity
+    COMPONENT dist)
+
+install(TARGETS Continuity
+    DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
+    COMPONENT dist)
+
+install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Continuity.${PLATFORM}.def>
+    DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
+    RENAME Continuity.def
+    COMPONENT dist)
+
+install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_BINARY_DIR}/Continuity.pdb>
+    DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
+    COMPONENT dist)

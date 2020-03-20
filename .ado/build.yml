@@ -14,53 +14,58 @@ variables:
 stages:
   - stage: Build
     jobs:
-      - job: WindowsBuild
-        displayName: Windows Build
-        strategy:
-          matrix:
-            X64Debug:
-              BuildConfiguration: Debug
-              BuildPlatform: x64
-            X64Release:
-              BuildConfiguration: Release
-              BuildPlatform: x64
-            X86Debug:
-              BuildConfiguration: Debug
-              BuildPlatform: x86
-            X86Release:
-              BuildConfiguration: Release
-              BuildPlatform: x86
+      - template: templates/windows-build-job.yml
+        parameters:
+          ShouldPublish: true
+
+      - job: WindowsDist
+        displayName: Windows Distribution
+        dependsOn: WindowsBuild
+        condition: succeeded()
+        timeoutInMinutes: 15
+        cancelTimeoutInMinutes: 2
         pool:
           vmImage: 'windows-2019'
-        timeoutInMinutes: 30
-        cancelTimeoutInMinutes: 2
         steps:
-          - checkout: self
-            clean: false
-            submodules: false
+          - template: templates/download-and-stage-artifact.yml
+            parameters:
+              Artifact: Windows-Debug-x86
 
-          - template: templates/windows-build.yml
+          - template: templates/download-and-stage-artifact.yml
+            parameters:
+              Artifact: Windows-Release-x86
 
-          - template: templates/windows-publish-build-artifact.yml
+          - template: templates/download-and-stage-artifact.yml
+            parameters:
+              Artifact: Windows-Debug-x64
+
+          - template: templates/download-and-stage-artifact.yml
+            parameters:
+              Artifact: Windows-Release-x64
+
+          - publish: $(Build.ArtifactStagingDirectory)
+            displayName: Publish Windows-Dist
+            artifactName: Windows-Dist
 
   - stage: Release
     dependsOn: Build
     condition: succeeded()
-    pool:
-      vmImage: 'windows-2019'
     jobs:
       - job: Publish
-        timeoutInMinutes: 20
+        timeoutInMinutes: 15
+        cancelTimeoutInMinutes: 2
+        pool:
+          vmImage: 'windows-2019'
         steps:
-          - checkout: self
-            clean: false
-            submodules: false
-
           - task: InstallSSHKey@0
             inputs:
               knownHostsEntry: github.com,192.30.255.113 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
               sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVmg0PBcc23t2Ys6C8o28qlHl8WL2tgptOky/sVSZ2dAMrTPog8ShQxs2c903PEuJGFtAnmBpjIDGcpSnJ38k+XDrkMvBgPReqjJQ+StNyriee8K2oPBOJURKWzGYvkMGC5daBv0keJxfFT71YhzHxoPwxCnXuodjAljhkmZsAYmeKt7MNUQILVpUxQOrVUmM3sN2ZaZ78hbpx+s3/G7kxYxsa4V+anT/HDyQBDLvyOGJce9yBZrI6B+pAbFiQ9dQg81EfRCtePJqjREjzQ5YMxCKlBi/ptL2xel9A7bsHuqK2xUeeY7Cix9ES/9AzTtgJaSmRh2jP7njooE29S81P rnsdkbot@microsoft.com
               sshKeySecureFile: rnsdkbot_rsa
+
+          - checkout: self
+            clean: false
+            submodules: false
 
           - task: CmdLine@2
             displayName: Configure git user/email
@@ -84,42 +89,21 @@ stages:
             displayName: Read package.json version
             workingDirectory: $(Build.SourcesDirectory)
 
-          - template: templates/download-and-stage-artifact.yml
-            parameters:
-              Artifact: Windows-Debug-x86
-              Condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
-
-          - template: templates/download-and-stage-artifact.yml
-            parameters:
-              Artifact: Windows-Release-x86
-              Condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
-
-          - template: templates/download-and-stage-artifact.yml
-            parameters:
-              Artifact: Windows-Debug-x64
-              Condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
-
-          - template: templates/download-and-stage-artifact.yml
-            parameters:
-              Artifact: Windows-Release-x64
-              Condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
-
-          - task: CopyFiles@2
-            displayName: Stage headers, nuspec
-            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
-            inputs:
-              targetFolder: $(Build.ArtifactStagingDirectory)
-              contents: |
-                Continuity.nuspec
-                include/**
-
           - task: NuGetToolInstaller@1
             condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
 
-          - script: nuget pack Continuity.nuspec -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -Verbosity detailed -NonInteractive
-            displayName: Create NuGet package
-            workingDirectory: $(Build.ArtifactStagingDirectory)
+          - download: current
+            displayName: Download Windows-Dist
             condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
+            artifact: Windows-Dist
+            patterns: |
+              'include/**'
+              '**/Continuity.*'
+
+          - script: nuget pack $(Build.SourcesDirectory)/Continuity.nuspec -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -Verbosity detailed -NonInteractive
+            displayName: Create NuGet package
+            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
+            workingDirectory: $(Pipeline.Workspace)/Windows-Dist
 
           - task: NuGetAuthenticate@0
             displayName: 'NuGet authentication'
@@ -130,5 +114,5 @@ stages:
             condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             inputs:
               command: push
-              packagesToPush: '$(Build.ArtifactStagingDirectory)\*.nupkg'
+              packagesToPush: '$(Pipeline.Workspace)/Windows-Dist/*.nupkg'
               publishVstsFeed: 'b9acb0c2-0443-4db3-8809-50f5d72408f9' # react-native feed
