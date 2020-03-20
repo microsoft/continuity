@@ -10,13 +10,19 @@ steps:
       modifyEnvironment: true
 
   - task: CMake@1
-    displayName: Generate Ninja Build
+    displayName: Generate Ninja build
     inputs:
       workingDirectory: $(Build.BinariesDirectory)/$(BuildConfiguration)/$(BuildPlatform)
       cmakeArgs: -G Ninja -DCMAKE_BUILD_TYPE=$(BuildConfiguration) -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\CMake\toolchain.windows.cmake $(Build.SourcesDirectory)
 
-  - task: CmdLine@2
+  - task: CMake@1
     displayName: Build
     inputs:
       workingDirectory: $(Build.BinariesDirectory)/$(BuildConfiguration)/$(BuildPlatform)
-      script: ninja -v
+      cmakeArgs: --build .
+
+  - task: CMake@1
+    displayName: Create distribution
+    inputs:
+      workingDirectory: $(Pipeline.Workspace)
+      cmakeArgs: --install $(Build.BinariesDirectory)/$(BuildConfiguration)/$(BuildPlatform) --prefix dist --component dist

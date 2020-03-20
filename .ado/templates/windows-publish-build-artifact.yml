@@ -2,16 +2,9 @@ steps:
   - task: CopyFiles@2
     displayName: Stage library
     inputs:
-      sourceFolder: $(Build.BinariesDirectory)/$(BuildConfiguration)/$(BuildPlatform)/src/Continuity
-      targetFolder: $(Build.ArtifactStagingDirectory)/$(BuildConfiguration)/$(BuildPlatform)
-      contents: |
-        Continuity.dll
-        Continuity.lib
-        Continuity.pdb
-
-  - script: copy /y Continuity.$(BuildPlatform).def $(Build.ArtifactStagingDirectory)\$(BuildConfiguration)\$(BuildPlatform)\Continuity.def
-    displayName: Stage library def
-    workingDirectory: $(Build.SourcesDirectory)/src/Continuity
+      sourceFolder: $(Pipeline.Workspace)/dist
+      targetFolder: $(Build.ArtifactStagingDirectory)
+      contents: '**'
 
   - task: PublishPipelineArtifact@1
     displayName: Publish artifact

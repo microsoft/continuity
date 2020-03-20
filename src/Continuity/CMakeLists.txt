@@ -68,3 +68,7 @@ install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Continuity.${
     DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
     RENAME Continuity.def
     COMPONENT dist)
+
+install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_BINARY_DIR}/Continuity.pdb>
+    DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
+    COMPONENT dist)
