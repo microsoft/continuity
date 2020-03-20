@@ -99,8 +99,9 @@ stages:
             condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             artifact: Windows-Dist
 
-          - script: nuget pack $(Build.SourcesDirectory)/Continuity.nuspec -BasePath $(Pipeline.Workspace)/Windows-Dist -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -Verbosity detailed -NonInteractive
+          - script: nuget pack $(Build.SourcesDirectory)/Continuity.nuspec -BasePath $(Pipeline.Workspace)/Windows-Dist -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -OutputDirectory $(Pipeline.Workspace)/Windows-Dist -Verbosity detailed -NonInteractive
             displayName: Create NuGet package
+            workingDirectory: $(Pipeline.Workspace)/Windows-Dist
             condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
 
           - task: NuGetAuthenticate@0

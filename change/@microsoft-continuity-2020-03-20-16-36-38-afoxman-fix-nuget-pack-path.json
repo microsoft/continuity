@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": "Make output/working-dir explicit for nuget pack.",
+  "packageName": "@microsoft/continuity",
+  "email": "adam@thefoxmans.net",
+  "commit": "e53a9dbd3106e3636a2ba3def949669a00569186",
+  "dependentChangeType": "patch",
+  "date": "2020-03-20T23:36:38.401Z"
+}
