@@ -25,31 +25,6 @@ jobs:
       - script: yarn run check --changehint "Run 'yarn run change' from root of repo to generate a change file."
         displayName: Check for change files
 
-  - job: WindowsBuild
-    displayName: Windows Build
-    dependsOn: ChangeLog
-    condition: succeeded()
-    strategy:
-      matrix:
-        X64Debug:
-          BuildConfiguration: Debug
-          BuildPlatform: x64
-        X64Release:
-          BuildConfiguration: Release
-          BuildPlatform: x64
-        X86Debug:
-          BuildConfiguration: Debug
-          BuildPlatform: x86
-        X86Release:
-          BuildConfiguration: Release
-          BuildPlatform: x86
-    pool:
-      vmImage: 'windows-2019'
-    timeoutInMinutes: 30
-    cancelTimeoutInMinutes: 2
-    steps:
-      - checkout: self
-        clean: false
-        submodules: false
-
-      - template: templates/windows-build.yml
+  - template: templates/windows-build-job.yml
+    parameters:
+      - DependsOn: ChangeLog
