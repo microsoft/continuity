@@ -1,7 +1,13 @@
 # Change Log - @microsoft/continuity
 
-This log was last generated on Fri, 20 Mar 2020 22:00:33 GMT and should not be manually modified.
+This log was last generated on Fri, 20 Mar 2020 22:50:05 GMT and should not be manually modified.
 
+## 1.0.11
+Fri, 20 Mar 2020 22:50:05 GMT
+
+### Patches
+
+- Set nuget base path so it picks up the right files. (adam@thefoxmans.net)
 ## 1.0.10
 Fri, 20 Mar 2020 22:00:33 GMT
 

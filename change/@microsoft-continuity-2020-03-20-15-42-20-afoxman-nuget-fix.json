@@ -1,9 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Set nuget base path so it picks up the right files.",
-  "packageName": "@microsoft/continuity",
-  "email": "adam@thefoxmans.net",
-  "commit": "4f5eb966e134e1dac22c00a8f43d4b8334f0bd15",
-  "dependentChangeType": "patch",
-  "date": "2020-03-20T22:42:20.342Z"
-}
