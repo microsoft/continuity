@@ -53,4 +53,6 @@ TEST(ManifestTests, ReadManifestSucceeds)
 
     ASSERT_EQ(error, ReactError::Success);
     EXPECT_THAT(manifest, NotNull());
+
+    manifest->Release();
 }

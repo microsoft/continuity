@@ -60,9 +60,9 @@ cmake --install build\Release\x64 --prefix dist --component dist
 
 ```
 dist\Debug\x86\ManifestTests
-dist\Release\x86\ManifestTests"
-dist\Debug\x64\ManifestTests"
-dist\Release\x64\ManifestTests"
+dist\Release\x86\ManifestTests
+dist\Debug\x64\ManifestTests
+dist\Release\x64\ManifestTests
 ```
 
 ## Contributing
