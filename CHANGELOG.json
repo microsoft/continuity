@@ -2,6 +2,25 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Fri, 20 Mar 2020 22:00:07 GMT",
+      "tag": "@microsoft/continuity_v1.0.10",
+      "version": "1.0.10",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add GoogleTest and GoogleMock as a project dependency. Add a ReadManifest unit test. Add CMake install to produce a re-distributable collection of headers and binaries. Update build to use cmake install to generate the distributable image. Include Continuity.pdb. Add a testing stage between build and release.",
+            "author": "adam@thefoxmans.net",
+            "commit": "f71ee977214fcccdb398d978d34afb7cbb5c22f4"
+          },
+          {
+            "comment": "Take a fixed drop of Mso which corrects a packing/alignment header bug. Minor fixes to ManifestTests.",
+            "author": "adam@thefoxmans.net",
+            "commit": "d68357c61b12e1ec91d2b099b4c698e711fb65f6"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 17 Mar 2020 23:08:59 GMT",
       "tag": "@microsoft/continuity_v1.0.9",
       "version": "1.0.9",

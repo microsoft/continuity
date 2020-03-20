@@ -1,9 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Take a fixed drop of Mso which corrects a packing/alignment header bug. Minor fixes to ManifestTests.",
-  "packageName": "@microsoft/continuity",
-  "email": "adam@thefoxmans.net",
-  "commit": "d68357c61b12e1ec91d2b099b4c698e711fb65f6",
-  "dependentChangeType": "patch",
-  "date": "2020-03-20T21:42:35.068Z"
-}
