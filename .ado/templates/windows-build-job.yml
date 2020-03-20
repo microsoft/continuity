@@ -11,6 +11,7 @@ parameters:
     type: boolean
     default: false
 
+jobs:
 - job: WindowsBuild
   displayName: Windows Build
   ${{ if ne(parameters.DependsOn, '') }}:
