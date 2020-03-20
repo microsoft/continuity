@@ -1,7 +1,14 @@
 # Change Log - @microsoft/continuity
 
-This log was last generated on Fri, 20 Mar 2020 22:00:07 GMT and should not be manually modified.
+This log was last generated on Fri, 20 Mar 2020 22:00:33 GMT and should not be manually modified.
 
+## 1.0.10
+Fri, 20 Mar 2020 22:00:33 GMT
+
+### Patches
+
+- Add GoogleTest and GoogleMock as a project dependency. Add a ReadManifest unit test. Add CMake install to produce a re-distributable collection of headers and binaries. Update build to use cmake install to generate the distributable image. Include Continuity.pdb. Add a testing stage between build and release. (adam@thefoxmans.net)
+- Take a fixed drop of Mso which corrects a packing/alignment header bug. Minor fixes to ManifestTests. (adam@thefoxmans.net)
 ## 1.0.10
 Fri, 20 Mar 2020 22:00:07 GMT
 
