@@ -1,3 +1,5 @@
+#include <cstring>
+
 #include "DynamicReader.h"
 #include "Manifest/ManifestComponent.h"
 
@@ -78,7 +80,7 @@ IManifestComponent* ManifestComponentCollection::FindComponent(
     auto iter = std::find_if(_components.begin(), _components.end(),
         [name](const Mso::TCntRef<ManifestComponent>& component) noexcept
         {
-            return component->GetName() == name;
+            return 0 == std::strcmp(component->GetName(), name);
         }
     );
 
