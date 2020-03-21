@@ -56,3 +56,15 @@ TEST(ManifestTests, ReadManifestSucceeds)
 
     manifest->Release();
 }
+
+TEST(ManifestTests, FindExistingComponentSucceeds)
+{
+    IManifest* manifest = nullptr;
+    auto error = ReadManifest(ManifestSource::Host, c_jsonManifest, &manifest);
+    ASSERT_EQ(error, ReactError::Success);
+
+    auto component = manifest->GetComponents().FindComponent("MyApp.app");
+    EXPECT_THAT(component, NotNull());
+
+    manifest->Release();
+}
