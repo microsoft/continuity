@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": "Use strcmp instead of operator == when comparing two char* values.",
+  "packageName": "@microsoft/continuity",
+  "email": "adam@thefoxmans.net",
+  "commit": "6568040c4cc49da6a6ce31765b9a529fd46b71d7",
+  "dependentChangeType": "patch",
+  "date": "2020-03-21T06:31:57.986Z"
+}
