@@ -27,6 +27,8 @@ stages:
         pool:
           vmImage: 'windows-2019'
         steps:
+          - checkout: none
+
           - template: templates/download-and-stage-artifact.yml
             parameters:
               Artifact: Windows-Debug-x86
@@ -91,27 +93,30 @@ stages:
             displayName: Read package.json version
             workingDirectory: $(Build.SourcesDirectory)
 
-          - task: NuGetToolInstaller@1
-            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
-
           - download: current
             displayName: Download Windows-Dist
-            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             artifact: Windows-Dist
 
-          - script: nuget pack $(Build.SourcesDirectory)/Continuity.nuspec -BasePath $(Pipeline.Workspace)/Windows-Dist -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -OutputDirectory $(Pipeline.Workspace)/Windows-Dist -Verbosity detailed -NonInteractive
+          - task: NuGetToolInstaller@1
+
+          - script: nuget pack $(Build.SourcesDirectory)/Continuity.nuspec -BasePath $(Pipeline.Workspace)/Windows-Dist -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -OutputDirectory $(Pipeline.Workspace)/Windows-Nuget -Verbosity detailed -NonInteractive
             displayName: Create NuGet package
-            workingDirectory: $(Pipeline.Workspace)/Windows-Dist
-            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
+            workingDirectory: $(Pipeline.Workspace)/Windows-Nuget
+
+          - task: PublishPipelineArtifact@1
+            displayName: Publish NuGet artifact
+            inputs:
+              path: $(Pipeline.Workspace)/Windows-Nuget
+              artifactName: Windows-Nuget
 
           - task: NuGetAuthenticate@0
             displayName: 'NuGet authentication'
             condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
 
           - task: NuGetCommand@2
-            displayName: 'Push to react-native feed'
+            displayName: 'Push NuGet to react-native feed'
             condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             inputs:
               command: push
-              packagesToPush: '$(Pipeline.Workspace)/Windows-Dist/*.nupkg'
+              packagesToPush: '$(Pipeline.Workspace)/Windows-Nuget/*.nupkg'
               publishVstsFeed: 'b9acb0c2-0443-4db3-8809-50f5d72408f9' # react-native feed
