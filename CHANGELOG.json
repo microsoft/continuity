@@ -2,6 +2,20 @@
   "name": "@microsoft/continuity",
   "entries": [
     {
+      "date": "Sun, 22 Mar 2020 09:41:42 GMT",
+      "tag": "@microsoft/continuity_v1.0.14",
+      "version": "1.0.14",
+      "comments": {
+        "none": [
+          {
+            "comment": "Add support for using VS's CMake system.",
+            "author": "adam@thefoxmans.net",
+            "commit": "fd76a066eaaeb7fbde49b03a159256b33ff5165d"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 22 Mar 2020 06:19:52 GMT",
       "tag": "@microsoft/continuity_v1.0.14",
       "version": "1.0.14",
