@@ -1,7 +1,13 @@
 # Change Log - @microsoft/continuity
 
-This log was last generated on Fri, 20 Mar 2020 23:45:37 GMT and should not be manually modified.
+This log was last generated on Sun, 22 Mar 2020 06:19:52 GMT and should not be manually modified.
 
+## 1.0.14
+Sun, 22 Mar 2020 06:19:52 GMT
+
+### Patches
+
+- Use strcmp instead of operator == when comparing two char* values. (adam@thefoxmans.net)
 ## 1.0.13
 Fri, 20 Mar 2020 23:45:37 GMT
 
