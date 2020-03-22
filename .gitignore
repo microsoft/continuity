@@ -29,6 +29,9 @@ build/
 local.properties
 *.iml
 
+# Visual Studio
+.vs
+
 # VSCode Java
 .project
 .settings/
