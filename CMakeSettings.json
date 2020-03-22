@@ -1,0 +1,56 @@
+﻿{
+  "configurations": [
+    {
+      "name": "x86-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "inheritEnvironments": [ "msvc_x86" ],
+      "buildRoot": "${projectDir}\\build\\Debug\\x86",
+      "installRoot": "${projectDir}\\dist\\Debug\\x86",
+      "cmakeCommandArgs": "-DPLATFORM:STRING=x86",
+      "buildCommandArgs": "-v",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "",
+      "variables": []
+    },
+    {
+      "name": "x86-Release",
+      "generator": "Ninja",
+      "configurationType": "Release",
+      "inheritEnvironments": [ "msvc_x86" ],
+      "buildRoot": "${projectDir}\\build\\Release\\x86",
+      "installRoot": "${projectDir}\\dist\\Release\\x86",
+      "cmakeCommandArgs": "-DPLATFORM:STRING=x86",
+      "buildCommandArgs": "-v",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "",
+      "variables": []
+    },
+    {
+      "name": "x64-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildRoot": "${projectDir}\\build\\Debug\\x64",
+      "installRoot": "${projectDir}\\dist\\Debug\\x64",
+      "cmakeCommandArgs": "-DPLATFORM:STRING=x64",
+      "buildCommandArgs": "-v",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "",
+      "variables": []
+    },
+    {
+      "name": "x64-Release",
+      "generator": "Ninja",
+      "configurationType": "Release",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildRoot": "${projectDir}\\build\\Release\\x64",
+      "installRoot": "${projectDir}\\dist\\Release\\x64",
+      "cmakeCommandArgs": "-DPLATFORM:STRING=x64",
+      "buildCommandArgs": "-v",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "",
+      "variables": []
+    }
+  ]
+}
