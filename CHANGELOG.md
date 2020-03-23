@@ -1,7 +1,13 @@
-# Change Log - @microsoft/continuity
+# Change Log - @microsoft/react-native-sdk
 
-This log was last generated on Sun, 22 Mar 2020 06:19:52 GMT and should not be manually modified.
+This log was last generated on Mon, 23 Mar 2020 04:31:17 GMT and should not be manually modified.
 
+## 1.1.0
+Mon, 23 Mar 2020 04:31:17 GMT
+
+### Minor changes
+
+- Rename project to Microsoft.ReactNative.SDK and update description. (adam@thefoxmans.net)
 ## 1.0.14
 Sun, 22 Mar 2020 06:19:52 GMT
 

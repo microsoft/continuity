@@ -1,9 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Rename project to Microsoft.ReactNative.SDK and update description.",
-  "packageName": "@microsoft/react-native-sdk",
-  "email": "adam@thefoxmans.net",
-  "commit": "d3d37c6ecd16698ced25cb76af22b04f1c561ef5",
-  "dependentChangeType": "patch",
-  "date": "2020-03-23T03:24:41.731Z"
-}

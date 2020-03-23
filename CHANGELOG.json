@@ -1,6 +1,20 @@
 {
-  "name": "@microsoft/continuity",
+  "name": "@microsoft/react-native-sdk",
   "entries": [
+    {
+      "date": "Mon, 23 Mar 2020 04:31:17 GMT",
+      "tag": "@microsoft/react-native-sdk_v1.1.0",
+      "version": "1.1.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Rename project to Microsoft.ReactNative.SDK and update description.",
+            "author": "adam@thefoxmans.net",
+            "commit": "d3d37c6ecd16698ced25cb76af22b04f1c561ef5"
+          }
+        ]
+      }
+    },
     {
       "date": "Sun, 22 Mar 2020 09:41:42 GMT",
       "tag": "@microsoft/continuity_v1.0.14",
