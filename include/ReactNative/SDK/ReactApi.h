@@ -30,7 +30,7 @@
 
 //  Error codes
 
-namespace Microsoft::React
+namespace Microsoft::ReactNative
 {
 
 enum class ReactError : uint32_t
@@ -57,7 +57,7 @@ enum class ReactError : uint32_t
 
 //  reference counted interface
 
-namespace Microsoft::React
+namespace Microsoft::ReactNative
 {
 
 struct DECLSPEC_NOVTABLE IRefCounted

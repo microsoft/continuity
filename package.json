@@ -1,5 +1,5 @@
 {
-  "name": "@microsoft/continuity",
+  "name": "@microsoft/react-native-sdk",
   "version": "1.0.14",
   "scripts": {
     "change": "beachball change",

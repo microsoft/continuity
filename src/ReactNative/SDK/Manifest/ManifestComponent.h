@@ -3,12 +3,12 @@
 #include <string>
 #include <vector>
 
-#include <Continuity/ReactManifest.h>
+#include <ReactNative/SDK/ReactManifest.h>
 #include <folly/dynamic.h>
 
 #include "stubs/Mso.h"
 
-namespace Microsoft::React
+namespace Microsoft::ReactNative
 {
 
 class ManifestComponent final : public Mso::RefCountedObject<IManifestComponent>

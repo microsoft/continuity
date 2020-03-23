@@ -2,12 +2,12 @@
 
 #include <string>
 
-#include <Continuity/ReactManifest.h>
+#include <ReactNative/SDK/ReactManifest.h>
 #include <folly/dynamic.h>
 
 #include "stubs/Mso.h"
 
-namespace Microsoft::React
+namespace Microsoft::ReactNative
 {
 
 class ManifestPackager final : public Mso::RefCountedObject<IManifestPackager>

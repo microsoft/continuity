@@ -4,9 +4,7 @@ message(STATUS "CMake Source: ${CMAKE_SOURCE_DIR}")
 message(STATUS "CMake Binary: ${CMAKE_BINARY_DIR}")
 
 project(
-    MicrosoftContinuity
-    VERSION 0.1
-    DESCRIPTION "Microsoft Continuity: Libraries, tools and documentation for using react-native in native applications."
+    MicrosoftReactNativeSDK
     HOMEPAGE_URL "https://github.com/microsoft/continuity"
     LANGUAGES C CXX)
 
@@ -45,7 +43,7 @@ else()
 endif()
 
 
-### Platform configuration
+### System configuration
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # Enforce minimum target version of Windows
@@ -75,7 +73,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 #elseif(CMAKE_SYSTEM_NAME STREQUAL "iOS")
 #elseif(CMAKE_SYSTEM_NAME STREQUAL "Android")
 else()
-    message(FATAL_ERROR "This project does not support the '${CMAKE_SYSTEM_NAME}' platform.")
+    message(FATAL_ERROR "This project does not support the '${CMAKE_SYSTEM_NAME}' system.")
 endif()
 
 

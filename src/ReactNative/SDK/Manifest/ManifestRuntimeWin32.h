@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Continuity/ReactManifest.h>
+#include <ReactNative/SDK/ReactManifest.h>
 #include <folly/dynamic.h>
 
 #include "Manifest/ManifestRuntimeWin32Container.h"
 #include "stubs/Mso.h"
 
-namespace Microsoft::React
+namespace Microsoft::ReactNative
 {
 
 class ManifestRuntimeWin32 final : public Mso::RefCountedObject<IManifestRuntimeWin32>

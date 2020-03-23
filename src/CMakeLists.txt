@@ -1,2 +1,2 @@
-add_subdirectory(Continuity)
+add_subdirectory(ReactNative)
 add_subdirectory(Folly)

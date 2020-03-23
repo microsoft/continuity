@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include <Continuity/ReactManifest.h>
+#include <ReactNative/SDK/ReactManifest.h>
 
 #include "Manifest/ManifestBundle.h"
 #include "Manifest/ManifestComponent.h"
@@ -10,7 +10,7 @@
 #include "Manifest/ManifestRuntime.h"
 #include "stubs/Mso.h"
 
-namespace Microsoft::React
+namespace Microsoft::ReactNative
 {
 
 class Manifest final : public Mso::RefCountedObject<IManifest>

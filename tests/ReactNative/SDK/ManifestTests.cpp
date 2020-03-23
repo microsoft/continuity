@@ -1,8 +1,8 @@
-#include <Continuity/ReactManifest.h>
+#include <ReactNative/SDK/ReactManifest.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-using namespace Microsoft::React;
+using namespace Microsoft::ReactNative;
 using namespace testing;
 
 const char* c_jsonManifest = R"(

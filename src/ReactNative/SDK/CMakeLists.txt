@@ -1,6 +1,6 @@
 list(APPEND HEADERS
-    ${INC_ROOT}/Continuity/ReactApi.h
-    ${INC_ROOT}/Continuity/ReactManifest.h)
+    ${INC_ROOT}/ReactNative/SDK/ReactApi.h
+    ${INC_ROOT}/ReactNative/SDK/ReactManifest.h)
 
 list(APPEND HEADERS_INTERNAL
     DynamicReader.h
@@ -25,50 +25,50 @@ list(APPEND SOURCES
     Manifest/ManifestRuntimeWin32.cpp
     Manifest/ManifestRuntimeWin32Container.cpp)
 
-add_library(Continuity SHARED)
+add_library(Microsoft.ReactNative.SDK SHARED)
 
-target_sources(Continuity
+target_sources(Microsoft.ReactNative.SDK
     PUBLIC
         ${HEADERS}
     PRIVATE
         ${HEADERS_INTERNAL}
         ${SOURCES})
 
-target_compile_definitions(Continuity
+target_compile_definitions(Microsoft.ReactNative.SDK
     PRIVATE
         ${PROJECT_COMPILE_DEFINITIONS}
         MICROSOFT_REACT_BUILD)
 
-target_include_directories(Continuity
+target_include_directories(Microsoft.ReactNative.SDK
     PUBLIC
         ${INC_ROOT}
     PRIVATE
         ${BOOST_ROOT}/include
         ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(Continuity
+target_link_libraries(Microsoft.ReactNative.SDK
     PRIVATE
         folly
         Mso::object
         Mso::smartPtr)
 
-target_link_options(Continuity
+target_link_options(Microsoft.ReactNative.SDK
     PUBLIC
-        $<$<PLATFORM_ID:Windows>:/DEF:${CMAKE_CURRENT_SOURCE_DIR}/Continuity.${PLATFORM}.def>)
+        $<$<PLATFORM_ID:Windows>:/DEF:${CMAKE_CURRENT_SOURCE_DIR}/Microsoft.ReactNative.SDK.${PLATFORM}.def>)
 
 install(FILES ${HEADERS}
-    DESTINATION include/Continuity
+    DESTINATION include/ReactNative/SDK
     COMPONENT dist)
 
-install(TARGETS Continuity
+install(TARGETS Microsoft.ReactNative.SDK
     DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
     COMPONENT dist)
 
-install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Continuity.${PLATFORM}.def>
+install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Microsoft.ReactNative.SDK.${PLATFORM}.def>
     DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
-    RENAME Continuity.def
+    RENAME Microsoft.ReactNative.SDK.def
     COMPONENT dist)
 
-install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_BINARY_DIR}/Continuity.pdb>
+install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_BINARY_DIR}/Microsoft.ReactNative.SDK.pdb>
     DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
     COMPONENT dist)

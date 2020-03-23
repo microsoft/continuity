@@ -76,7 +76,7 @@ stages:
             inputs:
               script: |
                 call git config --global user.email "62199986+rnsdkbot@users.noreply.github.com"
-                call git config --global user.name "React-Native Platform SDK Bot"
+                call git config --global user.name "React-Native SDK Bot"
                 call git remote set-url origin git@github.com:microsoft/continuity.git
 
           - script: yarn install --frozen-lockfile
@@ -99,7 +99,7 @@ stages:
 
           - task: NuGetToolInstaller@1
 
-          - script: nuget pack $(Build.SourcesDirectory)/Continuity.nuspec -BasePath $(Pipeline.Workspace)/Windows-Dist -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -OutputDirectory $(Pipeline.Workspace)/Windows-Nuget -Verbosity detailed -NonInteractive
+          - script: nuget pack $(Build.SourcesDirectory)/Microsoft.ReactNative.SDK.nuspec -BasePath $(Pipeline.Workspace)/Windows-Dist -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -OutputDirectory $(Pipeline.Workspace)/Windows-Nuget -Verbosity detailed -NonInteractive
             displayName: Create NuGet package
             workingDirectory: $(Pipeline.Workspace)/Windows-Nuget
 

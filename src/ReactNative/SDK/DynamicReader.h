@@ -5,7 +5,7 @@
 
 #include <folly/dynamic.h>
 
-namespace Microsoft::React
+namespace Microsoft::ReactNative
 {
 
 /*
