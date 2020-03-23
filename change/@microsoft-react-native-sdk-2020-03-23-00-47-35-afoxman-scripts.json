@@ -1,0 +1,9 @@
+{
+  "type": "none",
+  "comment": "Add scripts for building and testing.",
+  "packageName": "@microsoft/react-native-sdk",
+  "email": "adam@thefoxmans.net",
+  "commit": "25c33aefb51cd5a2bc48b0434202f9c0c30ec950",
+  "dependentChangeType": "patch",
+  "date": "2020-03-23T07:47:35.684Z"
+}
