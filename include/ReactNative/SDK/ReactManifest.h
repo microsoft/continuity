@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Continuity/ReactApi.h>
+#include <ReactNative/SDK/ReactApi.h>
 
-namespace Microsoft::React
+namespace Microsoft::ReactNative
 {
 
 struct IManifestBundle : IRefCounted

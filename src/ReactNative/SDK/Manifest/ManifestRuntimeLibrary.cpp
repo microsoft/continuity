@@ -1,7 +1,7 @@
 #include "DynamicReader.h"
 #include "ManifestRuntimeLibrary.h"
 
-namespace Microsoft::React
+namespace Microsoft::ReactNative
 {
 
 constexpr const char* const c_RuntimeLibraryNameProperty = "name";

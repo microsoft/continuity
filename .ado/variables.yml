@@ -1,6 +1,6 @@
 variables:
   BuildWindowsSDK: 10.0.18362.0
-  NugetArtifactId: Microsoft.Continuity
+  NugetArtifactId: Microsoft.ReactNative.SDK
   runCodesignValidationInjection: false
   skipComponentGovernanceDetection: true
 #  system.debug: true

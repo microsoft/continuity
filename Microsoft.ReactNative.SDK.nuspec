@@ -3,7 +3,7 @@
     <metadata>
         <id>$id$</id>
         <version>$version$</version>
-        <description>Libraries, tools and documentation for using react-native in native applications.</description>
+        <description>A platform that makes it easy to blend react-native components into your native application.</description>
         <authors>Microsoft</authors>
         <projectUrl>https://github.com/microsoft/continuity</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>

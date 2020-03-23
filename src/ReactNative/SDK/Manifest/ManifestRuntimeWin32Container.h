@@ -2,12 +2,12 @@
 
 #include <optional>
 
-#include <Continuity/ReactManifest.h>
+#include <ReactNative/SDK/ReactManifest.h>
 #include <folly/dynamic.h>
 
 #include "stubs/Mso.h"
 
-namespace Microsoft::React
+namespace Microsoft::ReactNative
 {
 
 class ManifestWin32Dialog final : public Mso::RefCountedObject<IManifestWin32Dialog>

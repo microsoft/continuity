@@ -1,7 +1,7 @@
 #include "DynamicReader.h"
 #include "Manifest/ManifestPackager.h"
 
-namespace Microsoft::React
+namespace Microsoft::ReactNative
 {
 
 constexpr const char* const c_PackagerEnvironmentDevelopment = "development";

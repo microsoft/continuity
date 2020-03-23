@@ -4,7 +4,7 @@
 #include "DynamicReader.h"
 #include "Manifest/Manifest.h"
 
-namespace Microsoft::React
+namespace Microsoft::ReactNative
 {
 
 Manifest::Manifest(ManifestSource source, Mso::TCntRef<ManifestComponentCollection>&& components,

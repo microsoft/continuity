@@ -3,7 +3,7 @@
 #include "DynamicReader.h"
 #include "Manifest/ManifestComponent.h"
 
-namespace Microsoft::React
+namespace Microsoft::ReactNative
 {
 
 ManifestComponent::ManifestComponent(std::string&& name, std::string&& displayName,

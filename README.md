@@ -1,10 +1,10 @@
-# Continuity
+# Microsoft React-Native SDK
 
-Continuity is a platform for using react-native within a native application.
+A platform that makes it easy to blend react-native components into your native application.
 
 ## Building
 
-Continuity uses [CMake](https://cmake.org) and [Ninja](https://ninja-build.org).
+The build is based on [CMake](https://cmake.org) and [Ninja](https://ninja-build.org).
 
 ### Windows
 
