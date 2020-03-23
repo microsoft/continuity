@@ -2,6 +2,20 @@
   "name": "@microsoft/react-native-sdk",
   "entries": [
     {
+      "date": "Mon, 23 Mar 2020 08:04:59 GMT",
+      "tag": "@microsoft/react-native-sdk_v1.1.0",
+      "version": "1.1.0",
+      "comments": {
+        "none": [
+          {
+            "comment": "Add scripts for building and testing.",
+            "author": "adam@thefoxmans.net",
+            "commit": "25c33aefb51cd5a2bc48b0434202f9c0c30ec950"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 23 Mar 2020 04:31:17 GMT",
       "tag": "@microsoft/react-native-sdk_v1.1.0",
       "version": "1.1.0",
