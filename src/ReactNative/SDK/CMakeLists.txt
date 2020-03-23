@@ -25,50 +25,50 @@ list(APPEND SOURCES
     Manifest/ManifestRuntimeWin32.cpp
     Manifest/ManifestRuntimeWin32Container.cpp)
 
-add_library(Microsoft.ReactNative.SDK SHARED)
+add_library(react-native-sdk SHARED)
 
-target_sources(Microsoft.ReactNative.SDK
+target_sources(react-native-sdk
     PUBLIC
         ${HEADERS}
     PRIVATE
         ${HEADERS_INTERNAL}
         ${SOURCES})
 
-target_compile_definitions(Microsoft.ReactNative.SDK
+target_compile_definitions(react-native-sdk
     PRIVATE
         ${PROJECT_COMPILE_DEFINITIONS}
         MICROSOFT_REACT_BUILD)
 
-target_include_directories(Microsoft.ReactNative.SDK
+target_include_directories(react-native-sdk
     PUBLIC
         ${INC_ROOT}
     PRIVATE
         ${BOOST_ROOT}/include
         ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(Microsoft.ReactNative.SDK
+target_link_libraries(react-native-sdk
     PRIVATE
         folly
         Mso::object
         Mso::smartPtr)
 
-target_link_options(Microsoft.ReactNative.SDK
+target_link_options(react-native-sdk
     PUBLIC
-        $<$<PLATFORM_ID:Windows>:/DEF:${CMAKE_CURRENT_SOURCE_DIR}/Microsoft.ReactNative.SDK.${PLATFORM}.def>)
+        $<$<PLATFORM_ID:Windows>:/DEF:${CMAKE_CURRENT_SOURCE_DIR}/react-native-sdk.${PLATFORM}.def>)
 
 install(FILES ${HEADERS}
     DESTINATION include/ReactNative/SDK
     COMPONENT dist)
 
-install(TARGETS Microsoft.ReactNative.SDK
+install(TARGETS react-native-sdk
     DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
     COMPONENT dist)
 
-install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Microsoft.ReactNative.SDK.${PLATFORM}.def>
+install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/react-native-sdk.${PLATFORM}.def>
     DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
-    RENAME Microsoft.ReactNative.SDK.def
+    RENAME react-native-sdk.def
     COMPONENT dist)
 
-install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_BINARY_DIR}/Microsoft.ReactNative.SDK.pdb>
+install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_BINARY_DIR}/react-native-sdk.pdb>
     DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
     COMPONENT dist)

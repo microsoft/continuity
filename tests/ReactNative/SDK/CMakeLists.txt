@@ -6,7 +6,7 @@ target_compile_definitions(ManifestTests
 
 target_link_libraries(ManifestTests
     PUBLIC
-        Continuity
+        react-native-sdk
     PRIVATE
         gmock
         gtest_main)

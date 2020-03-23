@@ -4,7 +4,7 @@ message(STATUS "CMake Source: ${CMAKE_SOURCE_DIR}")
 message(STATUS "CMake Binary: ${CMAKE_BINARY_DIR}")
 
 project(
-    MicrosoftReactNativeSDK
+    Microsoft.ReactNative.SDK
     HOMEPAGE_URL "https://github.com/microsoft/continuity"
     LANGUAGES C CXX)
 
