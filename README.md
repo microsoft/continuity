@@ -22,47 +22,11 @@ choco install visualstudio2019-workload-universalbuildtools
 
 3. Download [NuGet](https://www.nuget.org/downloads). Choose the command-line version. Add it to your PATH.
 
-4. Generate Ninja build scripts
+4. Run the build
 
 ```
-"%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
-
-cmake -B build\Debug\x86 -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
-cmake -B build\Release\x86 -S . -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
-
-"%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
-
-cmake -B build\Debug\x64 -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
-cmake -B build\Release\x64 -S . -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
-```
-
-5. Run the build
-
-```
-"%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86
-
-cmake --build build\Debug\x86
-cmake --install build\Debug\x86 --prefix dist --component dist
-
-cmake --build build\Release\x86
-cmake --install build\Release\x86 --prefix dist --component dist
-
-"%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
-
-cmake --build build\Debug\x64
-cmake --install build\Debug\x64 --prefix dist --component dist
-
-cmake --build build\Release\x64
-cmake --install build\Release\x64 --prefix dist --component dist
-```
-
-6. Run tests
-
-```
-dist\Debug\x86\ManifestTests
-dist\Release\x86\ManifestTests
-dist\Debug\x64\ManifestTests
-dist\Release\x64\ManifestTests
+scripts\build-windows.cmd
+scripts\test-windows.cmd
 ```
 
 ## Contributing
