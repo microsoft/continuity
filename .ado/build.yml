@@ -99,9 +99,18 @@ stages:
 
           - task: NuGetToolInstaller@1
 
-          - script: nuget pack $(Build.SourcesDirectory)/Microsoft.ReactNative.SDK.nuspec -BasePath $(Pipeline.Workspace)/Windows-Dist -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -OutputDirectory $(Pipeline.Workspace)/Windows-Nuget -Verbosity detailed -NonInteractive
+          - task: NuGetCommand@2
             displayName: Create NuGet package
-            workingDirectory: $(Pipeline.Workspace)/Windows-Nuget
+            inputs:
+              command: 'pack'
+              packagesToPack: '$(Build.SourcesDirectory)/Microsoft.ReactNative.SDK.nuspec'
+              packDestination: '$(Pipeline.Workspace)/Windows-Nuget'
+              versioningScheme: 'off'
+              buildProperties: 'commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)'
+              basePath: '$(Pipeline.Workspace)/Windows-Dist'
+
+          #- script: nuget pack $(Build.SourcesDirectory)/Microsoft.ReactNative.SDK.nuspec -BasePath -Properties "commit=$(Build.SourceVersion);id=$(NugetArtifactId);version=$(PackageVersion)" -OutputDirectory $(Pipeline.Workspace)/Windows-Nuget -Verbosity detailed -NonInteractive
+          #  displayName: Create NuGet package
 
           - task: PublishPipelineArtifact@1
             displayName: Publish NuGet artifact
@@ -111,11 +120,11 @@ stages:
 
           - task: NuGetAuthenticate@0
             displayName: 'NuGet authentication'
-            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
+            #condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
 
           - task: NuGetCommand@2
             displayName: 'Push NuGet to react-native feed'
-            condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
+            #condition: ne(variables.PackageVersion, variables.PreviousPackageVersion)
             inputs:
               command: push
               packagesToPush: '$(Pipeline.Workspace)/Windows-Nuget/*.nupkg'
