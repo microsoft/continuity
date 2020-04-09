@@ -1,7 +1,13 @@
 # Change Log - @microsoft/react-native-sdk
 
-This log was last generated on Mon, 23 Mar 2020 04:31:17 GMT and should not be manually modified.
+This log was last generated on Thu, 09 Apr 2020 01:47:15 GMT and should not be manually modified.
 
+## 1.1.1
+Thu, 09 Apr 2020 01:47:15 GMT
+
+### Patches
+
+- Use modern CMake techniques to configure individual targets, rather than overriding compiler/linker flags. Expand the build logic to include the notion of a Win32 build, in preparation for introducing UWP, iOS, macOS, and Android builds later. Update to the latest Mso which has a lot of fixes and new code. (adam@thefoxmans.net)
 ## 1.1.0
 Mon, 23 Mar 2020 04:31:17 GMT
 
