@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": "Use modern CMake techniques to configure individual targets, rather than overriding compiler/linker flags. Expand the build logic to include the notion of a Win32 build, in preparation for introducing UWP, iOS, macOS, and Android builds later. Update to the latest Mso which has a lot of fixes and new code.",
+  "packageName": "@microsoft/react-native-sdk",
+  "email": "adam@thefoxmans.net",
+  "commit": "025b1b2042d0b0df1bdc4d7f883eb3546ad57c77",
+  "dependentChangeType": "patch",
+  "date": "2020-04-09T01:21:59.631Z"
+}
