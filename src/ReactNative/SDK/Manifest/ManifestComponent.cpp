@@ -29,7 +29,7 @@ const char* ManifestComponent::GetBackgroundColor() const noexcept
 }
 
 
-Mso::TCntRef<ManifestComponent> ReadManifestComponent(const folly::dynamic& componentName,
+Mso::CntPtr<ManifestComponent> ReadManifestComponent(const folly::dynamic& componentName,
     const folly::dynamic& componentData, ReactError& error) noexcept
 {
     if (!componentName.isString() || componentName.getString().empty())
@@ -50,12 +50,12 @@ Mso::TCntRef<ManifestComponent> ReadManifestComponent(const folly::dynamic& comp
         GetDynamicString(componentData, "backgroundColor", "#ffffff"));
 
     error = ReactError::Success;
-    return Mso::TCntRef<ManifestComponent>{*component.Detach(), false};
+    return Mso::CntPtr<ManifestComponent>{component.Detach(), Mso::AttachTag};
 }
 
 
 ManifestComponentCollection::ManifestComponentCollection(
-    std::vector<Mso::TCntRef<ManifestComponent>>&& components) noexcept
+    std::vector<Mso::CntPtr<ManifestComponent>>&& components) noexcept
     : _components{std::move(components)}
 {
 }
@@ -69,7 +69,7 @@ IManifestComponent* ManifestComponentCollection::GetComponent(uint32_t index) co
 {
     if (index < _components.size())
     {
-        return _components[index].Ptr();
+        return _components[index].Get();
     }
     return nullptr;
 }
@@ -78,7 +78,7 @@ IManifestComponent* ManifestComponentCollection::FindComponent(
     const char* name) const noexcept
 {
     auto iter = std::find_if(_components.begin(), _components.end(),
-        [name](const Mso::TCntRef<ManifestComponent>& component) noexcept
+        [name](const Mso::CntPtr<ManifestComponent>& component) noexcept
         {
             return 0 == std::strcmp(component->GetName(), name);
         }
@@ -86,14 +86,14 @@ IManifestComponent* ManifestComponentCollection::FindComponent(
 
     if (_components.end() != iter)
     {
-        return iter->Ptr();
+        return iter->Get();
     }
 
     return nullptr;
 }
 
 
-Mso::TCntRef<ManifestComponentCollection> ReadManifestComponentCollection(
+Mso::CntPtr<ManifestComponentCollection> ReadManifestComponentCollection(
     const folly::dynamic* collectionData, ReactError& error) noexcept
 {
     if (!collectionData || !collectionData->isObject())
@@ -102,7 +102,7 @@ Mso::TCntRef<ManifestComponentCollection> ReadManifestComponentCollection(
         return {};
     }
 
-    std::vector<Mso::TCntRef<ManifestComponent>> components;
+    std::vector<Mso::CntPtr<ManifestComponent>> components;
 
     for (const auto& componentData : collectionData->items())
     {
@@ -117,7 +117,7 @@ Mso::TCntRef<ManifestComponentCollection> ReadManifestComponentCollection(
     auto collection = Mso::Make<ManifestComponentCollection>(std::move(components));
 
     error = ReactError::Success;
-    return Mso::TCntRef<ManifestComponentCollection>{*collection.Detach(), false};
+    return Mso::CntPtr<ManifestComponentCollection>{collection.Detach(), Mso::AttachTag};
 }
 
 }

@@ -1,7 +1,3 @@
-##
-## Build a single slice, such as Debug x64, or Release x86.
-## Optionally publishes the result as a pipeline artifact.
-##
 parameters:
   - name: DependsOn
     type: string
@@ -24,18 +20,22 @@ jobs:
     vmImage: 'windows-2019'
   strategy:
     matrix:
-      X64Debug:
-        BuildConfiguration: Debug
-        BuildPlatform: x64
-      X64Release:
-        BuildConfiguration: Release
-        BuildPlatform: x64
-      X86Debug:
-        BuildConfiguration: Debug
-        BuildPlatform: x86
-      X86Release:
-        BuildConfiguration: Release
-        BuildPlatform: x86
+      Win32_X64Debug:
+        BuildType: Debug
+        BuildSystem: Win32
+        BuildArch: x64
+      Win32_X64Release:
+        BuildType: Release
+        BuildSystem: Win32
+        BuildArch: x64
+      Win32_X86Debug:
+        BuildType: Debug
+        BuildSystem: Win32
+        BuildArch: x86
+      Win32_X86Release:
+        BuildType: Release
+        BuildSystem: Win32
+        BuildArch: x86
   steps:
     - checkout: self
       clean: false
@@ -47,35 +47,34 @@ jobs:
     - task: BatchScript@1
       displayName: Setup Visual C++ Environment
       inputs:
-        filename: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
-        arguments: $(BuildPlatform) $(BuildWindowsSDK)
+        filename: .ado\vcenv.bat
         modifyEnvironment: true
 
     - task: CMake@1
       displayName: Generate Ninja scripts
       inputs:
-        workingDirectory: $(Build.BinariesDirectory)/$(BuildConfiguration)/$(BuildPlatform)
-        cmakeArgs: -G Ninja -DCMAKE_BUILD_TYPE=$(BuildConfiguration) -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)\CMake\toolchain.windows.cmake $(Build.SourcesDirectory)
+        workingDirectory: $(Build.BinariesDirectory)/$(BuildType)/$(BuildSystem)/$(BuildArch)
+        cmakeArgs: -G Ninja -DCMAKE_BUILD_TYPE=$(BuildType) -DCMAKE_SYSTEM_NAME=Windows -DCMAKE_SYSTEM_VERSION=$(BuildWindowsSDK) $(Build.SourcesDirectory)
 
     - task: CMake@1
       displayName: Build
       inputs:
-        workingDirectory: $(Build.BinariesDirectory)/$(BuildConfiguration)/$(BuildPlatform)
+        workingDirectory: $(Build.BinariesDirectory)/$(BuildType)/$(BuildSystem)/$(BuildArch)
         cmakeArgs: --build .
 
     - task: CMake@1
       displayName: Stage built files
       inputs:
         workingDirectory: $(Pipeline.Workspace)
-        cmakeArgs: --install $(Build.BinariesDirectory)/$(BuildConfiguration)/$(BuildPlatform) --prefix dist --component dist
+        cmakeArgs: --install $(Build.BinariesDirectory)/$(BuildType)/$(BuildSystem)/$(BuildArch) --prefix dist --component dist
 
     - script: ManifestTests
-      displayName: Unit test - ManifestTests
-      workingDirectory: $(Pipeline.Workspace)/dist/$(BuildConfiguration)/$(BuildPlatform)
+      displayName: Tests - Manifest
+      workingDirectory: $(Pipeline.Workspace)/dist/$(BuildType)/$(BuildSystem)/$(BuildArch)
 
     - task: PublishPipelineArtifact@1
       displayName: Publish build artifact
       condition: ${{ parameters.ShouldPublish }}
       inputs:
         path: $(Pipeline.Workspace)/dist
-        artifactName: Windows-$(BuildConfiguration)-$(BuildPlatform)
+        artifactName: Windows-$(BuildType)-$(BuildArch)

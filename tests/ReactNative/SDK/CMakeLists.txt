@@ -1,18 +1,10 @@
-add_executable(ManifestTests ManifestTests.cpp)
 
-target_compile_definitions(ManifestTests
-    PRIVATE
-        ${PROJECT_COMPILE_DEFINITIONS})
+add_rnsdk_test(ManifestTests)
 
-target_link_libraries(ManifestTests
-    PUBLIC
-        react-native-sdk
-    PRIVATE
-        gmock
-        gtest_main)
+target_sources(ManifestTests PRIVATE ManifestTests.cpp)
 
-add_test(NAME ManifestTests COMMAND $<TARGET_FILE:ManifestTests>)
+target_link_libraries(ManifestTests PUBLIC react-native-sdk)
 
 install(TARGETS ManifestTests
-    DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
+    DESTINATION ${RNSDK_TARGET_TYPE}/${RNSDK_TARGET_PLATFORM}/${RNSDK_TARGET_ARCH}
     COMPONENT dist)

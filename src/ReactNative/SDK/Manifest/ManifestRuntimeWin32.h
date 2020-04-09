@@ -12,12 +12,12 @@ namespace Microsoft::ReactNative
 class ManifestRuntimeWin32 final : public Mso::RefCountedObject<IManifestRuntimeWin32>
 {
 public:
-    ManifestRuntimeWin32(Mso::TCntPtr<ManifestRuntimeWin32Container>&& container) noexcept;
+    ManifestRuntimeWin32(Mso::CntPtr<ManifestRuntimeWin32Container>&& container) noexcept;
 
     IManifestRuntimeWin32Container* GetContainer() const noexcept override;
 
 private:
-    Mso::TCntPtr<ManifestRuntimeWin32Container> _container;
+    Mso::CntPtr<ManifestRuntimeWin32Container> _container;
 };
 
 
@@ -28,7 +28,7 @@ private:
  *          "container": {...}
  *      }
  */
-Mso::TCntPtr<ManifestRuntimeWin32> ReadManifestRuntimeWin32(const folly::dynamic* win32Data,
+Mso::CntPtr<ManifestRuntimeWin32> ReadManifestRuntimeWin32(const folly::dynamic* win32Data,
     ReactError& error) noexcept;
 
 }

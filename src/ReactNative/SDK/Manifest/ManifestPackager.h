@@ -45,7 +45,7 @@ private:
  *  If the packager configuration is invalid or missing, a default configuration
  *  is created. See individual accessors for default values.
  */
-Mso::TCntRef<ManifestPackager> ReadManifestPackager(const folly::dynamic* packagerData,
+Mso::CntPtr<ManifestPackager> ReadManifestPackager(const folly::dynamic* packagerData,
     const std::string& defaultFileName, const std::string& defaultExtension,
     ReactError& error) noexcept;
 

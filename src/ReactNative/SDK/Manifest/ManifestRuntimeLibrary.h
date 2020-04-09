@@ -50,7 +50,7 @@ private:
  *          }
  *      ]
  */
-Mso::TCntRef<ManifestRuntimeLibrary> ReadManifestRuntimeLibrary(
+Mso::CntPtr<ManifestRuntimeLibrary> ReadManifestRuntimeLibrary(
     const folly::dynamic& libraryData, ReactError& error) noexcept;
 
 
@@ -58,13 +58,13 @@ class ManifestRuntimeLibraryCollection final : public Mso::RefCountedObject<IMan
 {
 public:
     ManifestRuntimeLibraryCollection(
-        std::vector<Mso::TCntRef<ManifestRuntimeLibrary>>&& libraries) noexcept;
+        std::vector<Mso::CntPtr<ManifestRuntimeLibrary>>&& libraries) noexcept;
 
     uint32_t GetCount() const noexcept override;
     IManifestRuntimeLibrary* GetLibrary(uint32_t index) const noexcept override;
 
 private:
-    std::vector<Mso::TCntRef<ManifestRuntimeLibrary>> _libraries;
+    std::vector<Mso::CntPtr<ManifestRuntimeLibrary>> _libraries;
 };
 
 
@@ -73,7 +73,7 @@ private:
  *
  *      "libraries": [ ... ]
  */
-Mso::TCntRef<ManifestRuntimeLibraryCollection> ReadManifestRuntimeLibraryCollection(
+Mso::CntPtr<ManifestRuntimeLibraryCollection> ReadManifestRuntimeLibraryCollection(
     const folly::dynamic* collectionData, ReactError& error) noexcept;
 
 }

@@ -25,20 +25,20 @@ const char* ManifestBundle::GetExtension() const noexcept
     return _extension.c_str();
 }
 
-Mso::TCntRef<ManifestBundle> ReadManifestBundle(const folly::dynamic* bundleData) noexcept
+Mso::CntPtr<ManifestBundle> ReadManifestBundle(const folly::dynamic* bundleData) noexcept
 {
     if (bundleData && bundleData->isObject())
     {
         auto bundle = Mso::Make<ManifestBundle>(
             GetDynamicString(*bundleData, c_BundleFileNameProperty, c_BundleFileNameDefault),
             GetDynamicString(*bundleData, c_BundleExtensionProperty, c_BundleExtensionDefault));
-        return Mso::TCntRef<ManifestBundle>{*bundle.Detach(), false};
+        return Mso::CntPtr<ManifestBundle>{bundle.Detach(), Mso::AttachTag};
     }
 
     //  Provide a default bundle configuration.
     auto bundle = Mso::Make<ManifestBundle>(std::string{c_BundleFileNameDefault},
         std::string{c_BundleExtensionDefault});
-    return Mso::TCntRef<ManifestBundle>{*bundle.Detach(), false};
+    return Mso::CntPtr<ManifestBundle>{bundle.Detach(), Mso::AttachTag};
 }
 
 }

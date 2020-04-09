@@ -7,10 +7,10 @@
 namespace Microsoft::ReactNative
 {
 
-Manifest::Manifest(ManifestSource source, Mso::TCntRef<ManifestComponentCollection>&& components,
-    Mso::TCntRef<ManifestRuntime>&& runtime, std::string&& assetsPath,
-    Mso::TCntRef<ManifestBundle>&& bundle,
-    Mso::TCntRef<ManifestPackager>&& packager, std::string&& webDebugHost) noexcept
+Manifest::Manifest(ManifestSource source, Mso::CntPtr<ManifestComponentCollection>&& components,
+    Mso::CntPtr<ManifestRuntime>&& runtime, std::string&& assetsPath,
+    Mso::CntPtr<ManifestBundle>&& bundle,
+    Mso::CntPtr<ManifestPackager>&& packager, std::string&& webDebugHost) noexcept
     :   _source{source}, _components{std::move(components)}, _runtime{std::move(runtime)},
         _assetsPath{std::move(assetsPath)}, _bundle{std::move(bundle)}, _packager{std::move(packager)},
         _webDebugHost{std::move(webDebugHost)}
@@ -24,12 +24,12 @@ ManifestSource Manifest::GetSource() const noexcept
 
 IManifestComponentCollection& Manifest::GetComponents() const noexcept
 {
-    return _components.Get();
+    return *_components;
 }
 
 IManifestRuntime& Manifest::GetRuntime() const noexcept
 {
-    return _runtime.Get();
+    return *_runtime;
 }
 
 const char* Manifest::GetAssetsPath() const noexcept
@@ -39,12 +39,12 @@ const char* Manifest::GetAssetsPath() const noexcept
 
 IManifestBundle& Manifest::GetBundle() const noexcept
 {
-    return _bundle.Get();
+    return *_bundle;
 }
 
 IManifestPackager& Manifest::GetPackager() const noexcept
 {
-    return _packager.Get();
+    return *_packager;
 }
 
 const char* Manifest::GetWebDebugHost() const noexcept

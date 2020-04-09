@@ -22,8 +22,8 @@ constexpr const char* const c_RuntimeWin32Property = "win32";
 
 
 ManifestRuntime::ManifestRuntime(bool devMode, bool attachToWebDebugger, bool liveReload,
-    Mso::TCntRef<ManifestRuntimeLibraryCollection>&& libraries,
-    bool byteCodeCaching, Mso::TCntPtr<ManifestRuntimeWin32>&& win32) noexcept
+    Mso::CntPtr<ManifestRuntimeLibraryCollection>&& libraries,
+    bool byteCodeCaching, Mso::CntPtr<ManifestRuntimeWin32>&& win32) noexcept
     : _devMode{devMode}, _attachToWebDebugger{attachToWebDebugger}, _liveReload{liveReload},
     _libraries{std::move(libraries)}, _byteCodeCaching{byteCodeCaching},
     _win32{std::move(win32)}
@@ -47,7 +47,7 @@ bool ManifestRuntime::GetLiveReload() const noexcept
 
 IManifestRuntimeLibraryCollection& ManifestRuntime::GetLibraries() const noexcept
 {
-    return _libraries.Get();
+    return *_libraries;
 }
 
 bool ManifestRuntime::GetByteCodeCaching() const noexcept
@@ -61,7 +61,7 @@ IManifestRuntimeWin32* ManifestRuntime::GetWin32() const noexcept
 }
 
 
-Mso::TCntRef<ManifestRuntime> ReadManifestRuntime(const folly::dynamic* runtimeData,
+Mso::CntPtr<ManifestRuntime> ReadManifestRuntime(const folly::dynamic* runtimeData,
     ReactError& error) noexcept
 {
     if (runtimeData && runtimeData->isObject())
@@ -88,17 +88,17 @@ Mso::TCntRef<ManifestRuntime> ReadManifestRuntime(const folly::dynamic* runtimeD
             std::move(win32));
 
         error = ReactError::Success;
-        return Mso::TCntRef<ManifestRuntime>{*runtime.Detach(), false};
+        return Mso::CntPtr<ManifestRuntime>{runtime.Detach(), Mso::AttachTag};
     }
 
     //	Provide a default runtime configuration.
     auto runtime = Mso::Make<ManifestRuntime>(
         c_RuntimeDevModeDefault, c_RuntimeAttachToWebDebuggerDefault,
-        c_RuntimeLiveReloadDefault, Mso::TCntRef<ManifestRuntimeLibraryCollection>{},
-        c_RuntimeByteCodeCachingDefault, Mso::TCntPtr<ManifestRuntimeWin32>{});
+        c_RuntimeLiveReloadDefault, Mso::CntPtr<ManifestRuntimeLibraryCollection>{},
+        c_RuntimeByteCodeCachingDefault, Mso::CntPtr<ManifestRuntimeWin32>{});
 
     error = ReactError::Success;
-    return Mso::TCntRef<ManifestRuntime>{*runtime.Detach(), false};
+    return Mso::CntPtr<ManifestRuntime>{runtime.Detach(), Mso::AttachTag};
 }
 
 }

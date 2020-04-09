@@ -40,21 +40,21 @@ private:
  *          "backgroundColor": "#1E90FF"
  *      }
  */
-Mso::TCntRef<ManifestComponent> ReadManifestComponent(const folly::dynamic& componentName,
+Mso::CntPtr<ManifestComponent> ReadManifestComponent(const folly::dynamic& componentName,
     const folly::dynamic& componentData, ReactError& error) noexcept;
 
 
 class ManifestComponentCollection final : public Mso::RefCountedObject<IManifestComponentCollection>
 {
 public:
-    ManifestComponentCollection(std::vector<Mso::TCntRef<ManifestComponent>>&& components) noexcept;
+    ManifestComponentCollection(std::vector<Mso::CntPtr<ManifestComponent>>&& components) noexcept;
 
     uint32_t GetCount() const noexcept override;
     IManifestComponent* GetComponent(uint32_t index) const noexcept override;
     IManifestComponent* FindComponent(const char* name) const noexcept override;
 
 private:
-    std::vector<Mso::TCntRef<ManifestComponent>> _components;
+    std::vector<Mso::CntPtr<ManifestComponent>> _components;
 };
 
 
@@ -63,7 +63,7 @@ private:
  *
  *      "components": [ ... ]
  */
-Mso::TCntRef<ManifestComponentCollection> ReadManifestComponentCollection(
+Mso::CntPtr<ManifestComponentCollection> ReadManifestComponentCollection(
     const folly::dynamic* collectionData, ReactError& error) noexcept;
 
 }

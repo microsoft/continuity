@@ -7,11 +7,11 @@
 
 #ifndef MICROSOFT_REACT_EXPORT
 #if defined(WIN32)
-#if defined(MICROSOFT_REACT_BUILD)
+#if defined(react_native_sdk_EXPORTS)
 #define MICROSOFT_REACT_EXPORT __declspec(dllexport)
-#else // !MICROSOFT_REACT_BUILD
+#else // !react_native_sdk_EXPORTS
 #define MICROSOFT_REACT_EXPORT __declspec(dllimport)
-#endif // MICROSOFT_REACT_BUILD
+#endif // react_native_sdk_EXPORTS
 #else // !WIN32
 #define MICROSOFT_REACT_EXPORT
 #endif // WIN32
