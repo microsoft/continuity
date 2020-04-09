@@ -22,14 +22,14 @@ include(FetchContent)
 ### External dependencies
 
 # boost
-if("$ENV{BOOST_ROOT}" STREQUAL "")
-    nuget(install boost -Version 1.68.0.0 -Framework native -OutputDirectory ${RNSDK_NUGET_ROOT} -NonInteractive)
-    set(BOOST_ROOT ${RNSDK_NUGET_ROOT}/boost.1.68.0.0/lib/native)
+if("$ENV{BOOST_ROOT_1_72_0}" STREQUAL "")
+    nuget(install boost -Version 1.72.0.0 -Framework native -OutputDirectory ${RNSDK_NUGET_ROOT} -NonInteractive)
+    set(BOOST_ROOT ${RNSDK_NUGET_ROOT}/boost.1.72.0.0/lib/native)
 else()
-    if(EXISTS $ENV{BOOST_ROOT}/lib/native)
-        set(BOOST_ROOT $ENV{BOOST_ROOT}/lib/native)
+    if(EXISTS $ENV{BOOST_ROOT_1_72_0}/lib/native)
+        set(BOOST_ROOT $ENV{BOOST_ROOT_1_72_0}/lib/native)
     else()
-        set(BOOST_ROOT $ENV{BOOST_ROOT})
+        set(BOOST_ROOT $ENV{BOOST_ROOT_1_72_0})
     endif()
 endif()
 list(APPEND RNSDK_COMPILE_DEFINITIONS
