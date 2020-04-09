@@ -34,7 +34,7 @@ const char* ManifestRuntimeLibrary::GetPath() const noexcept
 }
 
 
-Mso::TCntRef<ManifestRuntimeLibrary> ReadManifestRuntimeLibrary(
+Mso::CntPtr<ManifestRuntimeLibrary> ReadManifestRuntimeLibrary(
     const folly::dynamic& libraryData, ReactError& error) noexcept
 {
     if (libraryData.isString())
@@ -49,7 +49,7 @@ Mso::TCntRef<ManifestRuntimeLibrary> ReadManifestRuntimeLibrary(
         auto library = Mso::Make<ManifestRuntimeLibrary>(std::move(name));
 
         error = ReactError::Success;
-        return Mso::TCntRef<ManifestRuntimeLibrary>{*library.Detach(), false};
+        return Mso::CntPtr<ManifestRuntimeLibrary>{library.Detach(), Mso::AttachTag};
     }
 
     if (libraryData.isObject())
@@ -74,13 +74,13 @@ Mso::TCntRef<ManifestRuntimeLibrary> ReadManifestRuntimeLibrary(
                 std::string{pathObject->getString()});
 
             error = ReactError::Success;
-            return Mso::TCntRef<ManifestRuntimeLibrary>{*library.Detach(), false};
+            return Mso::CntPtr<ManifestRuntimeLibrary>{library.Detach(), Mso::AttachTag};
         }
 
         auto library = Mso::Make<ManifestRuntimeLibrary>(std::move(name));
 
         error = ReactError::Success;
-        return Mso::TCntRef<ManifestRuntimeLibrary>{*library.Detach(), false};
+        return Mso::CntPtr<ManifestRuntimeLibrary>{library.Detach(), Mso::AttachTag};
     }
 
     error = ReactError::ManifestLibraryInvalid;
@@ -89,7 +89,7 @@ Mso::TCntRef<ManifestRuntimeLibrary> ReadManifestRuntimeLibrary(
 
 
 ManifestRuntimeLibraryCollection::ManifestRuntimeLibraryCollection(
-    std::vector<Mso::TCntRef<ManifestRuntimeLibrary>>&& libraries) noexcept
+    std::vector<Mso::CntPtr<ManifestRuntimeLibrary>>&& libraries) noexcept
     : _libraries{std::move(libraries)}
 {
 }
@@ -104,16 +104,16 @@ IManifestRuntimeLibrary* ManifestRuntimeLibraryCollection::GetLibrary(
 {
     if (index < _libraries.size())
     {
-        return _libraries[index].Ptr();
+        return _libraries[index].Get();
     }
     return nullptr;
 }
 
 
-Mso::TCntRef<ManifestRuntimeLibraryCollection> ReadManifestRuntimeLibraryCollection(
+Mso::CntPtr<ManifestRuntimeLibraryCollection> ReadManifestRuntimeLibraryCollection(
     const folly::dynamic* collectionData, ReactError& error) noexcept
 {
-    std::vector<Mso::TCntRef<ManifestRuntimeLibrary>> libraries;
+    std::vector<Mso::CntPtr<ManifestRuntimeLibrary>> libraries;
 
     if (collectionData && collectionData->isArray())
     {
@@ -131,7 +131,7 @@ Mso::TCntRef<ManifestRuntimeLibraryCollection> ReadManifestRuntimeLibraryCollect
     auto collection = Mso::Make<ManifestRuntimeLibraryCollection>(std::move(libraries));
 
     error = ReactError::Success;
-    return Mso::TCntRef<ManifestRuntimeLibraryCollection>{*collection.Detach(), false};
+    return Mso::CntPtr<ManifestRuntimeLibraryCollection>{collection.Detach(), Mso::AttachTag};
 }
 
 }

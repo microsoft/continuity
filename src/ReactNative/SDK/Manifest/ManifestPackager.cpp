@@ -55,7 +55,7 @@ bool ManifestPackager::GetMinify() const noexcept
 }
 
 
-Mso::TCntRef<ManifestPackager> ReadManifestPackager(const folly::dynamic* packagerData,
+Mso::CntPtr<ManifestPackager> ReadManifestPackager(const folly::dynamic* packagerData,
     const std::string& defaultFileName, const std::string& defaultExtension,
     ReactError& error) noexcept
 {
@@ -86,7 +86,7 @@ Mso::TCntRef<ManifestPackager> ReadManifestPackager(const folly::dynamic* packag
             GetDynamicBool(*packagerData, c_PackagerMinifyProperty, c_PackagerMinifyDefault));
 
         error = ReactError::Success;
-        return Mso::TCntRef<ManifestPackager>{*packager.Detach(), false};
+        return Mso::CntPtr<ManifestPackager>{packager.Detach(), Mso::AttachTag};
     }
 
     //  Provide a default packager configuration.
@@ -95,7 +95,7 @@ Mso::TCntRef<ManifestPackager> ReadManifestPackager(const folly::dynamic* packag
         c_PackagerMinifyDefault);
 
     error = ReactError::Success;
-    return Mso::TCntRef<ManifestPackager>{*packager.Detach(), false};
+    return Mso::CntPtr<ManifestPackager>{packager.Detach(), Mso::AttachTag};
 }
 
 }

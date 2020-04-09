@@ -35,6 +35,6 @@ private:
  *  If bundle info is missing, default bundle info is provided.
  *  See individual accessors for default values.
  */
-Mso::TCntRef<ManifestBundle> ReadManifestBundle(const folly::dynamic* bundleData) noexcept;
+Mso::CntPtr<ManifestBundle> ReadManifestBundle(const folly::dynamic* bundleData) noexcept;
 
 }

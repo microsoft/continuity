@@ -16,10 +16,10 @@ namespace Microsoft::ReactNative
 class Manifest final : public Mso::RefCountedObject<IManifest>
 {
 public:
-    Manifest(ManifestSource source, Mso::TCntRef<ManifestComponentCollection>&& components,
-        Mso::TCntRef<ManifestRuntime>&& runtime, std::string&& assetsPath,
-        Mso::TCntRef<ManifestBundle>&& bundle,
-        Mso::TCntRef<ManifestPackager>&& packager, std::string&& webDebugHost) noexcept;
+    Manifest(ManifestSource source, Mso::CntPtr<ManifestComponentCollection>&& components,
+        Mso::CntPtr<ManifestRuntime>&& runtime, std::string&& assetsPath,
+        Mso::CntPtr<ManifestBundle>&& bundle,
+        Mso::CntPtr<ManifestPackager>&& packager, std::string&& webDebugHost) noexcept;
 
     ManifestSource GetSource() const noexcept override;
     IManifestComponentCollection& GetComponents() const noexcept override;
@@ -31,11 +31,11 @@ public:
 
 private:
     ManifestSource _source;
-    Mso::TCntRef<ManifestComponentCollection> _components;
-    Mso::TCntRef<ManifestRuntime> _runtime;
+    Mso::CntPtr<ManifestComponentCollection> _components;
+    Mso::CntPtr<ManifestRuntime> _runtime;
     std::string _assetsPath;
-    Mso::TCntRef<ManifestBundle> _bundle;
-    Mso::TCntRef<ManifestPackager> _packager;
+    Mso::CntPtr<ManifestBundle> _bundle;
+    Mso::CntPtr<ManifestPackager> _packager;
     std::string _webDebugHost;
 };
 

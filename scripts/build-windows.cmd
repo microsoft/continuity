@@ -10,19 +10,48 @@ IF NOT EXIST %VCVARSALL_BAT% set VCVARSALL_BAT="%ProgramFiles(x86)%\Microsoft Vi
 IF NOT EXIST %VCVARSALL_BAT% set VCVARSALL_BAT="%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
 IF NOT EXIST %VCVARSALL_BAT% GOTO NoBuildTools
 
-CALL :RunGenerate
+CALL :RunArch x86
 SET EL=%ERRORLEVEL%
 IF NOT "%EL%"=="0" EXIT /b %EL%
 
-CALL :RunBuild
+CALL :RunArch x64
 SET EL=%ERRORLEVEL%
 IF NOT "%EL%"=="0" EXIT /b %EL%
 
-CALL :RunInstall
-SET EL=%ERRORLEVEL%
-IF NOT "%EL%"=="0" EXIT /b %EL%
-
+ECHO.
 ECHO [[ Success ]]
+EXIT /b 0
+
+
+REM ############################
+REM ##
+REM ##  Toolchain architecture
+REM ##
+REM ############################
+
+:RunArch
+SETLOCAL
+ECHO.
+ECHO [[ Preparing the environment with %1 build tools ]]
+ECHO.
+SET VSCMD_ARG_TGT_ARCH=not-set
+CALL %VCVARSALL_BAT% %1
+IF NOT "%VSCMD_ARG_TGT_ARCH%"=="%1" GOTO VCVarsError
+
+IF %WindowsSDKVersion:~-1%==\ SET WindowsSDKVersion=%WindowsSDKVersion:~0,-1%
+
+CALL :RunGenerate %1
+SET EL=%ERRORLEVEL%
+IF NOT "%EL%"=="0" EXIT /b %EL%
+
+CALL :RunBuild %1
+SET EL=%ERRORLEVEL%
+IF NOT "%EL%"=="0" EXIT /b %EL%
+
+CALL :RunInstall %1
+SET EL=%ERRORLEVEL%
+IF NOT "%EL%"=="0" EXIT /b %EL%
+
 EXIT /b 0
 
 
@@ -34,33 +63,11 @@ REM ##
 REM ############################
 
 :RunGenerate
-CALL :RunGeneratePlatform x86
-SET EL=%ERRORLEVEL%
-IF NOT "%EL%"=="0" EXIT /b %EL%
-ECHO.
-
-CALL :RunGeneratePlatform x64
-SET EL=%ERRORLEVEL%
-IF NOT "%EL%"=="0" EXIT /b %EL%
-ECHO.
-
-EXIT /b 0
-
-
-:RunGeneratePlatform
-SETLOCAL
-ECHO.
-ECHO [[ Preparing the environment with %1 build tools ]]
-ECHO.
-SET VSCMD_ARG_TGT_ARCH=not-set
-CALL %VCVARSALL_BAT% %1
-IF NOT "%VSCMD_ARG_TGT_ARCH%"=="%1" GOTO VCVarsError
-
-CALL :Generate Debug
+CALL :Generate Debug %1
 SET EL=%ERRORLEVEL%
 IF NOT "%EL%"=="0" EXIT /b %EL%
 
-CALL :Generate Release
+CALL :Generate Release %1
 SET EL=%ERRORLEVEL%
 IF NOT "%EL%"=="0" EXIT /b %EL%
 
@@ -71,7 +78,7 @@ EXIT /b 0
 ECHO.
 ECHO [[ Generate :: %1 :: %VSCMD_ARG_TGT_ARCH% ]]
 ECHO.
-CALL cmake -B build\%1\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=%1 -DCMAKE_TOOLCHAIN_FILE=CMake\toolchain.windows.cmake
+CALL cmake -B build\%1\Win32\%VSCMD_ARG_TGT_ARCH% -S . -G Ninja -DCMAKE_BUILD_TYPE=%1 -DCMAKE_SYSTEM_NAME=Windows -DCMAKE_SYSTEM_VERSION=%WindowsSDKVersion%
 EXIT /b %ERRORLEVEL%
 
 
@@ -83,25 +90,11 @@ REM ##
 REM ############################
 
 :RunBuild
-CALL :RunBuildPlatform x86
-SET EL=%ERRORLEVEL%
-IF NOT "%EL%"=="0" EXIT /b %EL%
-ECHO.
-
-CALL :RunBuildPlatform x64
-SET EL=%ERRORLEVEL%
-IF NOT "%EL%"=="0" EXIT /b %EL%
-ECHO.
-
-EXIT /b 0
-
-
-:RunBuildPlatform
-CALL :Build Debug
+CALL :Build Debug %1
 SET EL=%ERRORLEVEL%
 IF NOT "%EL%"=="0" EXIT /b %EL%
 
-CALL :Build Release
+CALL :Build Release %1
 SET EL=%ERRORLEVEL%
 IF NOT "%EL%"=="0" EXIT /b %EL%
 
@@ -112,7 +105,7 @@ EXIT /b 0
 ECHO.
 ECHO [[ Build :: %1 :: %VSCMD_ARG_TGT_ARCH% ]]
 ECHO.
-CALL cmake --build build\%1\%VSCMD_ARG_TGT_ARCH%
+CALL cmake --build build\%1\Win32\%VSCMD_ARG_TGT_ARCH%
 EXIT /b %ERRORLEVEL%
 
 
@@ -124,25 +117,11 @@ REM ##
 REM ############################
 
 :RunInstall
-CALL :RunInstallPlatform x86
-SET EL=%ERRORLEVEL%
-IF NOT "%EL%"=="0" EXIT /b %EL%
-ECHO.
-
-CALL :RunInstallPlatform x64
-SET EL=%ERRORLEVEL%
-IF NOT "%EL%"=="0" EXIT /b %EL%
-ECHO.
-
-EXIT /b 0
-
-
-:RunInstallPlatform
-CALL :Install Debug
+CALL :Install Debug %1
 SET EL=%ERRORLEVEL%
 IF NOT "%EL%"=="0" EXIT /b %EL%
 
-CALL :Install Release
+CALL :Install Release %1
 SET EL=%ERRORLEVEL%
 IF NOT "%EL%"=="0" EXIT /b %EL%
 
@@ -152,7 +131,7 @@ EXIT /b 0
 ECHO.
 ECHO [[ Install :: %1 :: %VSCMD_ARG_TGT_ARCH% ]]
 ECHO.
-CALL cmake --install build\%1\%VSCMD_ARG_TGT_ARCH% --prefix dist --component dist
+CALL cmake --install build\%1\Win32\%VSCMD_ARG_TGT_ARCH% --prefix dist --component dist
 EXIT /b %ERRORLEVEL%
 
 

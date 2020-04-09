@@ -40,7 +40,7 @@ private:
  *          "showCancelButton": true
  *      }
  */
-Mso::TCntRef<ManifestWin32Dialog> ReadManifestWin32Dialog(
+Mso::CntPtr<ManifestWin32Dialog> ReadManifestWin32Dialog(
     const folly::dynamic& dialogData) noexcept;
 
 
@@ -64,23 +64,23 @@ private:
  *          "msotbid": 123
  *      }
  */
-Mso::TCntRef<ManifestWin32TaskPane> ReadManifestWin32TaskPane(
+Mso::CntPtr<ManifestWin32TaskPane> ReadManifestWin32TaskPane(
     const folly::dynamic& taskPaneData) noexcept;
 
 
 class ManifestRuntimeWin32Container final : public Mso::RefCountedObject<IManifestRuntimeWin32Container>
 {
 public:
-    ManifestRuntimeWin32Container(Mso::TCntPtr<ManifestWin32Dialog>&& dialog) noexcept;
-    ManifestRuntimeWin32Container(Mso::TCntPtr<ManifestWin32TaskPane>&& taskPane) noexcept;
+    ManifestRuntimeWin32Container(Mso::CntPtr<ManifestWin32Dialog>&& dialog) noexcept;
+    ManifestRuntimeWin32Container(Mso::CntPtr<ManifestWin32TaskPane>&& taskPane) noexcept;
 
     ManifestWin32ContainerType GetType() const noexcept override;
     IManifestWin32Dialog* GetDialog() const noexcept override;
     IManifestWin32TaskPane* GetTaskPane() const noexcept override;
 
 private:
-    Mso::TCntPtr<ManifestWin32Dialog> _dialog;
-    Mso::TCntPtr<ManifestWin32TaskPane> _taskPane;
+    Mso::CntPtr<ManifestWin32Dialog> _dialog;
+    Mso::CntPtr<ManifestWin32TaskPane> _taskPane;
 };
 
 
@@ -92,7 +92,7 @@ private:
  *           ... props specific to each type ...
  *       }
  */
-Mso::TCntPtr<ManifestRuntimeWin32Container> ReadManifestRuntimeWin32Container(
+Mso::CntPtr<ManifestRuntimeWin32Container> ReadManifestRuntimeWin32Container(
     const folly::dynamic* containerData, ReactError& error) noexcept;
 
 }

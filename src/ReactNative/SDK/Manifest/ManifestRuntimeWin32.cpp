@@ -7,7 +7,7 @@ namespace Microsoft::ReactNative
 constexpr const char* const c_RuntimeWin32ContainerProperty = "container";
 
 ManifestRuntimeWin32::ManifestRuntimeWin32(
-    Mso::TCntPtr<ManifestRuntimeWin32Container>&& container) noexcept
+    Mso::CntPtr<ManifestRuntimeWin32Container>&& container) noexcept
     : _container{std::move(container)}
 {
 }
@@ -18,7 +18,7 @@ IManifestRuntimeWin32Container* ManifestRuntimeWin32::GetContainer() const noexc
 }
 
 
-Mso::TCntPtr<ManifestRuntimeWin32> ReadManifestRuntimeWin32(const folly::dynamic* win32Data,
+Mso::CntPtr<ManifestRuntimeWin32> ReadManifestRuntimeWin32(const folly::dynamic* win32Data,
     ReactError& error) noexcept
 {
     if (win32Data && win32Data->isObject())

@@ -1,6 +1,6 @@
 list(APPEND HEADERS
-    ${INC_ROOT}/ReactNative/SDK/ReactApi.h
-    ${INC_ROOT}/ReactNative/SDK/ReactManifest.h)
+    ${RNSDK_INC_ROOT}/ReactNative/SDK/ReactApi.h
+    ${RNSDK_INC_ROOT}/ReactNative/SDK/ReactManifest.h)
 
 list(APPEND HEADERS_INTERNAL
     DynamicReader.h
@@ -25,7 +25,7 @@ list(APPEND SOURCES
     Manifest/ManifestRuntimeWin32.cpp
     Manifest/ManifestRuntimeWin32Container.cpp)
 
-add_library(react-native-sdk SHARED)
+add_rnsdk_shared_library(react-native-sdk)
 
 target_sources(react-native-sdk
     PUBLIC
@@ -34,14 +34,9 @@ target_sources(react-native-sdk
         ${HEADERS_INTERNAL}
         ${SOURCES})
 
-target_compile_definitions(react-native-sdk
-    PRIVATE
-        ${PROJECT_COMPILE_DEFINITIONS}
-        MICROSOFT_REACT_BUILD)
-
 target_include_directories(react-native-sdk
     PUBLIC
-        ${INC_ROOT}
+        ${RNSDK_INC_ROOT}
     PRIVATE
         ${BOOST_ROOT}/include
         ${CMAKE_CURRENT_SOURCE_DIR})
@@ -54,21 +49,22 @@ target_link_libraries(react-native-sdk
 
 target_link_options(react-native-sdk
     PUBLIC
-        $<$<PLATFORM_ID:Windows>:/DEF:${CMAKE_CURRENT_SOURCE_DIR}/react-native-sdk.${PLATFORM}.def>)
+        $<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/DEF:${CMAKE_CURRENT_SOURCE_DIR}/react-native-sdk.${RNSDK_TARGET_ARCH}.def>)
 
 install(FILES ${HEADERS}
     DESTINATION include/ReactNative/SDK
     COMPONENT dist)
 
 install(TARGETS react-native-sdk
-    DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
+    DESTINATION ${RNSDK_TARGET_TYPE}/${RNSDK_TARGET_PLATFORM}/${RNSDK_TARGET_ARCH}
     COMPONENT dist)
 
-install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/react-native-sdk.${PLATFORM}.def>
-    DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
-    RENAME react-native-sdk.def
-    COMPONENT dist)
-
-install(FILES $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_BINARY_DIR}/react-native-sdk.pdb>
-    DESTINATION ${CMAKE_BUILD_TYPE}/${PLATFORM}
-    COMPONENT dist)
+if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/react-native-sdk.${RNSDK_TARGET_ARCH}.def
+        DESTINATION ${RNSDK_TARGET_TYPE}/${RNSDK_TARGET_PLATFORM}/${RNSDK_TARGET_ARCH}
+        RENAME react-native-sdk.def
+        COMPONENT dist)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/react-native-sdk.pdb
+        DESTINATION ${RNSDK_TARGET_TYPE}/${RNSDK_TARGET_PLATFORM}/${RNSDK_TARGET_ARCH}
+        COMPONENT dist)
+endif()

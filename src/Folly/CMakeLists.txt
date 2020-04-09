@@ -190,7 +190,7 @@ list(APPEND SOURCES
 list(APPEND SOURCES_WINDOWS
     ${folly_SOURCE_DIR}/folly/portability/SysMman.cpp)
 
-add_library(folly)
+add_rnsdk_static_library(folly)
 
 target_sources(folly
     PUBLIC
@@ -199,8 +199,6 @@ target_sources(folly
     PRIVATE
         ${SOURCES}
         $<$<PLATFORM_ID:Windows>:${SOURCES_WINDOWS}>)
-
-target_compile_definitions(folly PRIVATE ${PROJECT_COMPILE_DEFINITIONS})
 
 target_include_directories(folly
     PUBLIC
@@ -211,4 +209,4 @@ target_include_directories(folly
 
 target_link_options(folly
     PUBLIC
-        $<$<PLATFORM_ID:Windows>:/NATVIS:${CMAKE_CURRENT_SOURCE_DIR}/Folly.natvis>)
+        $<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/NATVIS:${CMAKE_CURRENT_SOURCE_DIR}/Folly.natvis>)

@@ -38,7 +38,7 @@ EXIT /b 0
 ECHO.
 ECHO [[ Testing :: %1 :: %2 ]]
 ECHO.
-CALL dist\%1\%2\ManifestTests.exe
+CALL dist\%1\Win32\%2\ManifestTests.exe
 SET EL=%ERRORLEVEL%
 IF NOT "%EL%"=="0" EXIT /b %EL%
 

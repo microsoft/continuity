@@ -14,8 +14,8 @@ class ManifestRuntime final : public Mso::RefCountedObject<IManifestRuntime>
 {
 public:
     ManifestRuntime(bool devMode, bool attachToWebDebugger, bool liveReload,
-        Mso::TCntRef<ManifestRuntimeLibraryCollection>&& libraries,
-        bool byteCodeCaching, Mso::TCntPtr<ManifestRuntimeWin32>&& win32) noexcept;
+        Mso::CntPtr<ManifestRuntimeLibraryCollection>&& libraries,
+        bool byteCodeCaching, Mso::CntPtr<ManifestRuntimeWin32>&& win32) noexcept;
 
     bool GetDevMode() const noexcept override;
     bool GetAttachToWebDebugger() const noexcept override;
@@ -28,9 +28,9 @@ private:
     bool _devMode;
     bool _attachToWebDebugger;
     bool _liveReload;
-    Mso::TCntRef<ManifestRuntimeLibraryCollection> _libraries;
+    Mso::CntPtr<ManifestRuntimeLibraryCollection> _libraries;
     bool _byteCodeCaching;
-    Mso::TCntPtr<ManifestRuntimeWin32> _win32;
+    Mso::CntPtr<ManifestRuntimeWin32> _win32;
 };
 
 
@@ -49,7 +49,7 @@ private:
  *  If the runtime configuration is invalid or missing, a default configuration
  *  is created. See individual accessors for default values.
  */
-Mso::TCntRef<ManifestRuntime> ReadManifestRuntime(const folly::dynamic* runtimeData,
+Mso::CntPtr<ManifestRuntime> ReadManifestRuntime(const folly::dynamic* runtimeData,
     ReactError& error) noexcept;
 
 }
