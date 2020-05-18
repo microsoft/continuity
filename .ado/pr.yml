@@ -11,7 +11,7 @@ jobs:
   - job: ChangeLog
     displayName: Change Log
     pool:
-      vmImage: 'windows-2019'
+      vmImage: 'vs2017-win2016'
     timeoutInMinutes: 30
 
     steps:

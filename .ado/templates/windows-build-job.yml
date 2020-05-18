@@ -17,7 +17,7 @@ jobs:
   timeoutInMinutes: 30
   cancelTimeoutInMinutes: 2
   pool:
-    vmImage: 'windows-2019'
+    vmImage: 'vs2017-win2016'
   strategy:
     matrix:
       Win32_X64Debug:

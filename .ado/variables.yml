@@ -1,5 +1,5 @@
 variables:
-  BuildWindowsSDK: 10.0.18362.0
+  BuildWindowsSDK: 10.0.17763.0
   NugetArtifactId: Microsoft.ReactNative.SDK
   runCodesignValidationInjection: false
   skipComponentGovernanceDetection: true

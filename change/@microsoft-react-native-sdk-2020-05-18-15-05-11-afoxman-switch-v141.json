@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": "Downgrade to VS2017, v141 platform tools, and SDK 17763",
+  "packageName": "@microsoft/react-native-sdk",
+  "email": "adam@thefoxmans.net",
+  "commit": "95521a7aabc2ba1caddb37265b34a6c1c9006e9b",
+  "dependentChangeType": "patch",
+  "date": "2020-05-18T22:05:11.417Z"
+}
