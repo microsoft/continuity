@@ -2,6 +2,20 @@
   "name": "@microsoft/react-native-sdk",
   "entries": [
     {
+      "date": "Mon, 18 May 2020 22:25:31 GMT",
+      "tag": "@microsoft/react-native-sdk_v1.1.2",
+      "version": "1.1.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Downgrade to VS2017, v141 platform tools, and SDK 17763",
+            "author": "adam@thefoxmans.net",
+            "commit": "95521a7aabc2ba1caddb37265b34a6c1c9006e9b"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 09 Apr 2020 01:47:15 GMT",
       "tag": "@microsoft/react-native-sdk_v1.1.1",
       "version": "1.1.1",

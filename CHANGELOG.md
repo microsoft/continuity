@@ -1,7 +1,13 @@
 # Change Log - @microsoft/react-native-sdk
 
-This log was last generated on Thu, 09 Apr 2020 01:47:15 GMT and should not be manually modified.
+This log was last generated on Mon, 18 May 2020 22:25:31 GMT and should not be manually modified.
 
+## 1.1.2
+Mon, 18 May 2020 22:25:31 GMT
+
+### Patches
+
+- Downgrade to VS2017, v141 platform tools, and SDK 17763 (adam@thefoxmans.net)
 ## 1.1.1
 Thu, 09 Apr 2020 01:47:15 GMT
 
