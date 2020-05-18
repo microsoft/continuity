@@ -117,8 +117,8 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     set(RNSDK_TARGET_ARCH $ENV{VSCMD_ARG_TGT_ARCH})
 
     # Enforce required platform toolset
-    if(NOT MSVC_TOOLSET_VERSION EQUAL 142)
-        message(FATAL_ERROR "This project does not support Visual Studio toolset ${MSVC_TOOLSET_VERSION}. It only supports toolset 142 (Visual Studio 2019).")
+    if(NOT MSVC_TOOLSET_VERSION EQUAL 141)
+        message(FATAL_ERROR "This project does not support Visual Studio toolset ${MSVC_TOOLSET_VERSION}. It only supports toolset 141 (Visual Studio 2017).")
     endif()
 
 #elseif(CMAKE_CXX_COMPILER_ID IN_LIST "Clang;AppleClang")
