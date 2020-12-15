@@ -2,12 +2,12 @@
 SETLOCAL
 ECHO.
 
-ECHO [[ Looking for Visual C++ 2019... ]]
+ECHO [[ Looking for Visual C++ 2017... ]]
 
-SET VCVARSALL_BAT="%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat"
-IF NOT EXIST %VCVARSALL_BAT% set VCVARSALL_BAT="%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat"
-IF NOT EXIST %VCVARSALL_BAT% set VCVARSALL_BAT="%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Professional\VC\Auxiliary\Build\vcvarsall.bat"
-IF NOT EXIST %VCVARSALL_BAT% set VCVARSALL_BAT="%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
+SET VCVARSALL_BAT="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat"
+IF NOT EXIST %VCVARSALL_BAT% set VCVARSALL_BAT="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat"
+IF NOT EXIST %VCVARSALL_BAT% set VCVARSALL_BAT="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build\vcvarsall.bat"
+IF NOT EXIST %VCVARSALL_BAT% set VCVARSALL_BAT="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
 IF NOT EXIST %VCVARSALL_BAT% GOTO NoBuildTools
 
 CALL :RunArch x86
@@ -136,7 +136,7 @@ EXIT /b %ERRORLEVEL%
 
 
 :NoBuildTools
-ECHO [[ ERROR ]] Failed to find Visual C++ 2019 in any of the standard locations
+ECHO [[ ERROR ]] Failed to find Visual C++ 2017 in any of the standard locations
 EXIT /b 1
 
 :VCVarsError

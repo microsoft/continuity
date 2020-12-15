@@ -8,14 +8,14 @@ The build is based on [CMake](https://cmake.org) and [Ninja](https://ninja-build
 
 ### Windows
 
-_If you already have Visual Studio 2019 installed with C++ tools, skip to step 3._
+_If you already have Visual Studio 2017 installed with C++ tools, skip to step 3._
 
-1. Install Visual Studio 2019 build tools
+1. Install Visual Studio 2017 build tools
 
 ```
-choco install visualstudio2019buildtools
-choco install visualstudio2019-workload-vctools
-choco install visualstudio2019-workload-universalbuildtools
+choco install visualstudio2017buildtools
+choco install visualstudio2017-workload-vctools
+choco install visualstudio2017-workload-universalbuildtools
 ```
 
 2. Install a [Windows 10 SDK](https://developer.microsoft.com/en-us/windows/downloads/sdk-archive). Choose a recent release. Don't go back any farther than `10.0.15063.0` (Spring Creators Update, version 1703).

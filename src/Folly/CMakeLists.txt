@@ -207,6 +207,11 @@ target_include_directories(folly
     PRIVATE
         ${BOOST_ROOT}/include)
 
+target_compile_definitions(folly
+    PUBLIC
+        FOLLY_SSE=2
+        FOLLY_SSE_MINOR=0)
+
 target_link_options(folly
     PUBLIC
         $<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/NATVIS:${CMAKE_CURRENT_SOURCE_DIR}/Folly.natvis>)
