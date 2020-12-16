@@ -1,6 +1,6 @@
 {
   "name": "@microsoft/react-native-sdk",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "scripts": {
     "change": "beachball change",
     "check": "beachball check"

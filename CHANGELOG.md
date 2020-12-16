@@ -1,7 +1,13 @@
 # Change Log - @microsoft/react-native-sdk
 
-This log was last generated on Mon, 18 May 2020 22:25:31 GMT and should not be manually modified.
+This log was last generated on Wed, 16 Dec 2020 00:12:02 GMT and should not be manually modified.
 
+## 1.2.0
+Wed, 16 Dec 2020 00:12:02 GMT
+
+### Minor changes
+
+- Restrict folly to SSE 2.0 to be compatible with CHPE opcode emulation. Update docs/script to use VS2017 tools. (#66) (afoxman@microsoft.com)
 ## 1.1.2
 Mon, 18 May 2020 22:25:31 GMT
 

@@ -1,9 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Restrict folly to SSE 2.0 to be compatible with CHPE opcode emulation. Update docs/script to use VS2017 tools. (#66)",
-  "packageName": "@microsoft/react-native-sdk",
-  "email": "afoxman@microsoft.com",
-  "commit": "898058e15c0232d89a57a0cc77514e80e7992d3e",
-  "dependentChangeType": "patch",
-  "date": "2020-12-16T00:02:14.027Z"
-}
